@@ -1,0 +1,47 @@
+image:
+  repository: quantumbio-localmoe
+  tag: latest
+  pullPolicy: IfNotPresent
+
+replicaCount: 1
+
+service:
+  type: ClusterIP
+  port: 8000
+
+ingress:
+  enabled: false
+  className: nginx
+  host: quantumbio.local
+  path: /
+
+resources:
+  limits:
+    cpu: "4"
+    memory: 16Gi
+  requests:
+    cpu: "1"
+    memory: 4Gi
+
+nodeSelector:
+  kubernetes.io/hostname: ""
+tolerations: []
+
+modelStorage:
+  # Path inside the pod where GGUF/AWQ weights are mounted.
+  mountPath: /models
+  responsibleReadOnly: true
+
+env:
+  LOCALMOE_LOG_LEVEL: INFO
+  MODEL_DIRECTORY: /models
+  QUANTIZATION_TYPE: AWQ
+  DATABASE_URL: postgresql+asyncpg://postgres:secret@quantumbio-localmoe-postgres:5432/localmoe
+  QDRANT_HOST: quantumbio-localmoe-qdrant
+  QDRANT_PORT: "6333"
+  REDIS_HOST: quantumbio-localmoe-redis
+  REDIS_PORT: "6379"
+
+probes:
+  enabled: true
+  path: /health

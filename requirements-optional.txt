@@ -1,0 +1,8 @@
+# Optional runtime engines. Install best-effort.
+# llama-cpp-python: loads GGUF text models (DeepSeek-R1, Gemma, Phi-3, ...)
+llama-cpp-python>=0.2.90
+# vLLM / qiskit-aer / diffusion / whisper: GPU/domain extras
+vllm>=0.3.3
+qiskit-aer>=0.15.0
+stable-diffusion-cpp-python>=0.1.0
+faster-whisper>=1.0.0

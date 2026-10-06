@@ -1,0 +1,405 @@
+% ---------------------------------------------------------------------------
+% IEEE manuscript (IEEEtran journal class) — QuantumBio-LocalMoE
+% Aligned to the Word draft "Air-Gapped Local Mixture-of-Experts Engine for
+% Quantum-Biology Simulation (IEEE Notation).docx".
+% Compile with: pdflatex PAPER_IEEE  (inline thebibliography, no bibtex needed)
+% Requires IEEEtran.cls (CTAN or Overleaf template).
+% ---------------------------------------------------------------------------
+\documentclass[journal]{IEEEtran}
+
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage{cite}
+\usepackage{url}
+\usepackage[table]{xcolor}
+
+\begin{document}
+
+\title{QuantumBio-LocalMoE: An Air-Gapped Sparse Mixture-of-Experts Engine for
+Domain-Routed Local Inference and Executable OpenQASM Synthesis}
+
+\author{K.~Gayathri,~B.~Tanuja,~and~Sai~Karun~Nandipati
+\thanks{K. Gayathri and Sai Karun Nandipati are with the Department of Data
+Science \& A.I., P.B. Siddhartha College of Arts \& Science, Vijayawada--520001,
+Andhra Pradesh, India (e-mail: kgayathri@pbsiddhartha.ac.in,
+saikarun@pbsiddhartha.ac.in).}
+\thanks{B. Tanuja is with the Department of Data Science \& A.I., P.B.
+Siddhartha College of Arts \& Science, Vijayawada--520001, Andhra Pradesh, India
+(e-mail: basamsettytanuja@gmail.com).}}
+
+\markboth{QuantumBio-LocalMoE, 2026}%
+{K. Gayathri, B. Tanuja, and S. K. Nandipati: Air-Gapped Sparse MoE for
+Domain-Routed Local Inference}
+
+\maketitle
+
+\begin{abstract}
+Small language models (SLMs) operating on consumer CPU hardware provide data
+isolation, zero egress, and predictable execution latency. However, localized
+SLMs typically struggle with multi-domain specialization and low-level program
+synthesis, such as generating syntactically valid quantum assembly code. In
+this paper, we present QuantumBio-LocalMoE, an air-gapped, software-defined
+Mixture-of-Experts (MoE) orchestration platform designed for local CPU
+environments. The platform incorporates: (i)~a keyword-gated router that
+dispatches queries across specialized local GGUF models (Quantum Computing,
+Bioinformatics, Biosecurity, and General domains); (ii)~a quantum circuit
+synthesis pipeline that parses, sanitizes, and verifies OpenQASM 2.0 code via
+local Qiskit and Cirq backends; and (iii)~an operating-system-level process-tree
+audit proving zero non-loopback network connections during active inference.
+Across 705 evaluation requests, the system achieved a 100\% HTTP request success
+rate, 99.13\% routing accuracy ($0.004$~ms median routing latency), and a mean
+CPU inference throughput of $8.39$~tok/s (95\%~CI: 7.91--8.86). While raw
+1B-scale models yielded a 0\% pass rate for OpenQASM generation due to reasoning
+preambles and syntax hallucinations, our anchored in-context prompting paired
+with a post-processing guard improved executable code synthesis to 80\%
+(8/10). Operating at Technology Readiness Level (TRL) 3--4, this system
+demonstrates a practical framework for high-compliance, air-gapped scientific
+modeling.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Mixture-of-Experts (MoE), Small Language Models (SLMs), OpenQASM Synthesis,
+Air-Gapped Systems, Local Inference, Qiskit Simulation, Domain-Specific Routing.
+\end{IEEEkeywords}
+
+\section{Introduction}
+Deploying Large Language Models (LLMs) in sensitive sectors---such as
+biosecurity, molecular research, and proprietary quantum algorithm design---presents
+privacy and regulatory compliance challenges. While centralized cloud APIs offer
+state-of-the-art capabilities, they introduce data-exfiltration risks and
+dependency on external networks.
+
+Small Language Models (SLMs) quantized for edge or consumer hardware provide a
+privacy-preserving alternative. However, standalone SLMs face two major
+performance bottlenecks:
+\begin{enumerate}
+\item \textbf{Model Capacity Constraints:} a single sub-3B-parameter model
+struggles to maintain domain-specific precision across disparate technical
+disciplines (e.g., distinguishing between genomic sequence alignment and quantum
+state preparation);
+\item \textbf{Structured Code Synthesis Failures:} SLMs frequently fail at
+generating low-level domain-specific intermediate representations (IR) such as
+OpenQASM 2.0, emitting verbose natural-language preambles or hallucinating
+invalid syntax (e.g., \texttt{let} statements, unmapped qubits, or unclosed
+gates).
+\end{enumerate}
+
+To address these challenges, we introduce QuantumBio-LocalMoE, an air-gapped
+local inference engine. Instead of deploying a single parameter-heavy dense
+model, our system implements a software-defined Mixture-of-Experts (MoE)
+architecture. An ultra-low-latency router categorizes user intent and directs
+prompts to domain-specific local experts. To resolve the code-generation
+bottleneck, the platform implements an anchored prompting mechanism paired with
+a post-processing guard (\texttt{sanitize\_qasm}) that converts raw model output
+into validated, executable OpenQASM circuits for local classical simulation via
+Qiskit and Cirq.
+
+\section{Literature Review}
+\subsection{Sparse Mixture-of-Experts Architecture}
+Shazeer \emph{et al.} introduced sparsely-gated MoE layers using Top-k soft
+gating~\cite{shazeer}. Jiang \emph{et al.} expanded this with Mixtral 8x7B,
+proving that dynamic expert selection reduces inference compute
+requirements~\cite{mixtral}. Cai \emph{et al.} provided a comprehensive survey
+on routing paradigms~\cite{cai2024survey}. Our work applies these routing
+principles via a deterministic keyword router tailored for localized SLMs.
+
+\subsection{Quantum Assembly \& Code Synthesis}
+Cross \emph{et al.} established the OpenQASM IR specification~\cite{cross2017}.
+Yang \emph{et al.} presented QCircuitNet, framing circuit design as an LLM
+code-generation problem and highlighting small-model
+limitations~\cite{yang2024qcircuitnet}. Fu \emph{et al.} proposed QAgent,
+utilizing multi-agent reflection and RAG to improve OpenQASM generation pass
+rates~\cite{fu2025qagent}. Our approach complements these findings by
+demonstrating how static post-processing guards can recover valid circuits from
+small sub-2B models.
+
+\subsection{Air-Gapped \& Local Infrastructure}
+Alshaer explored local-first agent architectures to eliminate data leakage in
+high-compliance environments~\cite{alshaer2024}. Corradini surveyed small
+language models (SLMs), emphasizing the balance between parameter efficiency and
+on-device data residency~\cite{corradini2025}.
+
+\section{System Architecture}
+The platform is built as an OpenAI-compatible FastAPI service (\texttt{main:app})
+running locally via \texttt{llama-cpp-python}~\cite{llamacpp}. The software
+architecture consists of four primary subsystems:
+\begin{itemize}
+\item \textbf{MoE Domain Router:} a keyword-gated router prioritizing request
+dispatch across specialized model endpoints with a median latency of 0.004~ms;
+\item \textbf{Local Inference Execution Engine:} operates quantized GGUF weights
+(DeepSeek-R1-Distill-Qwen-1.5B Q6\_K\_L as primary, Gemma-3-1B-IT Q4\_K\_M as
+lightweight/draft) using CPU-bound C++ execution threads via llama.cpp;
+\item \textbf{Quantum Sanitization Guard (\texttt{sanitize\_qasm}):} scaffolds
+missing headers (\texttt{OPENQASM 2.0;}, \texttt{include "qelib1.inc";}),
+translates pseudo-instructions, and strips conversational reasoning text prior
+to compiler parsing;
+\item \textbf{Local Execution Backend:} bridges validated OpenQASM circuits
+directly to local \texttt{qiskit-aer} simulation
+backends~\cite{qiskit}.
+\end{itemize}
+
+\subsection{High-Level Architecture Diagram}
+\begin{figure}[!t]
+\centering
+% Camera-ready: replace with rendered diagram.
+% Source: docs/uml/rendered/architecture.svg
+\fbox{\parbox{0.9\columnwidth}{\centering\small
+MoE Router $\rightarrow$ Local Inference Engine $\rightarrow$ Quantum Sanitization
+Guard $\rightarrow$ Qiskit/Cirq Backends\\ (Mermaid UML: architecture diagram)}}
+\caption{High-level architecture (Mermaid UML).}
+\label{fig:arch}
+\end{figure}
+
+\subsection{Request Execution Sequence Diagram}
+\begin{figure}[!t]
+\centering
+% Camera-ready: replace with rendered diagram.
+% Source: docs/uml/rendered/sequence_chat.svg
+\fbox{\parbox{0.9\columnwidth}{\centering\small
+Client $\rightarrow$ MoE Router $\rightarrow$ Expert $\rightarrow$ Guard $\rightarrow$
+Simulation $\rightarrow$ Response\\ (Mermaid UML: execution sequence)}}
+\caption{Request execution sequence (Mermaid UML).}
+\label{fig:seq}
+\end{figure}
+
+\section{Methodology}
+\begin{enumerate}
+\item \textbf{MoE Routing Evaluation:} a curated dataset of $n=231$
+hand-labeled prompts spanning Quantum (61), Genomic (40), Biosecurity (30), and
+General (100) domains was passed through the router to measure Precision,
+Recall, Macro-F1, and Latency.
+\item \textbf{CPU Inference Benchmarking:} multi-seed evaluation ($N=30$) was
+conducted using fixed prompt sequences at temperatures
+$T\in[0.1, 0.7]$ to establish 95\% confidence intervals for throughput (tok/s)
+and end-to-end latency.
+\item \textbf{Quantum Circuit Synthesis Evaluation:} a 10-circuit benchmark
+(Bell State, GHZ3/4, VQE2/4, Grover2/3, QFT3, Teleportation) was evaluated
+across 3 trials ($N=30$ total) under raw generation versus anchored in-context
+prompting paired with post-processing guards.
+\item \textbf{Air-Gap Network Verification:} process-tree socket monitoring
+(\texttt{Get-NetTCPConnection} polled every 400~ms across 573 samples) was
+executed during live server inference to verify zero external communication.
+\end{enumerate}
+
+\section{Experimentation, Results \& Tabulation}
+\subsection{MoE Router Accuracy \& Latency}
+The router achieved high domain precision and ultra-low routing overhead
+(Table~\ref{tab:router}).
+
+\begin{table}[!t]
+\caption{MoE Router Evaluation Metrics ($n=231$)}
+\begin{center}
+\begin{tabular}{lcc}
+\hline
+Metric & Target & Measured Value\\
+\hline
+Routing Accuracy       & $\geq0.98$   & 0.9913 (229/231)\\
+Macro F1 Score         & $\geq0.90$   & 0.9934\\
+Weighted F1 Score      & ---          & 0.9914\\
+Median Routing Latency & $<2.000$~ms & 0.004~ms\\
+P95 Routing Latency    & ---          & 0.008~ms\\
+\hline
+\end{tabular}
+\end{center}
+\label{tab:router}
+\end{table}
+
+\subsection{Local CPU Inference Performance ($N=30$ Multi-Seed Runs)}
+Evaluating DeepSeek-R1-Distill-Qwen-1.5B (Q6\_K\_L) on CPU hardware yielded
+predictable throughput and latency distributions (Table~\ref{tab:inference}).
+
+\begin{table}[!t]
+\caption{CPU-Bound Inference Throughput and Latency Variance}
+\begin{center}
+\begin{tabular}{lcccccc}
+\hline
+Metric & N & Mean & Std Dev & Median & P95 & 95\% CI\\
+\hline
+End-to-End Latency (s) & 30 & 8.106 & 1.489 & 7.675 & 10.646 & 7.573--8.639\\
+Throughput (tok/s) & 30 & 8.386 & 1.325 & 8.600 & 9.949 & 7.912--8.860\\
+\hline
+\end{tabular}
+\end{center}
+\label{tab:inference}
+\end{table}
+
+\subsection{OpenQASM Synthesis Pass Rates}
+Evaluating circuit generation across 10 canonical tasks demonstrated the
+necessity of post-processing guards (Table~\ref{tab:qasm}).
+
+\begin{table}[!t]
+\caption{OpenQASM Synthesis Evaluation with Structural Sanitization}
+\begin{center}
+\begin{tabular}{lcccc}
+\hline
+Circuit Target & Qubits & Raw Pass Rate & Guarded Pass Rate & Primary Failure Mode\\
+\hline
+Bell State / GHZ3 / GHZ4 & 2--4 & 0/3 & 3/3 (100\%) & ---\\
+VQE (2q / 4q)            & 2--4 & 0/3 & 5/6 (83.3\%)   & Operator chaining (\texttt{*})\\
+QFT3 / Teleportation     & 3    & 0/3 & 3/3 (100\%)   & ---\\
+Grover2 / Grover3        & 2--3 & 0/3 & 2/6 (33.3\%)   & \texttt{let}-statement hallucinations\\
+\hline
+\textbf{Overall Benchmark} & --- & \textbf{0/10 (0\%)} & \textbf{8/10 (80\%)} & \textbf{Target (90\%) Not Met}\\
+\hline
+\end{tabular}
+\end{center}
+\label{tab:qasm}
+\end{table}
+
+Executing a 1024-shot Bell State simulation on the local \texttt{qiskit-aer}
+backend~\cite{qiskit} produced live measurement distributions of
+\texttt{\{'00': 506, '11': 518\}}, confirming functional end-to-end execution.
+
+\section{Future Scope}
+\begin{itemize}
+\item \textbf{Grammar-Constrained Decoding:} integrating JSON-schema or
+Backus--Naur Form (BNF) grammar constraints directly into the llama.cpp sampling
+loop to eliminate non-standard OpenQASM syntax hallucinations
+(\texttt{let}, \texttt{for} loops) at inference time.
+\item \textbf{Context-Aware Embedding Routers:} supplementing keyword routing
+with lightweight ONNX-based embedding models to improve edge-case classification
+for complex, ambiguous prompts.
+\item \textbf{Speculative Decoding Pipeline:} implementing functional draft-model
+speculative decoding within the C++ sampler runtime to increase local CPU
+token-generation throughput.
+\end{itemize}
+
+\section{Conclusion}
+QuantumBio-LocalMoE presents a verified TRL~3--4 prototype for domain-routed,
+air-gapped SLM inference and quantum program synthesis. The platform achieved
+99.13\% routing accuracy with sub-millisecond overhead, sustained a 100\% request
+success rate, and proved complete data isolation via OS-level socket monitoring.
+While post-processing guards elevated OpenQASM code-generation pass rates from
+0\% to 80\%, semantic logic hallucinations remain an ongoing research challenge
+for sub-2B-parameter models.
+
+\section{Case Studies}
+\subsection{Air-Gapped Quantum Circuit Synthesis \& Local Simulation (Quantum Expert)}
+\textit{Scenario.} A researcher in a high-security laboratory requests the
+design, validation, and classical state-vector simulation of a two-qubit Bell
+state without exposing proprietary quantum algorithm structures to cloud-hosted
+APIs.
+
+\textit{Execution Flow.}
+\begin{enumerate}
+\item \textbf{Routing.} The client sends the prompt ``Generate an OpenQASM 2.0
+program to construct a 2-qubit Bell state and execute measurement.'' The MoE
+Router detects the keywords \emph{OpenQASM}, \emph{qubit}, and \emph{Bell state},
+dispatching the request to the Quantum Specialist model
+(DeepSeek-R1-Distill-Qwen-1.5B) in 0.004~ms.
+\item \textbf{LLM Generation.} The local SLM generates a completion. Due to
+reasoning-token overhead, the raw completion includes a natural-language
+preamble followed by unformatted gate statements: \texttt{H q0},
+\texttt{CNOT 0 1}, \texttt{Measure 0, 1}.
+\item \textbf{Sanitization \& AST Validation.} The \texttt{sanitize\_qasm} guard
+extracts the code segment, strips prose commentary, translates pseudo-operations
+(converting \texttt{H q0} to \texttt{h q[0];} and \texttt{CNOT 0 1} to
+\texttt{cx q[0], q[1];}), and injects missing headers (\texttt{OPENQASM 2.0;},
+\texttt{include "qelib1.inc";}, \texttt{qreg q[2];}, \texttt{creg c[2];}). The
+resulting string is parsed by \texttt{QuantumBridge.validate\_llm\_qasm()} via
+Qiskit 2.5, passing AST syntax validation.
+\item \textbf{Local Simulation \& Result.} The validated circuit is executed on
+the local CPU \texttt{qiskit-aer} 0.17.2 backend at 1024 shots. The engine
+returns live measurement counts \texttt{\{'00': 506, '11': 518\}}, proving
+functional quantum-classical synthesis.
+\end{enumerate}
+
+\textit{Outcome.} The user receives valid, verified OpenQASM code alongside
+execution counts in a single REST response, achieved entirely on local CPU
+hardware with zero non-loopback network connections.
+
+\subsection{Secure Bioinformatics Analysis \& Local Report Generation (Genomic Expert)}
+\textit{Scenario.} A biomedical laboratory requires a summary of pairwise
+sequence-alignment algorithms (such as Needleman--Wunsch versus
+Smith--Waterman) and an automated PDF research report generated locally under
+strict biological data-residency compliance.
+
+\textit{Execution Flow.}
+\begin{enumerate}
+\item \textbf{Routing.} The user submits a prompt regarding sequence-alignment
+parameters and requests a downloadable summary report. The MoE Router matches
+keywords \emph{sequence alignment}, \emph{Needleman--Wunsch}, and
+\emph{Smith--Waterman}, routing the query to the Genomic Specialist.
+\item \textbf{Inference \& Structuring.} The model generates structured Markdown
+detailing global versus local alignment scoring matrices, gap penalties, and
+quadratic computational complexity proportional to sequence length.
+\item \textbf{Document Export.} The response payload is dispatched to the
+platform's local reporting module (\texttt{/v1/report/generate}), which compiles
+the text, formats tables, and renders a publication-ready PDF using reportlab
+5.0.1.
+\item \textbf{Air-Gap Audit during Generation.} During the multi-second LLM
+decode and PDF compilation window, the OS-level socket monitor
+(\texttt{airgap\_os\_audit.py}) records 573 continuous TCP connection samples,
+confirming zero external remotes bound to the server process tree.
+\end{enumerate}
+
+\textit{Outcome.} The system generates and exports an executive PDF report in
+under 60 seconds with 100\% data locality and zero cloud dependency.
+
+\section*{Declarations \& Compliance Statements}
+\textbf{Author Contribution Statement.}
+\begin{itemize}
+\item \textbf{A. Evaluation Lead:} designed the benchmarking suite, conducted
+multi-seed CPU inference trials, performed the OS-level network socket audits,
+and analyzed statistical confidence intervals.
+\item \textbf{B. Core Systems Engineer:} implemented the FastAPI engine,
+integrated llama-cpp-python GGUF bindings, engineered the software-defined MoE
+Router, and maintained model-catalog registries.
+\item \textbf{C. Quantum Software Specialist:} authored the
+\texttt{sanitize\_qasm} guard pipeline, configured Qiskit/Cirq simulation
+backends, and validated OpenQASM intermediate-representation correctness.
+\end{itemize}
+All authors reviewed, revised, and approved the final manuscript.
+
+\textbf{Dedication.} This work is dedicated to the open-source privacy and
+local-first AI research communities, whose ongoing contributions enable secure,
+transparent, and reproducible scientific computing.
+
+\textbf{Conflict of Interest Statement.} The authors declare that they have no
+known competing financial interests or personal relationships that could have
+appeared to influence the work reported in this paper.
+
+\section*{Bibliography}
+\textbf{Sai Karun Nandipati}, M.Sc., M.Tech (CSE), APSET, serves as an Assistant
+Professor in the Department of Data Science \& Artificial Intelligence at PB
+Siddhartha College of Arts \& Science, Vijayawada, Andhra Pradesh. With 9 years
+of teaching experience, his research interests encompass Data Mining, Machine
+Learning, Deep Learning, Big Data, Microsoft Programming Languages, and Web
+Programming.
+
+\begin{thebibliography}{12}
+\bibitem{alshaer2024} J.~Alshaer, ``Mitigating data leakage in high-compliance
+environments through local-first air-gapped agent architecture,'' TechRxiv,
+2024.
+\bibitem{cai2024survey} W.~Cai, Y.~Jiang, and X.~Li, ``A survey on mixture of
+experts in large language models,'' arXiv preprint arXiv:2407.06204, 2024.
+\bibitem{corradini2025} F.~Corradini, ``State of the art and future directions
+of small language models,'' \emph{Big Data and Cognitive Computing}, vol.~9,
+no.~7, p.~189, 2025.
+\bibitem{cross2017} A.~W.~Cross, L.~S.~Bishop, J.~A.~Smolin, and J.~M.~Gambetta,
+``Open quantum assembly language,'' arXiv preprint arXiv:1707.03429, 2017.
+\bibitem{fu2025qagent} Z.~Fu, F.~Chen, and L.~Jiang, ``QAgent: An LLM-based
+multi-agent system for autonomous OpenQASM programming,'' arXiv preprint
+arXiv:2508.20134, 2025.
+\bibitem{llamacpp} G.~Gerganov, ``llama.cpp: Port of Facebook's LLaMA model in
+C/C++,'' GitHub repository, 2023. [Online]. Available:
+\url{https://github.com/ggerganov/llama.cpp}
+\bibitem{mixtral} A.~Q.~Jiang \emph{et al.}, ``Mixtral of experts,'' arXiv
+preprint arXiv:2401.04088, 2024.
+\bibitem{qiskit} Qiskit Contributors, ``Qiskit: An open-source framework for
+quantum computing,'' 2023. [Online]. Available: \url{https://qiskit.org}
+\bibitem{evreport} QuantumBio-LocalMoE Evaluation Team, ``QuantumBio-LocalMoE:
+Test and evaluation report,'' Local Technical Report EVALUATION\_REPORT.md,
+v0.1.0, Sep. 2026.
+\bibitem{papermd} QuantumBio-LocalMoE Evaluation Team, ``Air-gapped local MoE
+engine for quantum--biology simulation,'' Technical Report PAPER.md, v1.0.0,
+Sep. 2026.
+\bibitem{shazeer} N.~Shazeer \emph{et al.}, ``Outrageously large neural
+networks: The sparsely-gated mixture-of-experts layer,'' in \emph{Proc. Int.
+Conf. Learn. Represent. (ICLR)}, 2017.
+\bibitem{yang2024qcircuitnet} R.~Yang, Y.~Gu, Z.~Wang, Y.~Liang, and T.~Li,
+``QCircuitNet: A large-scale hierarchical dataset for quantum algorithm
+design,'' arXiv preprint arXiv:2410.07961, 2024.
+\end{thebibliography}
+
+\end{document}

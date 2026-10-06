@@ -1,0 +1,112 @@
+{
+  "methodology": "8 curated MCQs (bioinformatics + quantum computing) with a single correct answer string, answered by the default DeepSeek-R1-Distill-Qwen-1.5B Q6_K_L model (temperature 0, max_tokens 256). Correct if the expected answer phrase appears in the response. OpenQASM tasks: model writes code (max_tokens 512), validated with Qiskit via QuantumBridge.validate_qasm, requiring the expected gates and qubit count. Note: the R1 reasoning preamble consumes budget, so an earlier 96/256-token pass truncated several answers; this pass uses the app-default chat budget (256) and 512 for code. Small n - smoke evidence only.",
+  "mcq_accuracy": 1.0,
+  "mcq_correct": 8,
+  "mcq_total": 8,
+  "mcq_results": [
+    {
+      "id": "q1",
+      "question": "In DNA, adenine pairs with which base? (A) Guanine (B) Cytosine (C) Thymine (D) Uracil",
+      "expected": "thymine",
+      "correct": true,
+      "text": "<think>\nOkay, so I'm trying to figure out which base adenine pairs with in DNA. The options are guanine, cytosine, thymine, or uracil. Hmm, let me think about this step by step.\n\nFirst, I remember that DNA is a double helix structure, and each base has a complementary counterpart. Adenine is one of the four main bases: A, T, C, G. Wait, no, actually, in DNA, it's A, T, C, G, but in RNA, it's A, U, C, G. So adenine pairs with thymine? Or wait, maybe I'm mixing things up.\n\nWait, no, in the double helix structure, each base pairs with a specific complement. Adenine is paired with thymine because they are both purines and form hydrogen bonds. But wait, isn't that only in RNA? No, DNA uses the same pairing rules as RNA for complementary bases. So adenine would pair with thymine.\n\nBut hold on, I'm getting confused because sometimes people confuse DNA and RNA base pairing. Let me think again. In DNA, adenine pairs with thymine because both are purines (A and",
+      "tps": 8.63
+    },
+    {
+      "id": "q2",
+      "question": "A unit of genetic recombination frequency equal to a 1% chance of recombination is: (A) centimorgan (B) Dalton (C) Svedberg unit (D) molarity",
+      "expected": "centimorgan",
+      "correct": true,
+      "text": "<think>\nOkay, so I'm trying to figure out this genetics question. The question is asking about a unit of genetic recombination frequency that's equal to 1%. The options are centimorgan (Cm), Dalton (D), Svedberg unit (Sb), and molarity (M). \n\nFirst, I need to understand what each of these units represents in terms of recombination frequency. Recombination frequency is the percentage chance that two genes will be inherited together from a single parent. So, 1% means there's a very low probability of crossing over between two genes.\n\nStarting with centimorgan (Cm). I remember that 1 centimorgan is approximately equal to 1% of recombination frequency. That seems pretty straightforward because the definition of a centimorgan is based on the distance between two points in the DNA, and it's often used as a measure of genetic linkage. So, if two genes are 1 centimorgan apart, they have a 1% chance of recombining.\n\nNext up is Dalton (D). I'm not too familiar with this unit, but I think it's related to mass or something like that. Wait, no, in genetics, the Dalton is actually used as a unit for",
+      "tps": 9.19
+    },
+    {
+      "id": "q3",
+      "question": "Which single-qubit gate is its own inverse and maps |0> to |1>? (A) X gate (B) T gate (C) S gate (D) Z gate",
+      "expected": "x gate",
+      "correct": true,
+      "text": "<think>\nOkay, so I'm trying to figure out which single-qubit gate is its own inverse and maps |0> to |1>. The options are X, T, S, or Z gates. Let me break this down step by step.\n\nFirst, what does it mean for a gate to be its own inverse? That means if you apply the gate twice, you get back to where you started. So mathematically, G\u00b2 = I, where G is the gate and I is the identity matrix. This also implies that applying the gate once will invert the effect of another application.\n\nNext, the gate must map |0> to |1>. That means when the qubit is in state |0>, after applying the gate, it should be in state |1>.\n\nLet me recall each gate's behavior:\n\n- **X Gate (Not X)**: The Pauli-X gate flips the qubit. So, X|0> = |1> and X|1> = |0>. This is its own inverse because applying X twice brings you back to the original state.\n\n- **T Gate**: The Phase Shift Gate. It applies a phase shift of e^(2\u03c0i/3) when the qubit is in state |1>.",
+      "tps": 9.02
+    },
+    {
+      "id": "q4",
+      "question": "The Bell state (|00>+|11>)/sqrt(2) is produced by applying which gate sequence to |00>? (A) H then CNOT (B) CNOT then H (C) two T gates (D) SWAP",
+      "expected": "h then cnot",
+      "correct": true,
+      "text": "<think>\nOkay, so I'm trying to figure out which gate sequence is used to produce the Bell state |00> + |11> divided by sqrt(2) starting from |00>. The options are H then CNOT, CNOT then H, two T gates, or SWAP. \n\nFirst, I remember that the Bell states are entangled states, so they can't be produced by simple tensor products of individual qubits. They require some kind of operation between them.\n\nI think about how to create an entangled state from |00>. Maybe applying a Hadamard gate on one qubit and then a CNOT would help? Let me see: If I start with |00>, apply H to the first qubit, it becomes (|+0> + |\u22120>)/sqrt(2). Then if I do a CNOT where the second qubit is the target and the first is the control, what happens?\n\nWait, no. The Hadamard on the first qubit would create superpositions, but then applying CNOT might entangle them differently. Alternatively, maybe starting with |01> and applying H to the first qubit? But I'm not sure.\n\nAnother approach: The Bell state",
+      "tps": 8.15
+    },
+    {
+      "id": "q5",
+      "question": "Which codon is the universal start codon in the standard genetic code? (A) UAA (B) AUG (C) UGA (D) GGU",
+      "expected": "aug",
+      "correct": true,
+      "text": "<think>\nOkay, so I'm trying to figure out which codon is the universal start codon in the standard genetic code. The options are A) UAA, B) AUG, C) UGA, and D) GGU. Hmm, let me think about this step by step.\n\nFirst, I remember that the genetic code has some exceptions because of the degeneracy of codons. That means multiple amino acids can be coded by the same codon. The standard genetic code is mostly AUG, but there are some exceptions like UAA and UGA which code for leucine instead of asparagine or glutamine.\n\nWait, so the question is about the universal start codon. I think that's a specific term used in genetics to refer to the codon that codes for the start of translation, which is AUG. But sometimes people might confuse it with the exceptions like UAA and UGA because they are considered \"universal\" in some contexts.\n\nLet me double-check what defines a universal start codon. From what I recall, the start codon is always AUG, regardless of any exceptions or variations. The exceptions are just specific cases where other codons code for different amino acids. So even though there are UAA and UGA as exceptions",
+      "tps": 10.76
+    },
+    {
+      "id": "q6",
+      "question": "Chargaff's rules for double-stranded DNA state that: (A) adenine equals guanine (B) thymine equals cytosine (C) adenine equals thymine (D) the strands are identical",
+      "expected": "adenine equals thymine",
+      "correct": true,
+      "text": "<think>\nOkay, so I'm trying to figure out the correct answer for this question about Chargaff's rules for double-stranded DNA. The options are A, B, C, and D. Let me break it down step by step.\n\nFirst, I remember that Chargaff's rules have something to do with the complementarity of DNA strands. There are two main points: one about the pairing between adenine and guanine, and another about thymine and cytosine. \n\nOption A says adenine equals guanine. That doesn't sound right because in double-stranded DNA, each base pairs with its complement. So adenine should pair with thymine, not guanine. Guanine is a purine, so it pairs with adenine.\n\nOption B states thymine equals cytosine. Wait, that's part of the second rule. Thymine pairs with cytosine in single-stranded DNA, but in double-stranded DNA, it should pair with guanine. So this option seems incorrect because it swaps thymine and cytosine.\n\nOption C claims adenine equals thymine. That doesn't make sense either. In reality, adenine pairs with thymine, not the other way around. So this",
+      "tps": 8.83
+    },
+    {
+      "id": "q7",
+      "question": "In Grover's algorithm on N unstructured items, the optimal number of oracle iterations scales approximately as: (A) pi/4*sqrt(N) (B) 2*N (C) log(N) (D) N/2",
+      "expected": "sqrt(n)",
+      "correct": true,
+      "text": "<think>\nOkay, so I'm trying to figure out the correct answer for this question about Grover's algorithm. The question is asking what the optimal number of oracle iterations scales as in Grover's algorithm on N unstructured items. The options are (A) pi/4*sqrt(N), (B) 2*N, (C) log(N), and (D) N/2.\n\nFirst, I remember that Grover's algorithm is a quantum search algorithm. It's used to find an item in an unsorted database with a time complexity of O(sqrt(N)). So the number of iterations needed should be proportional to sqrt(N). That already rules out option B because it's 2*N, which would be linear and way too slow for large N.\n\nNow, looking at the other options: A is pi/4 times sqrt(N), C is log(N), and D is N/2. I think that in Grover's algorithm, the number of iterations isn't just a constant multiplied by sqrt(N). Instead, it's something like (pi/4) * sqrt(N) plus some terms related to the phase shifts during each iteration.\n\nI recall that each iteration involves two phases: one where the amplitude is increased and another where it's decreased.",
+      "tps": 9.35
+    },
+    {
+      "id": "q8",
+      "question": "CRISPR-Cas9 makes a targeted double-strand break guided by which molecule? (A) guide RNA (B) primer DNA (C) a ribozyme (D) transfer RNA",
+      "expected": "guide rna",
+      "correct": true,
+      "text": "<think>\nOkay, so I'm trying to figure out this question about CRISPR-Cas9. The question is asking which molecule guides the Cas9 enzyme in making a double-strand break. The options are guide RNA (A), primer DNA (B), ribozyme (C), or transfer RNA (D). \n\nFirst, I remember that CRISPR stands for Clustered Regularly Interspaced Short Palindromic Repeats. It's used to make precise cuts in the DNA, which is super important for gene editing. The Cas9 enzyme is the key player here because it does the cutting.\n\nI think about how Cas9 works. From what I've read before, there are a couple of molecules involved: one that guides it and another that actually performs the cutting. The guide RNA must be responsible for directing where the cut will happen. It's like a signal that tells Cas9 to make the break at the right spot.\n\nThen there's the primer DNA part. I recall hearing about something called a \"primer\" in PCR, which is primers that bind to the template and initiate the reaction. But wait, isn't that different from what happens with CRISPR? Maybe the primer here refers to something else. Oh, maybe it's",
+      "tps": 10.14
+    }
+  ],
+  "qasm_tasks": [
+    {
+      "id": "bell",
+      "prompt": "Provide ONLY the OpenQASM 2.0 code for a Bell state on two qubits, inside a single ```openqasm fenced code block. No explanation, no extra text.",
+      "require": [
+        "h",
+        "cx"
+      ],
+      "min_qubits": 2,
+      "raw": "<think>\nOkay, so I need to design a quantum circuit using OpenQASM 2.0 for creating a Bell state on two qubits. Hmm, let me think about how to approach this.\n\nFirst, I remember that a Bell state is an entangled state of two qubits. There are four Bell states: \u03a6+, \u03a6-, \u03a8+, and \u03a8-. Each has specific probabilities when measured. For simplicity, maybe I'll create one of the positive ones, like \u03a6+ which is (|00> + |11>)/\u221a2.\n\nNow, how do I represent this in quantum circuits? Well, I think I need to start with two qubits and apply some operations to entangle them. The Hadamard gate (H) is used for creating superpositions. So maybe I'll apply H to the first qubit to put it into a superposition state.\n\nWait, but how do I control the second qubit? Oh right, controlled gates like CNOT are used when one qubit controls another. So if I have the first qubit as control and the second as target, applying CNOT would entangle them.\n\nPutting this together: Apply H to the first qubit, then apply CNOT with the first as control and the second as target. That should create \u03a6+.\n\nLet me outline the steps:\n1. Initialize two qubits in state |00>.\n2. Apply Hadamard (H) to the first qubit.\n3. Apply CNOT with the first as control, second as target.\n\nI think that's it. Now, how do I translate this into OpenQASM 2.0 code? Let me write it out.\n\nFirst, open a quantum circuit:\n```openqasm\nopenqasm\n```\n\nThen, initialize two qubits in state |0>:\n```openqasm\nq0 = QuantumState(|0>)\nq1 = QuantumState(|0>)\n```\n\nApply H to the first qubit (q0):\n```openqasm\nH q0\n```\n\nNow, apply CNOT with q0 as control and q1 as target. But wait, in OpenQASM, how do I specify the control? It's just a number, so 0 for q0.\n\nSo:\n```openqasm\nCNOT 0 1\n```\n\nFinally, measure both qubits to check the state:\n```openqasm\nM 0\nM 1\n```\n\nPutting it",
+      "extracted_qasm": "openqasm",
+      "validation": {
+        "valid": false,
+        "reason": "Missing OPENQASM version header"
+      },
+      "has_required_gates": false,
+      "has_min_qubits": false,
+      "task_pass": false
+    },
+    {
+      "id": "ghz3",
+      "prompt": "Provide ONLY the OpenQASM 2.0 code for a 3-qubit GHZ state, inside a single ```openqasm fenced code block. No explanation, no extra text.",
+      "require": [
+        "h",
+        "cx"
+      ],
+      "min_qubits": 3,
+      "raw": "<think>\nOkay, so I need to design a quantum circuit for a 3-qubit GHZ state using OpenQASM 2.0. I'm not super familiar with all the details of quantum circuits and gate decompositions, but I know that GHZ states are entangled multi-qubit states where each qubit is correlated with the others.\n\nFirst, I remember that a GHZ state for three qubits can be written as (|000\u27e9 + |111\u27e9)/\u221a2. So, all three qubits are in superposition and their states are perfectly correlated. To create this state, I think I need some entangling gates between the qubits.\n\nIn classical computing, creating such a state would require measuring each qubit independently, but quantum mechanics allows for correlations without direct measurement. So, using entanglement gates like CNOT or Toffoli should help here.\n\nI also recall that GHZ states can be constructed by applying certain operations in sequence. Maybe I can start with two qubits and then entangle the third one. Let me think about how to do this step by step.\n\nFirst, I need to create a superposition state for two qubits. Using an Hadamard gate on the first qubit would put it into |+\u27e9 state, which is (|0\u27e9 + |1\u27e9)/\u221a2. Then, applying another Hadamard gate on the second qubit would give me four equal superpositions: (|00\u27e9 + |01\u27e9 + |10\u27e9 + |11\u27e9)/4.\n\nBut wait, that's not a GHZ state yet. I need to entangle all three qubits. Maybe applying a CNOT gate from the first to the second and then from the second to the third would help. Let me try writing down the operations:\n\n1. Apply H to qubit 1: |+\u27e9|0\u27e9\n2. Apply H to qubit 2: (|+\u27e9|0\u27e9 + |+\u27e9|1\u27e9)/\u221a2 = (|++\u27e9 + |--\u27e9)/2\n3. Apply CNOT from qubit 1 to qubit 2: This would entangle the first and second qubits, resulting in (|++\u27e9 + |- -\u27e9)/2\n4. Apply CNOT from qubit 2 to qubit 3: Now, I think this will create a GHZ state.\n\nWait, let me double-check that. After applying CNOT from qubit",
+      "extracted_qasm": "OpenQASM 2.0. I'm not super familiar with all the details of quantum circuits and gate decompositions, but I know that GHZ states are entangled multi-qubit states where each qubit is correlated with the others.\n\nFirst, I remember that a GHZ state for three qubits can be written as (|000\u27e9 + |111\u27e9)/\u221a2. So, all three qubits are in superposition and their states are perfectly correlated. To create this state, I think I need some entangling gates between the qubits.\n\nIn classical computing, creating such a state would require measuring each qubit independently, but quantum mechanics allows for correlations without direct measurement. So, using entanglement gates like CNOT or Toffoli should help here.\n\nI also recall that GHZ states can be constructed by applying certain operations in sequence. Maybe I can start with two qubits and then entangle the third one. Let me think about how to do this step by step.\n\nFirst, I need to create a superposition state for two qubits. Using an Hadamard gate on the first qubit would put it into |+\u27e9 state, which is (|0\u27e9 + |1\u27e9)/\u221a2. Then, applying another Hadamard gate on the second qubit would give me four equal superpositions: (|00\u27e9 + |01\u27e9 + |10\u27e9 + |11\u27e9)/4.\n\nBut wait, that's not a GHZ state yet. I need to entangle all three qubits. Maybe applying a CNOT gate from the first to the second and then from the second to the third would help. Let me try writing down the operations:\n\n1. Apply H to qubit 1: |+\u27e9|0\u27e9\n2. Apply H to qubit 2: (|+\u27e9|0\u27e9 + |+\u27e9|1\u27e9)/\u221a2 = (|++\u27e9 + |--\u27e9)/2\n3. Apply CNOT from qubit 1 to qubit 2: This would entangle the first and second qubits, resulting in (|++\u27e9 + |- -\u27e9)/2\n4. Apply CNOT from qubit 2 to qubit 3: Now, I think this will create a GHZ state.\n\nWait, let me double-check that. After applying CNOT from qubit",
+      "validation": {
+        "valid": false,
+        "reason": "No qreg declarations found"
+      },
+      "has_required_gates": false,
+      "has_min_qubits": false,
+      "task_pass": false
+    }
+  ],
+  "qasm_pass": 0,
+  "qasm_total": 2
+}

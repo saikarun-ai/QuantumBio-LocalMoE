@@ -1,0 +1,35 @@
+@startuml registry
+!theme plain
+title Class Diagram - Model Registry
+
+class ModelEntry {
+  + path: str
+  + name: str
+  + kind: str
+  + size_bytes: int
+}
+
+class ModelRegistry {
+  + directories: list[str]
+  - models: list[ModelEntry]
+  + __init__(directories)
+  - _scan(): None
+  + by_kind(kind) -> list[ModelEntry]
+  + select(kind, preferred) -> str | None
+  + select_main_text() -> str | None
+  + select_draft() -> str | None
+  + {property} text_models: list[ModelEntry]
+  + {property} diffusion_models: list[ModelEntry]
+  + {property} audio_models: list[ModelEntry]
+}
+
+ModelRegistry *-- ModelEntry : discovers >
+ModelRegistry ..> default_directories : uses
+
+note bottom of ModelRegistry
+  kind = text | diffusion | audio
+  main = MODEL_NAME else largest text
+  draft = DRAFT_MODEL_PATH else smallest text
+end note
+
+@enduml

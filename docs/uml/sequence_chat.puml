@@ -1,0 +1,57 @@
+@startuml sequence_chat
+!theme plain
+title Chat Completion - End-to-End Sequence
+
+actor Client
+
+Client -> FastAPI : POST /v1/chat/completions {messages, max_tokens, stream}
+activate FastAPI
+
+FastAPI -> MoERouter : route(prompt)
+activate MoERouter
+MoERouter --> FastAPI : (expert_key, RouteDecision(confidence))
+deactivate MoERouter
+
+FastAPI -> LocalMoEEngine : generate(prompt, ...)
+activate LocalMoEEngine
+
+LocalMoEEngine -> VectorCache : upsert("prompt", text)
+activate VectorCache
+VectorCache --> LocalMoEEngine : point_id
+deactivate VectorCache
+
+LocalMoEEngine -> BaseExpert : generate(prompt)
+activate BaseExpert
+
+BaseExpert -> InferenceBackend : complete(prompt, system_prompt=...)
+activate InferenceBackend
+
+alt llama.cpp / vLLM / offline backend
+  InferenceBackend --> BaseExpert : generated text
+end
+deactivate InferenceBackend
+
+BaseExpert --> LocalMoEEngine : text
+deactivate BaseExpert
+
+LocalMoEEngine -> LocalMoEEngine : estimate_tokens / tokens_per_second
+LocalMoEEngine -> RedisStore : set(response)
+LocalMoEEngine -> Database : log_request(...)
+
+alt OpenQASM detected
+  LocalMoEEngine -> QuantumBridge : validate_qasm / simulate_qasm
+  QuantumBridge --> LocalMoEEngine : {valid, qubits, depth, counts}
+end
+
+LocalMoEEngine --> FastAPI : GenerationResponse
+deactivate LocalMoEEngine
+
+alt stream == true
+  FastAPI --> Client : SSE chunks ... data: [DONE]
+else
+  FastAPI --> Client : OpenAI chat.completion JSON
+end
+
+deactivate FastAPI
+
+@enduml

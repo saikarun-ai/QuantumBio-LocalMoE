@@ -1,0 +1,6186 @@
+{
+  "methodology": "In-process MoERouter.evaluate() (exact code path of GET /v1/route). OfflineHeuristicBackend is used because routing is keyword-gated and independent of generation. 220 curated + template prompts; deterministic shuffle (seed 42). Imaging prompts route to general because the image expert is not loaded (stable-diffusion-cpp absent in this environment); unsupported/ambiguous prompts should also fall back to general.",
+  "dataset_file": "evaluation/datasets/routing_prompts.json",
+  "experts_loaded": [
+    "biosecurity",
+    "general",
+    "genomic",
+    "quantum"
+  ],
+  "class_counts": {
+    "biosecurity": 30,
+    "general": 100,
+    "genomic": 40,
+    "quantum": 61
+  },
+  "predicted_counts": {
+    "biosecurity": 30,
+    "general": 98,
+    "genomic": 40,
+    "quantum": 63
+  },
+  "metrics": {
+    "accuracy": 0.9913,
+    "n": 231,
+    "macro_f1": 0.9934,
+    "weighted_f1": 0.9914,
+    "per_class": {
+      "biosecurity": {
+        "tp": 30,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      "general": {
+        "tp": 98,
+        "fp": 0,
+        "fn": 2,
+        "precision": 1.0,
+        "recall": 0.98,
+        "f1": 0.9899
+      },
+      "genomic": {
+        "tp": 40,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      "quantum": {
+        "tp": 61,
+        "fp": 2,
+        "fn": 0,
+        "precision": 0.9683,
+        "recall": 1.0,
+        "f1": 0.9839
+      }
+    },
+    "confusion": {
+      "biosecurity": {
+        "biosecurity": 30,
+        "general": 0,
+        "genomic": 0,
+        "quantum": 0
+      },
+      "general": {
+        "biosecurity": 0,
+        "general": 98,
+        "genomic": 0,
+        "quantum": 2
+      },
+      "genomic": {
+        "biosecurity": 0,
+        "general": 0,
+        "genomic": 40,
+        "quantum": 0
+      },
+      "quantum": {
+        "biosecurity": 0,
+        "general": 0,
+        "genomic": 0,
+        "quantum": 61
+      }
+    }
+  },
+  "routing_latency_evaluate_ms": {
+    "n": 231,
+    "mean_ms": 0.0047,
+    "median_ms": 0.004,
+    "p50_ms": 0.004,
+    "p95_ms": 0.008,
+    "p99_ms": 0.01,
+    "min_ms": 0.003,
+    "max_ms": 0.017
+  },
+  "routing_latency_route_ms": {
+    "n": 231,
+    "mean_ms": 0.0084,
+    "median_ms": 0.0057,
+    "p50_ms": 0.0057,
+    "p95_ms": 0.0107,
+    "p99_ms": 0.0495,
+    "min_ms": 0.0042,
+    "max_ms": 0.426
+  },
+  "confidence": {
+    "mean": 0.512,
+    "median": 0.8
+  },
+  "samples": [
+    {
+      "prompt": "Design an OpenQASM circuit for a 2-qubit GHZ state.",
+      "expected": "quantum",
+      "predicted": {
+        "key": "quantum",
+        "name": "Quantum Circuit Expert",
+        "intent": "quantum_computing",
+        "keywords": [
+          "quantum",
+          "qubit",
+          "qubits",
+          "qasm",
+          "openqasm",
+          "circuit",
+          "gate",
+          "hamiltonian",
+          "vqe",
+          "qiskit",
+          "cirq",
+          "superposition",
+          "entangle",
+          "schrodinger",
+          "anneal",
+          "pauli",
+          "trotter",
+          "eigensolver",
+          "grover",
+          "shor",
+          "bell state",
+          "hadamard"
+        ]
+      },
+      "confidence": 1.0,
+      "keywords": [
+        "qubit",
+        "qasm",
+        "openqasm",
+        "circuit"
+      ]
+    },
+    {
+      "prompt": "Run a clearance screening on this sequence before release.",
+      "expected": "biosecurity",
+      "predicted": {
+        "key": "biosecurity",
+        "name": "Biosecurity Audit Expert",
+        "intent": "biosecurity_audit",
+        "keywords": [
+          "biosecurity",
+          "biosafety",
+          "dual-use",
+          "pathogen",
+          "toxin",
+          "bwc",
+          "screening",
+          "audit",
+          "compliance",
+          "clearance",
+          "risk",
+          "hazard",
+          "containment",
+          "gain-of-function",
+          "bioweapon",
+          "safety review"
+        ]
+      },
+      "confidence": 0.5333333333333333,
+      "keywords": [
+        "screening",
+        "clearance"
+      ]
+    },
+    {
+      "prompt": "Design an OpenQASM circuit for a 2-qubit GHZ state.",
+      "expected": "quantum",
+      "predicted": {
+        "key": "quantum",
+        "name": "Quantum Circuit Expert",
+        "intent": "quantum_computing",
+        "keywords": [
+          "quantum",
+          "qubit",
+          "qubits",
+          "qasm",
+          "openqasm",
+          "circuit",
+          "gate",
+          "hamiltonian",
+          "vqe",
+          "qiskit",
+          "cirq",
+          "superposition",
+          "entangle",
+          "schrodinger",
+          "anneal",
+          "pauli",
+          "trotter",
+          "eigensolver",
+          "grover",
+          "shor",
+          "bell state",
+          "hadamard"
+        ]
+      },
+      "confidence": 1.0,
+      "keywords": [
+        "qubit",
+        "qasm",
+        "openqasm",
+        "circuit"
+      ]
+    },
+    {
+      "prompt": "Compare functional and object-oriented programming.",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Help me name my cat.",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "How do I find a cheap flight?",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Give a short proof that the square root of two is irrational.",
+      "expected": "general",
+      "predicted": {
+        "key": "quantum",
+        "name": "Quantum Circuit Expert",
+        "intent": "quantum_computing",
+        "keywords": [
+          "quantum",
+          "qubit",
+          "qubits",
+          "qasm",
+          "openqasm",
+          "circuit",
+          "gate",
+          "hamiltonian",
+          "vqe",
+          "qiskit",
+          "cirq",
+          "superposition",
+          "entangle",
+          "schrodinger",
+          "anneal",
+          "pauli",
+          "trotter",
+          "eigensolver",
+          "grover",
+          "shor",
+          "bell state",
+          "hadamard"
+        ]
+      },
+      "confidence": 1.0,
+      "keywords": [
+        "shor"
+      ]
+    },
+    {
+      "prompt": "How do I negotiate a pay raise?",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGC.",
+      "expected": "genomic",
+      "predicted": {
+        "key": "genomic",
+        "name": "Genomic Sequence Expert",
+        "intent": "genomic_sequence",
+        "keywords": [
+          "dna",
+          "rna",
+          "genome",
+          "genomic",
+          "sequence",
+          "nucleotide",
+          "codon",
+          "crispr",
+          "cas9",
+          "atgc",
+          "protein",
+          "amino acid",
+          "variant",
+          "mutation",
+          "primer",
+          "transcription",
+          "alignment"
+        ]
+      },
+      "confidence": 0.8,
+      "keywords": [
+        "dna",
+        "sequence",
+        "crispr",
+        "atgc"
+      ]
+    },
+    {
+      "prompt": "What will the weather be like tomorrow?",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Design an OpenQASM circuit for a 3-qubit GHZ state.",
+      "expected": "quantum",
+      "predicted": {
+        "key": "quantum",
+        "name": "Quantum Circuit Expert",
+        "intent": "quantum_computing",
+        "keywords": [
+          "quantum",
+          "qubit",
+          "qubits",
+          "qasm",
+          "openqasm",
+          "circuit",
+          "gate",
+          "hamiltonian",
+          "vqe",
+          "qiskit",
+          "cirq",
+          "superposition",
+          "entangle",
+          "schrodinger",
+          "anneal",
+          "pauli",
+          "trotter",
+          "eigensolver",
+          "grover",
+          "shor",
+          "bell state",
+          "hadamard"
+        ]
+      },
+      "confidence": 1.0,
+      "keywords": [
+        "qubit",
+        "qasm",
+        "openqasm",
+        "circuit"
+      ]
+    },
+    {
+      "prompt": "Design an OpenQASM circuit for a 2-qubit GHZ state.",
+      "expected": "quantum",
+      "predicted": {
+        "key": "quantum",
+        "name": "Quantum Circuit Expert",
+        "intent": "quantum_computing",
+        "keywords": [
+          "quantum",
+          "qubit",
+          "qubits",
+          "qasm",
+          "openqasm",
+          "circuit",
+          "gate",
+          "hamiltonian",
+          "vqe",
+          "qiskit",
+          "cirq",
+          "superposition",
+          "entangle",
+          "schrodinger",
+          "anneal",
+          "pauli",
+          "trotter",
+          "eigensolver",
+          "grover",
+          "shor",
+          "bell state",
+          "hadamard"
+        ]
+      },
+      "confidence": 1.0,
+      "keywords": [
+        "qubit",
+        "qasm",
+        "openqasm",
+        "circuit"
+      ]
+    },
+    {
+      "prompt": "What is the best way to cook pasta?",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Make an icon of a magnifying glass.",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Explain the relationship between frequency and pitch.",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "How do I invest money in the stock market?",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGC.",
+      "expected": "genomic",
+      "predicted": {
+        "key": "genomic",
+        "name": "Genomic Sequence Expert",
+        "intent": "genomic_sequence",
+        "keywords": [
+          "dna",
+          "rna",
+          "genome",
+          "genomic",
+          "sequence",
+          "nucleotide",
+          "codon",
+          "crispr",
+          "cas9",
+          "atgc",
+          "protein",
+          "amino acid",
+          "variant",
+          "mutation",
+          "primer",
+          "transcription",
+          "alignment"
+        ]
+      },
+      "confidence": 0.8,
+      "keywords": [
+        "dna",
+        "sequence",
+        "crispr",
+        "atgc"
+      ]
+    },
+    {
+      "prompt": "How can I sleep better?",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Audit compliance for experiment #15: does it need containment screening?",
+      "expected": "biosecurity",
+      "predicted": {
+        "key": "biosecurity",
+        "name": "Biosecurity Audit Expert",
+        "intent": "biosecurity_audit",
+        "keywords": [
+          "biosecurity",
+          "biosafety",
+          "dual-use",
+          "pathogen",
+          "toxin",
+          "bwc",
+          "screening",
+          "audit",
+          "compliance",
+          "clearance",
+          "risk",
+          "hazard",
+          "containment",
+          "gain-of-function",
+          "bioweapon",
+          "safety review"
+        ]
+      },
+      "confidence": 0.8,
+      "keywords": [
+        "screening",
+        "audit",
+        "compliance",
+        "containment"
+      ]
+    },
+    {
+      "prompt": "Does this construct trigger our dual-use review audit?",
+      "expected": "biosecurity",
+      "predicted": {
+        "key": "biosecurity",
+        "name": "Biosecurity Audit Expert",
+        "intent": "biosecurity_audit",
+        "keywords": [
+          "biosecurity",
+          "biosafety",
+          "dual-use",
+          "pathogen",
+          "toxin",
+          "bwc",
+          "screening",
+          "audit",
+          "compliance",
+          "clearance",
+          "risk",
+          "hazard",
+          "containment",
+          "gain-of-function",
+          "bioweapon",
+          "safety review"
+        ]
+      },
+      "confidence": 0.8,
+      "keywords": [
+        "dual-use",
+        "audit"
+      ]
+    },
+    {
+      "prompt": "How do you debug a memory leak in a long-running service?",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Design an OpenQASM circuit for a 5-qubit GHZ state.",
+      "expected": "quantum",
+      "predicted": {
+        "key": "quantum",
+        "name": "Quantum Circuit Expert",
+        "intent": "quantum_computing",
+        "keywords": [
+          "quantum",
+          "qubit",
+          "qubits",
+          "qasm",
+          "openqasm",
+          "circuit",
+          "gate",
+          "hamiltonian",
+          "vqe",
+          "qiskit",
+          "cirq",
+          "superposition",
+          "entangle",
+          "schrodinger",
+          "anneal",
+          "pauli",
+          "trotter",
+          "eigensolver",
+          "grover",
+          "shor",
+          "bell state",
+          "hadamard"
+        ]
+      },
+      "confidence": 1.0,
+      "keywords": [
+        "qubit",
+        "qasm",
+        "openqasm",
+        "circuit"
+      ]
+    },
+    {
+      "prompt": "Render an infographic-style picture about vegetables.",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Tell me a joke about scientists.",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Review this sequence against BWC compliance policy.",
+      "expected": "biosecurity",
+      "predicted": {
+        "key": "biosecurity",
+        "name": "Biosecurity Audit Expert",
+        "intent": "biosecurity_audit",
+        "keywords": [
+          "biosecurity",
+          "biosafety",
+          "dual-use",
+          "pathogen",
+          "toxin",
+          "bwc",
+          "screening",
+          "audit",
+          "compliance",
+          "clearance",
+          "risk",
+          "hazard",
+          "containment",
+          "gain-of-function",
+          "bioweapon",
+          "safety review"
+        ]
+      },
+      "confidence": 0.5333333333333333,
+      "keywords": [
+        "bwc",
+        "compliance"
+      ]
+    },
+    {
+      "prompt": "Draw a picture of a storm over the ocean.",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGCATGC.",
+      "expected": "genomic",
+      "predicted": {
+        "key": "genomic",
+        "name": "Genomic Sequence Expert",
+        "intent": "genomic_sequence",
+        "keywords": [
+          "dna",
+          "rna",
+          "genome",
+          "genomic",
+          "sequence",
+          "nucleotide",
+          "codon",
+          "crispr",
+          "cas9",
+          "atgc",
+          "protein",
+          "amino acid",
+          "variant",
+          "mutation",
+          "primer",
+          "transcription",
+          "alignment"
+        ]
+      },
+      "confidence": 0.8,
+      "keywords": [
+        "dna",
+        "sequence",
+        "crispr",
+        "atgc"
+      ]
+    },
+    {
+      "prompt": "Design PCR primers for this target with Tm near 60C.",
+      "expected": "genomic",
+      "predicted": {
+        "key": "genomic",
+        "name": "Genomic Sequence Expert",
+        "intent": "genomic_sequence",
+        "keywords": [
+          "dna",
+          "rna",
+          "genome",
+          "genomic",
+          "sequence",
+          "nucleotide",
+          "codon",
+          "crispr",
+          "cas9",
+          "atgc",
+          "protein",
+          "amino acid",
+          "variant",
+          "mutation",
+          "primer",
+          "transcription",
+          "alignment"
+        ]
+      },
+      "confidence": 0.8,
+      "keywords": [
+        "primer"
+      ]
+    },
+    {
+      "prompt": "Provide a gain-of-function risk assessment for the proposed modification.",
+      "expected": "biosecurity",
+      "predicted": {
+        "key": "biosecurity",
+        "name": "Biosecurity Audit Expert",
+        "intent": "biosecurity_audit",
+        "keywords": [
+          "biosecurity",
+          "biosafety",
+          "dual-use",
+          "pathogen",
+          "toxin",
+          "bwc",
+          "screening",
+          "audit",
+          "compliance",
+          "clearance",
+          "risk",
+          "hazard",
+          "containment",
+          "gain-of-function",
+          "bioweapon",
+          "safety review"
+        ]
+      },
+      "confidence": 0.8,
+      "keywords": [
+        "risk",
+        "gain-of-function"
+      ]
+    },
+    {
+      "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGCATGC.",
+      "expected": "genomic",
+      "predicted": {
+        "key": "genomic",
+        "name": "Genomic Sequence Expert",
+        "intent": "genomic_sequence",
+        "keywords": [
+          "dna",
+          "rna",
+          "genome",
+          "genomic",
+          "sequence",
+          "nucleotide",
+          "codon",
+          "crispr",
+          "cas9",
+          "atgc",
+          "protein",
+          "amino acid",
+          "variant",
+          "mutation",
+          "primer",
+          "transcription",
+          "alignment"
+        ]
+      },
+      "confidence": 0.8,
+      "keywords": [
+        "dna",
+        "sequence",
+        "crispr",
+        "atgc"
+      ]
+    },
+    {
+      "prompt": "Design an OpenQASM circuit for a 4-qubit GHZ state.",
+      "expected": "quantum",
+      "predicted": {
+        "key": "quantum",
+        "name": "Quantum Circuit Expert",
+        "intent": "quantum_computing",
+        "keywords": [
+          "quantum",
+          "qubit",
+          "qubits",
+          "qasm",
+          "openqasm",
+          "circuit",
+          "gate",
+          "hamiltonian",
+          "vqe",
+          "qiskit",
+          "cirq",
+          "superposition",
+          "entangle",
+          "schrodinger",
+          "anneal",
+          "pauli",
+          "trotter",
+          "eigensolver",
+          "grover",
+          "shor",
+          "bell state",
+          "hadamard"
+        ]
+      },
+      "confidence": 1.0,
+      "keywords": [
+        "qubit",
+        "qasm",
+        "openqasm",
+        "circuit"
+      ]
+    },
+    {
+      "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGCATGCATGC.",
+      "expected": "genomic",
+      "predicted": {
+        "key": "genomic",
+        "name": "Genomic Sequence Expert",
+        "intent": "genomic_sequence",
+        "keywords": [
+          "dna",
+          "rna",
+          "genome",
+          "genomic",
+          "sequence",
+          "nucleotide",
+          "codon",
+          "crispr",
+          "cas9",
+          "atgc",
+          "protein",
+          "amino acid",
+          "variant",
+          "mutation",
+          "primer",
+          "transcription",
+          "alignment"
+        ]
+      },
+      "confidence": 0.8,
+      "keywords": [
+        "dna",
+        "sequence",
+        "crispr",
+        "atgc"
+      ]
+    },
+    {
+      "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGC.",
+      "expected": "genomic",
+      "predicted": {
+        "key": "genomic",
+        "name": "Genomic Sequence Expert",
+        "intent": "genomic_sequence",
+        "keywords": [
+          "dna",
+          "rna",
+          "genome",
+          "genomic",
+          "sequence",
+          "nucleotide",
+          "codon",
+          "crispr",
+          "cas9",
+          "atgc",
+          "protein",
+          "amino acid",
+          "variant",
+          "mutation",
+          "primer",
+          "transcription",
+          "alignment"
+        ]
+      },
+      "confidence": 0.8,
+      "keywords": [
+        "dna",
+        "sequence",
+        "crispr",
+        "atgc"
+      ]
+    },
+    {
+      "prompt": "Design an OpenQASM circuit for a 5-qubit GHZ state.",
+      "expected": "quantum",
+      "predicted": {
+        "key": "quantum",
+        "name": "Quantum Circuit Expert",
+        "intent": "quantum_computing",
+        "keywords": [
+          "quantum",
+          "qubit",
+          "qubits",
+          "qasm",
+          "openqasm",
+          "circuit",
+          "gate",
+          "hamiltonian",
+          "vqe",
+          "qiskit",
+          "cirq",
+          "superposition",
+          "entangle",
+          "schrodinger",
+          "anneal",
+          "pauli",
+          "trotter",
+          "eigensolver",
+          "grover",
+          "shor",
+          "bell state",
+          "hadamard"
+        ]
+      },
+      "confidence": 1.0,
+      "keywords": [
+        "qubit",
+        "qasm",
+        "openqasm",
+        "circuit"
+      ]
+    },
+    {
+      "prompt": "Explain marginal cost in economics.",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Design an OpenQASM circuit for a 5-qubit GHZ state.",
+      "expected": "quantum",
+      "predicted": {
+        "key": "quantum",
+        "name": "Quantum Circuit Expert",
+        "intent": "quantum_computing",
+        "keywords": [
+          "quantum",
+          "qubit",
+          "qubits",
+          "qasm",
+          "openqasm",
+          "circuit",
+          "gate",
+          "hamiltonian",
+          "vqe",
+          "qiskit",
+          "cirq",
+          "superposition",
+          "entangle",
+          "schrodinger",
+          "anneal",
+          "pauli",
+          "trotter",
+          "eigensolver",
+          "grover",
+          "shor",
+          "bell state",
+          "hadamard"
+        ]
+      },
+      "confidence": 1.0,
+      "keywords": [
+        "qubit",
+        "qasm",
+        "openqasm",
+        "circuit"
+      ]
+    },
+    {
+      "prompt": "Audit compliance for experiment #4: does it need containment screening?",
+      "expected": "biosecurity",
+      "predicted": {
+        "key": "biosecurity",
+        "name": "Biosecurity Audit Expert",
+        "intent": "biosecurity_audit",
+        "keywords": [
+          "biosecurity",
+          "biosafety",
+          "dual-use",
+          "pathogen",
+          "toxin",
+          "bwc",
+          "screening",
+          "audit",
+          "compliance",
+          "clearance",
+          "risk",
+          "hazard",
+          "containment",
+          "gain-of-function",
+          "bioweapon",
+          "safety review"
+        ]
+      },
+      "confidence": 0.8,
+      "keywords": [
+        "screening",
+        "audit",
+        "compliance",
+        "containment"
+      ]
+    },
+    {
+      "prompt": "Explain Newton's second law with an example.",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Design an OpenQASM circuit for a 3-qubit GHZ state.",
+      "expected": "quantum",
+      "predicted": {
+        "key": "quantum",
+        "name": "Quantum Circuit Expert",
+        "intent": "quantum_computing",
+        "keywords": [
+          "quantum",
+          "qubit",
+          "qubits",
+          "qasm",
+          "openqasm",
+          "circuit",
+          "gate",
+          "hamiltonian",
+          "vqe",
+          "qiskit",
+          "cirq",
+          "superposition",
+          "entangle",
+          "schrodinger",
+          "anneal",
+          "pauli",
+          "trotter",
+          "eigensolver",
+          "grover",
+          "shor",
+          "bell state",
+          "hadamard"
+        ]
+      },
+      "confidence": 1.0,
+      "keywords": [
+        "qubit",
+        "qasm",
+        "openqasm",
+        "circuit"
+      ]
+    },
+    {
+      "prompt": "Create an image of a cozy library interior.",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Design an OpenQASM circuit for a 3-qubit GHZ state.",
+      "expected": "quantum",
+      "predicted": {
+        "key": "quantum",
+        "name": "Quantum Circuit Expert",
+        "intent": "quantum_computing",
+        "keywords": [
+          "quantum",
+          "qubit",
+          "qubits",
+          "qasm",
+          "openqasm",
+          "circuit",
+          "gate",
+          "hamiltonian",
+          "vqe",
+          "qiskit",
+          "cirq",
+          "superposition",
+          "entangle",
+          "schrodinger",
+          "anneal",
+          "pauli",
+          "trotter",
+          "eigensolver",
+          "grover",
+          "shor",
+          "bell state",
+          "hadamard"
+        ]
+      },
+      "confidence": 1.0,
+      "keywords": [
+        "qubit",
+        "qasm",
+        "openqasm",
+        "circuit"
+      ]
+    },
+    {
+      "prompt": "Design an OpenQASM circuit for a 5-qubit GHZ state.",
+      "expected": "quantum",
+      "predicted": {
+        "key": "quantum",
+        "name": "Quantum Circuit Expert",
+        "intent": "quantum_computing",
+        "keywords": [
+          "quantum",
+          "qubit",
+          "qubits",
+          "qasm",
+          "openqasm",
+          "circuit",
+          "gate",
+          "hamiltonian",
+          "vqe",
+          "qiskit",
+          "cirq",
+          "superposition",
+          "entangle",
+          "schrodinger",
+          "anneal",
+          "pauli",
+          "trotter",
+          "eigensolver",
+          "grover",
+          "shor",
+          "bell state",
+          "hadamard"
+        ]
+      },
+      "confidence": 1.0,
+      "keywords": [
+        "qubit",
+        "qasm",
+        "openqasm",
+        "circuit"
+      ]
+    },
+    {
+      "prompt": "What are the laws of thermodynamics in one line each?",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Give me a recipe for banana bread.",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Design an OpenQASM circuit for a 2-qubit GHZ state.",
+      "expected": "quantum",
+      "predicted": {
+        "key": "quantum",
+        "name": "Quantum Circuit Expert",
+        "intent": "quantum_computing",
+        "keywords": [
+          "quantum",
+          "qubit",
+          "qubits",
+          "qasm",
+          "openqasm",
+          "circuit",
+          "gate",
+          "hamiltonian",
+          "vqe",
+          "qiskit",
+          "cirq",
+          "superposition",
+          "entangle",
+          "schrodinger",
+          "anneal",
+          "pauli",
+          "trotter",
+          "eigensolver",
+          "grover",
+          "shor",
+          "bell state",
+          "hadamard"
+        ]
+      },
+      "confidence": 1.0,
+      "keywords": [
+        "qubit",
+        "qasm",
+        "openqasm",
+        "circuit"
+      ]
+    },
+    {
+      "prompt": "Derive the eigensolver step for a 2-local Hamiltonian.",
+      "expected": "quantum",
+      "predicted": {
+        "key": "quantum",
+        "name": "Quantum Circuit Expert",
+        "intent": "quantum_computing",
+        "keywords": [
+          "quantum",
+          "qubit",
+          "qubits",
+          "qasm",
+          "openqasm",
+          "circuit",
+          "gate",
+          "hamiltonian",
+          "vqe",
+          "qiskit",
+          "cirq",
+          "superposition",
+          "entangle",
+          "schrodinger",
+          "anneal",
+          "pauli",
+          "trotter",
+          "eigensolver",
+          "grover",
+          "shor",
+          "bell state",
+          "hadamard"
+        ]
+      },
+      "confidence": 1.0,
+      "keywords": [
+        "hamiltonian",
+        "eigensolver"
+      ]
+    },
+    {
+      "prompt": "Audit compliance for experiment #2: does it need containment screening?",
+      "expected": "biosecurity",
+      "predicted": {
+        "key": "biosecurity",
+        "name": "Biosecurity Audit Expert",
+        "intent": "biosecurity_audit",
+        "keywords": [
+          "biosecurity",
+          "biosafety",
+          "dual-use",
+          "pathogen",
+          "toxin",
+          "bwc",
+          "screening",
+          "audit",
+          "compliance",
+          "clearance",
+          "risk",
+          "hazard",
+          "containment",
+          "gain-of-function",
+          "bioweapon",
+          "safety review"
+        ]
+      },
+      "confidence": 0.8,
+      "keywords": [
+        "screening",
+        "audit",
+        "compliance",
+        "containment"
+      ]
+    },
+    {
+      "prompt": "What is the difference between symlink and a regular file?",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Design an OpenQASM circuit for a 3-qubit GHZ state.",
+      "expected": "quantum",
+      "predicted": {
+        "key": "quantum",
+        "name": "Quantum Circuit Expert",
+        "intent": "quantum_computing",
+        "keywords": [
+          "quantum",
+          "qubit",
+          "qubits",
+          "qasm",
+          "openqasm",
+          "circuit",
+          "gate",
+          "hamiltonian",
+          "vqe",
+          "qiskit",
+          "cirq",
+          "superposition",
+          "entangle",
+          "schrodinger",
+          "anneal",
+          "pauli",
+          "trotter",
+          "eigensolver",
+          "grover",
+          "shor",
+          "bell state",
+          "hadamard"
+        ]
+      },
+      "confidence": 1.0,
+      "keywords": [
+        "qubit",
+        "qasm",
+        "openqasm",
+        "circuit"
+      ]
+    },
+    {
+      "prompt": "Design an OpenQASM circuit for a 4-qubit GHZ state.",
+      "expected": "quantum",
+      "predicted": {
+        "key": "quantum",
+        "name": "Quantum Circuit Expert",
+        "intent": "quantum_computing",
+        "keywords": [
+          "quantum",
+          "qubit",
+          "qubits",
+          "qasm",
+          "openqasm",
+          "circuit",
+          "gate",
+          "hamiltonian",
+          "vqe",
+          "qiskit",
+          "cirq",
+          "superposition",
+          "entangle",
+          "schrodinger",
+          "anneal",
+          "pauli",
+          "trotter",
+          "eigensolver",
+          "grover",
+          "shor",
+          "bell state",
+          "hadamard"
+        ]
+      },
+      "confidence": 1.0,
+      "keywords": [
+        "qubit",
+        "qasm",
+        "openqasm",
+        "circuit"
+      ]
+    },
+    {
+      "prompt": "Estimate the ground-state energy of H2 using VQE with a 4-qubit ansatz.",
+      "expected": "quantum",
+      "predicted": {
+        "key": "quantum",
+        "name": "Quantum Circuit Expert",
+        "intent": "quantum_computing",
+        "keywords": [
+          "quantum",
+          "qubit",
+          "qubits",
+          "qasm",
+          "openqasm",
+          "circuit",
+          "gate",
+          "hamiltonian",
+          "vqe",
+          "qiskit",
+          "cirq",
+          "superposition",
+          "entangle",
+          "schrodinger",
+          "anneal",
+          "pauli",
+          "trotter",
+          "eigensolver",
+          "grover",
+          "shor",
+          "bell state",
+          "hadamard"
+        ]
+      },
+      "confidence": 1.0,
+      "keywords": [
+        "qubit",
+        "vqe"
+      ]
+    },
+    {
+      "prompt": "Design an OpenQASM circuit for a 6-qubit GHZ state.",
+      "expected": "quantum",
+      "predicted": {
+        "key": "quantum",
+        "name": "Quantum Circuit Expert",
+        "intent": "quantum_computing",
+        "keywords": [
+          "quantum",
+          "qubit",
+          "qubits",
+          "qasm",
+          "openqasm",
+          "circuit",
+          "gate",
+          "hamiltonian",
+          "vqe",
+          "qiskit",
+          "cirq",
+          "superposition",
+          "entangle",
+          "schrodinger",
+          "anneal",
+          "pauli",
+          "trotter",
+          "eigensolver",
+          "grover",
+          "shor",
+          "bell state",
+          "hadamard"
+        ]
+      },
+      "confidence": 1.0,
+      "keywords": [
+        "qubit",
+        "qasm",
+        "openqasm",
+        "circuit"
+      ]
+    },
+    {
+      "prompt": "Design an OpenQASM circuit for a 3-qubit GHZ state.",
+      "expected": "quantum",
+      "predicted": {
+        "key": "quantum",
+        "name": "Quantum Circuit Expert",
+        "intent": "quantum_computing",
+        "keywords": [
+          "quantum",
+          "qubit",
+          "qubits",
+          "qasm",
+          "openqasm",
+          "circuit",
+          "gate",
+          "hamiltonian",
+          "vqe",
+          "qiskit",
+          "cirq",
+          "superposition",
+          "entangle",
+          "schrodinger",
+          "anneal",
+          "pauli",
+          "trotter",
+          "eigensolver",
+          "grover",
+          "shor",
+          "bell state",
+          "hadamard"
+        ]
+      },
+      "confidence": 1.0,
+      "keywords": [
+        "qubit",
+        "qasm",
+        "openqasm",
+        "circuit"
+      ]
+    },
+    {
+      "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGC.",
+      "expected": "genomic",
+      "predicted": {
+        "key": "genomic",
+        "name": "Genomic Sequence Expert",
+        "intent": "genomic_sequence",
+        "keywords": [
+          "dna",
+          "rna",
+          "genome",
+          "genomic",
+          "sequence",
+          "nucleotide",
+          "codon",
+          "crispr",
+          "cas9",
+          "atgc",
+          "protein",
+          "amino acid",
+          "variant",
+          "mutation",
+          "primer",
+          "transcription",
+          "alignment"
+        ]
+      },
+      "confidence": 0.8,
+      "keywords": [
+        "dna",
+        "sequence",
+        "crispr",
+        "atgc"
+      ]
+    },
+    {
+      "prompt": "Audit compliance for experiment #3: does it need containment screening?",
+      "expected": "biosecurity",
+      "predicted": {
+        "key": "biosecurity",
+        "name": "Biosecurity Audit Expert",
+        "intent": "biosecurity_audit",
+        "keywords": [
+          "biosecurity",
+          "biosafety",
+          "dual-use",
+          "pathogen",
+          "toxin",
+          "bwc",
+          "screening",
+          "audit",
+          "compliance",
+          "clearance",
+          "risk",
+          "hazard",
+          "containment",
+          "gain-of-function",
+          "bioweapon",
+          "safety review"
+        ]
+      },
+      "confidence": 0.8,
+      "keywords": [
+        "screening",
+        "audit",
+        "compliance",
+        "containment"
+      ]
+    },
+    {
+      "prompt": "Should I buy an electric car?",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Describe how HTTPS establishes a TLS session.",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "I am feeling unmotivated, what should I do?",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Design a poster for a science fair.",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "What is the meaning of life?",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Audit compliance for experiment #12: does it need containment screening?",
+      "expected": "biosecurity",
+      "predicted": {
+        "key": "biosecurity",
+        "name": "Biosecurity Audit Expert",
+        "intent": "biosecurity_audit",
+        "keywords": [
+          "biosecurity",
+          "biosafety",
+          "dual-use",
+          "pathogen",
+          "toxin",
+          "bwc",
+          "screening",
+          "audit",
+          "compliance",
+          "clearance",
+          "risk",
+          "hazard",
+          "containment",
+          "gain-of-function",
+          "bioweapon",
+          "safety review"
+        ]
+      },
+      "confidence": 0.8,
+      "keywords": [
+        "screening",
+        "audit",
+        "compliance",
+        "containment"
+      ]
+    },
+    {
+      "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGC.",
+      "expected": "genomic",
+      "predicted": {
+        "key": "genomic",
+        "name": "Genomic Sequence Expert",
+        "intent": "genomic_sequence",
+        "keywords": [
+          "dna",
+          "rna",
+          "genome",
+          "genomic",
+          "sequence",
+          "nucleotide",
+          "codon",
+          "crispr",
+          "cas9",
+          "atgc",
+          "protein",
+          "amino acid",
+          "variant",
+          "mutation",
+          "primer",
+          "transcription",
+          "alignment"
+        ]
+      },
+      "confidence": 0.8,
+      "keywords": [
+        "dna",
+        "sequence",
+        "crispr",
+        "atgc"
+      ]
+    },
+    {
+      "prompt": "What is the purpose of a circuit breaker pattern in microservices?",
+      "expected": "general",
+      "predicted": {
+        "key": "quantum",
+        "name": "Quantum Circuit Expert",
+        "intent": "quantum_computing",
+        "keywords": [
+          "quantum",
+          "qubit",
+          "qubits",
+          "qasm",
+          "openqasm",
+          "circuit",
+          "gate",
+          "hamiltonian",
+          "vqe",
+          "qiskit",
+          "cirq",
+          "superposition",
+          "entangle",
+          "schrodinger",
+          "anneal",
+          "pauli",
+          "trotter",
+          "eigensolver",
+          "grover",
+          "shor",
+          "bell state",
+          "hadamard"
+        ]
+      },
+      "confidence": 1.0,
+      "keywords": [
+        "circuit"
+      ]
+    },
+    {
+      "prompt": "Write a test case for a money-transfer function.",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGCATGCATGC.",
+      "expected": "genomic",
+      "predicted": {
+        "key": "genomic",
+        "name": "Genomic Sequence Expert",
+        "intent": "genomic_sequence",
+        "keywords": [
+          "dna",
+          "rna",
+          "genome",
+          "genomic",
+          "sequence",
+          "nucleotide",
+          "codon",
+          "crispr",
+          "cas9",
+          "atgc",
+          "protein",
+          "amino acid",
+          "variant",
+          "mutation",
+          "primer",
+          "transcription",
+          "alignment"
+        ]
+      },
+      "confidence": 0.8,
+      "keywords": [
+        "dna",
+        "sequence",
+        "crispr",
+        "atgc"
+      ]
+    },
+    {
+      "prompt": "Design an OpenQASM circuit for a 5-qubit GHZ state.",
+      "expected": "quantum",
+      "predicted": {
+        "key": "quantum",
+        "name": "Quantum Circuit Expert",
+        "intent": "quantum_computing",
+        "keywords": [
+          "quantum",
+          "qubit",
+          "qubits",
+          "qasm",
+          "openqasm",
+          "circuit",
+          "gate",
+          "hamiltonian",
+          "vqe",
+          "qiskit",
+          "cirq",
+          "superposition",
+          "entangle",
+          "schrodinger",
+          "anneal",
+          "pauli",
+          "trotter",
+          "eigensolver",
+          "grover",
+          "shor",
+          "bell state",
+          "hadamard"
+        ]
+      },
+      "confidence": 1.0,
+      "keywords": [
+        "qubit",
+        "qasm",
+        "openqasm",
+        "circuit"
+      ]
+    },
+    {
+      "prompt": "Compute GC content for the nucleotide sequence ATCGATCG.",
+      "expected": "genomic",
+      "predicted": {
+        "key": "genomic",
+        "name": "Genomic Sequence Expert",
+        "intent": "genomic_sequence",
+        "keywords": [
+          "dna",
+          "rna",
+          "genome",
+          "genomic",
+          "sequence",
+          "nucleotide",
+          "codon",
+          "crispr",
+          "cas9",
+          "atgc",
+          "protein",
+          "amino acid",
+          "variant",
+          "mutation",
+          "primer",
+          "transcription",
+          "alignment"
+        ]
+      },
+      "confidence": 0.8,
+      "keywords": [
+        "sequence",
+        "nucleotide"
+      ]
+    },
+    {
+      "prompt": "How do you roll back a bad deployment?",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Audit compliance for experiment #18: does it need containment screening?",
+      "expected": "biosecurity",
+      "predicted": {
+        "key": "biosecurity",
+        "name": "Biosecurity Audit Expert",
+        "intent": "biosecurity_audit",
+        "keywords": [
+          "biosecurity",
+          "biosafety",
+          "dual-use",
+          "pathogen",
+          "toxin",
+          "bwc",
+          "screening",
+          "audit",
+          "compliance",
+          "clearance",
+          "risk",
+          "hazard",
+          "containment",
+          "gain-of-function",
+          "bioweapon",
+          "safety review"
+        ]
+      },
+      "confidence": 0.8,
+      "keywords": [
+        "screening",
+        "audit",
+        "compliance",
+        "containment"
+      ]
+    },
+    {
+      "prompt": "Design an OpenQASM circuit for a 6-qubit GHZ state.",
+      "expected": "quantum",
+      "predicted": {
+        "key": "quantum",
+        "name": "Quantum Circuit Expert",
+        "intent": "quantum_computing",
+        "keywords": [
+          "quantum",
+          "qubit",
+          "qubits",
+          "qasm",
+          "openqasm",
+          "circuit",
+          "gate",
+          "hamiltonian",
+          "vqe",
+          "qiskit",
+          "cirq",
+          "superposition",
+          "entangle",
+          "schrodinger",
+          "anneal",
+          "pauli",
+          "trotter",
+          "eigensolver",
+          "grover",
+          "shor",
+          "bell state",
+          "hadamard"
+        ]
+      },
+      "confidence": 1.0,
+      "keywords": [
+        "qubit",
+        "qasm",
+        "openqasm",
+        "circuit"
+      ]
+    },
+    {
+      "prompt": "Design an OpenQASM circuit for a 6-qubit GHZ state.",
+      "expected": "quantum",
+      "predicted": {
+        "key": "quantum",
+        "name": "Quantum Circuit Expert",
+        "intent": "quantum_computing",
+        "keywords": [
+          "quantum",
+          "qubit",
+          "qubits",
+          "qasm",
+          "openqasm",
+          "circuit",
+          "gate",
+          "hamiltonian",
+          "vqe",
+          "qiskit",
+          "cirq",
+          "superposition",
+          "entangle",
+          "schrodinger",
+          "anneal",
+          "pauli",
+          "trotter",
+          "eigensolver",
+          "grover",
+          "shor",
+          "bell state",
+          "hadamard"
+        ]
+      },
+      "confidence": 1.0,
+      "keywords": [
+        "qubit",
+        "qasm",
+        "openqasm",
+        "circuit"
+      ]
+    },
+    {
+      "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGCATGC.",
+      "expected": "genomic",
+      "predicted": {
+        "key": "genomic",
+        "name": "Genomic Sequence Expert",
+        "intent": "genomic_sequence",
+        "keywords": [
+          "dna",
+          "rna",
+          "genome",
+          "genomic",
+          "sequence",
+          "nucleotide",
+          "codon",
+          "crispr",
+          "cas9",
+          "atgc",
+          "protein",
+          "amino acid",
+          "variant",
+          "mutation",
+          "primer",
+          "transcription",
+          "alignment"
+        ]
+      },
+      "confidence": 0.8,
+      "keywords": [
+        "dna",
+        "sequence",
+        "crispr",
+        "atgc"
+      ]
+    },
+    {
+      "prompt": "Generate an image of a futuristic city skyline.",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGCATGC.",
+      "expected": "genomic",
+      "predicted": {
+        "key": "genomic",
+        "name": "Genomic Sequence Expert",
+        "intent": "genomic_sequence",
+        "keywords": [
+          "dna",
+          "rna",
+          "genome",
+          "genomic",
+          "sequence",
+          "nucleotide",
+          "codon",
+          "crispr",
+          "cas9",
+          "atgc",
+          "protein",
+          "amino acid",
+          "variant",
+          "mutation",
+          "primer",
+          "transcription",
+          "alignment"
+        ]
+      },
+      "confidence": 0.8,
+      "keywords": [
+        "dna",
+        "sequence",
+        "crispr",
+        "atgc"
+      ]
+    },
+    {
+      "prompt": "Audit compliance for experiment #8: does it need containment screening?",
+      "expected": "biosecurity",
+      "predicted": {
+        "key": "biosecurity",
+        "name": "Biosecurity Audit Expert",
+        "intent": "biosecurity_audit",
+        "keywords": [
+          "biosecurity",
+          "biosafety",
+          "dual-use",
+          "pathogen",
+          "toxin",
+          "bwc",
+          "screening",
+          "audit",
+          "compliance",
+          "clearance",
+          "risk",
+          "hazard",
+          "containment",
+          "gain-of-function",
+          "bioweapon",
+          "safety review"
+        ]
+      },
+      "confidence": 0.8,
+      "keywords": [
+        "screening",
+        "audit",
+        "compliance",
+        "containment"
+      ]
+    },
+    {
+      "prompt": "Design an OpenQASM circuit for a 3-qubit GHZ state.",
+      "expected": "quantum",
+      "predicted": {
+        "key": "quantum",
+        "name": "Quantum Circuit Expert",
+        "intent": "quantum_computing",
+        "keywords": [
+          "quantum",
+          "qubit",
+          "qubits",
+          "qasm",
+          "openqasm",
+          "circuit",
+          "gate",
+          "hamiltonian",
+          "vqe",
+          "qiskit",
+          "cirq",
+          "superposition",
+          "entangle",
+          "schrodinger",
+          "anneal",
+          "pauli",
+          "trotter",
+          "eigensolver",
+          "grover",
+          "shor",
+          "bell state",
+          "hadamard"
+        ]
+      },
+      "confidence": 1.0,
+      "keywords": [
+        "qubit",
+        "qasm",
+        "openqasm",
+        "circuit"
+      ]
+    },
+    {
+      "prompt": "Audit compliance for experiment #16: does it need containment screening?",
+      "expected": "biosecurity",
+      "predicted": {
+        "key": "biosecurity",
+        "name": "Biosecurity Audit Expert",
+        "intent": "biosecurity_audit",
+        "keywords": [
+          "biosecurity",
+          "biosafety",
+          "dual-use",
+          "pathogen",
+          "toxin",
+          "bwc",
+          "screening",
+          "audit",
+          "compliance",
+          "clearance",
+          "risk",
+          "hazard",
+          "containment",
+          "gain-of-function",
+          "bioweapon",
+          "safety review"
+        ]
+      },
+      "confidence": 0.8,
+      "keywords": [
+        "screening",
+        "audit",
+        "compliance",
+        "containment"
+      ]
+    },
+    {
+      "prompt": "What mutation type is a single nucleotide substitution?",
+      "expected": "genomic",
+      "predicted": {
+        "key": "genomic",
+        "name": "Genomic Sequence Expert",
+        "intent": "genomic_sequence",
+        "keywords": [
+          "dna",
+          "rna",
+          "genome",
+          "genomic",
+          "sequence",
+          "nucleotide",
+          "codon",
+          "crispr",
+          "cas9",
+          "atgc",
+          "protein",
+          "amino acid",
+          "variant",
+          "mutation",
+          "primer",
+          "transcription",
+          "alignment"
+        ]
+      },
+      "confidence": 0.8,
+      "keywords": [
+        "nucleotide",
+        "mutation"
+      ]
+    },
+    {
+      "prompt": "Recommend a good fiction book.",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Design an OpenQASM circuit for a 5-qubit GHZ state.",
+      "expected": "quantum",
+      "predicted": {
+        "key": "quantum",
+        "name": "Quantum Circuit Expert",
+        "intent": "quantum_computing",
+        "keywords": [
+          "quantum",
+          "qubit",
+          "qubits",
+          "qasm",
+          "openqasm",
+          "circuit",
+          "gate",
+          "hamiltonian",
+          "vqe",
+          "qiskit",
+          "cirq",
+          "superposition",
+          "entangle",
+          "schrodinger",
+          "anneal",
+          "pauli",
+          "trotter",
+          "eigensolver",
+          "grover",
+          "shor",
+          "bell state",
+          "hadamard"
+        ]
+      },
+      "confidence": 1.0,
+      "keywords": [
+        "qubit",
+        "qasm",
+        "openqasm",
+        "circuit"
+      ]
+    },
+    {
+      "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGCATGC.",
+      "expected": "genomic",
+      "predicted": {
+        "key": "genomic",
+        "name": "Genomic Sequence Expert",
+        "intent": "genomic_sequence",
+        "keywords": [
+          "dna",
+          "rna",
+          "genome",
+          "genomic",
+          "sequence",
+          "nucleotide",
+          "codon",
+          "crispr",
+          "cas9",
+          "atgc",
+          "protein",
+          "amino acid",
+          "variant",
+          "mutation",
+          "primer",
+          "transcription",
+          "alignment"
+        ]
+      },
+      "confidence": 0.8,
+      "keywords": [
+        "dna",
+        "sequence",
+        "crispr",
+        "atgc"
+      ]
+    },
+    {
+      "prompt": "Explain what a meme is.",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Audit compliance for experiment #17: does it need containment screening?",
+      "expected": "biosecurity",
+      "predicted": {
+        "key": "biosecurity",
+        "name": "Biosecurity Audit Expert",
+        "intent": "biosecurity_audit",
+        "keywords": [
+          "biosecurity",
+          "biosafety",
+          "dual-use",
+          "pathogen",
+          "toxin",
+          "bwc",
+          "screening",
+          "audit",
+          "compliance",
+          "clearance",
+          "risk",
+          "hazard",
+          "containment",
+          "gain-of-function",
+          "bioweapon",
+          "safety review"
+        ]
+      },
+      "confidence": 0.8,
+      "keywords": [
+        "screening",
+        "audit",
+        "compliance",
+        "containment"
+      ]
+    },
+    {
+      "prompt": "Design an OpenQASM circuit for a 2-qubit GHZ state.",
+      "expected": "quantum",
+      "predicted": {
+        "key": "quantum",
+        "name": "Quantum Circuit Expert",
+        "intent": "quantum_computing",
+        "keywords": [
+          "quantum",
+          "qubit",
+          "qubits",
+          "qasm",
+          "openqasm",
+          "circuit",
+          "gate",
+          "hamiltonian",
+          "vqe",
+          "qiskit",
+          "cirq",
+          "superposition",
+          "entangle",
+          "schrodinger",
+          "anneal",
+          "pauli",
+          "trotter",
+          "eigensolver",
+          "grover",
+          "shor",
+          "bell state",
+          "hadamard"
+        ]
+      },
+      "confidence": 1.0,
+      "keywords": [
+        "qubit",
+        "qasm",
+        "openqasm",
+        "circuit"
+      ]
+    },
+    {
+      "prompt": "What is the difference between git merge and git rebase?",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Audit compliance for experiment #21: does it need containment screening?",
+      "expected": "biosecurity",
+      "predicted": {
+        "key": "biosecurity",
+        "name": "Biosecurity Audit Expert",
+        "intent": "biosecurity_audit",
+        "keywords": [
+          "biosecurity",
+          "biosafety",
+          "dual-use",
+          "pathogen",
+          "toxin",
+          "bwc",
+          "screening",
+          "audit",
+          "compliance",
+          "clearance",
+          "risk",
+          "hazard",
+          "containment",
+          "gain-of-function",
+          "bioweapon",
+          "safety review"
+        ]
+      },
+      "confidence": 0.8,
+      "keywords": [
+        "screening",
+        "audit",
+        "compliance",
+        "containment"
+      ]
+    },
+    {
+      "prompt": "Plan a weekend trip itinerary.",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Make a poster for a local bakery.",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Design an OpenQASM circuit for a 5-qubit GHZ state.",
+      "expected": "quantum",
+      "predicted": {
+        "key": "quantum",
+        "name": "Quantum Circuit Expert",
+        "intent": "quantum_computing",
+        "keywords": [
+          "quantum",
+          "qubit",
+          "qubits",
+          "qasm",
+          "openqasm",
+          "circuit",
+          "gate",
+          "hamiltonian",
+          "vqe",
+          "qiskit",
+          "cirq",
+          "superposition",
+          "entangle",
+          "schrodinger",
+          "anneal",
+          "pauli",
+          "trotter",
+          "eigensolver",
+          "grover",
+          "shor",
+          "bell state",
+          "hadamard"
+        ]
+      },
+      "confidence": 1.0,
+      "keywords": [
+        "qubit",
+        "qasm",
+        "openqasm",
+        "circuit"
+      ]
+    },
+    {
+      "prompt": "Give me birthday gift ideas.",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Describe how you would profile a slow web endpoint.",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "What shoes should I wear for hiking?",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Design an OpenQASM circuit for a 6-qubit GHZ state.",
+      "expected": "quantum",
+      "predicted": {
+        "key": "quantum",
+        "name": "Quantum Circuit Expert",
+        "intent": "quantum_computing",
+        "keywords": [
+          "quantum",
+          "qubit",
+          "qubits",
+          "qasm",
+          "openqasm",
+          "circuit",
+          "gate",
+          "hamiltonian",
+          "vqe",
+          "qiskit",
+          "cirq",
+          "superposition",
+          "entangle",
+          "schrodinger",
+          "anneal",
+          "pauli",
+          "trotter",
+          "eigensolver",
+          "grover",
+          "shor",
+          "bell state",
+          "hadamard"
+        ]
+      },
+      "confidence": 1.0,
+      "keywords": [
+        "qubit",
+        "qasm",
+        "openqasm",
+        "circuit"
+      ]
+    },
+    {
+      "prompt": "Write a bash function to wait for a port to open.",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Write a regular expression to match IPv4 addresses.",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGCATGC.",
+      "expected": "genomic",
+      "predicted": {
+        "key": "genomic",
+        "name": "Genomic Sequence Expert",
+        "intent": "genomic_sequence",
+        "keywords": [
+          "dna",
+          "rna",
+          "genome",
+          "genomic",
+          "sequence",
+          "nucleotide",
+          "codon",
+          "crispr",
+          "cas9",
+          "atgc",
+          "protein",
+          "amino acid",
+          "variant",
+          "mutation",
+          "primer",
+          "transcription",
+          "alignment"
+        ]
+      },
+      "confidence": 0.8,
+      "keywords": [
+        "dna",
+        "sequence",
+        "crispr",
+        "atgc"
+      ]
+    },
+    {
+      "prompt": "Audit compliance for experiment #5: does it need containment screening?",
+      "expected": "biosecurity",
+      "predicted": {
+        "key": "biosecurity",
+        "name": "Biosecurity Audit Expert",
+        "intent": "biosecurity_audit",
+        "keywords": [
+          "biosecurity",
+          "biosafety",
+          "dual-use",
+          "pathogen",
+          "toxin",
+          "bwc",
+          "screening",
+          "audit",
+          "compliance",
+          "clearance",
+          "risk",
+          "hazard",
+          "containment",
+          "gain-of-function",
+          "bioweapon",
+          "safety review"
+        ]
+      },
+      "confidence": 0.8,
+      "keywords": [
+        "screening",
+        "audit",
+        "compliance",
+        "containment"
+      ]
+    },
+    {
+      "prompt": "Summarize the plot of a famous movie.",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Explain how a compiler parses source code.",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Audit compliance for experiment #23: does it need containment screening?",
+      "expected": "biosecurity",
+      "predicted": {
+        "key": "biosecurity",
+        "name": "Biosecurity Audit Expert",
+        "intent": "biosecurity_audit",
+        "keywords": [
+          "biosecurity",
+          "biosafety",
+          "dual-use",
+          "pathogen",
+          "toxin",
+          "bwc",
+          "screening",
+          "audit",
+          "compliance",
+          "clearance",
+          "risk",
+          "hazard",
+          "containment",
+          "gain-of-function",
+          "bioweapon",
+          "safety review"
+        ]
+      },
+      "confidence": 0.8,
+      "keywords": [
+        "screening",
+        "audit",
+        "compliance",
+        "containment"
+      ]
+    },
+    {
+      "prompt": "Design an OpenQASM circuit for a 2-qubit GHZ state.",
+      "expected": "quantum",
+      "predicted": {
+        "key": "quantum",
+        "name": "Quantum Circuit Expert",
+        "intent": "quantum_computing",
+        "keywords": [
+          "quantum",
+          "qubit",
+          "qubits",
+          "qasm",
+          "openqasm",
+          "circuit",
+          "gate",
+          "hamiltonian",
+          "vqe",
+          "qiskit",
+          "cirq",
+          "superposition",
+          "entangle",
+          "schrodinger",
+          "anneal",
+          "pauli",
+          "trotter",
+          "eigensolver",
+          "grover",
+          "shor",
+          "bell state",
+          "hadamard"
+        ]
+      },
+      "confidence": 1.0,
+      "keywords": [
+        "qubit",
+        "qasm",
+        "openqasm",
+        "circuit"
+      ]
+    },
+    {
+      "prompt": "What is an SQL inner join and when would you use it?",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "What should I pack for a beach holiday?",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Create artwork of an underwater coral reef.",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Draw a picture of a train in the countryside.",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGC.",
+      "expected": "genomic",
+      "predicted": {
+        "key": "genomic",
+        "name": "Genomic Sequence Expert",
+        "intent": "genomic_sequence",
+        "keywords": [
+          "dna",
+          "rna",
+          "genome",
+          "genomic",
+          "sequence",
+          "nucleotide",
+          "codon",
+          "crispr",
+          "cas9",
+          "atgc",
+          "protein",
+          "amino acid",
+          "variant",
+          "mutation",
+          "primer",
+          "transcription",
+          "alignment"
+        ]
+      },
+      "confidence": 0.8,
+      "keywords": [
+        "dna",
+        "sequence",
+        "crispr",
+        "atgc"
+      ]
+    },
+    {
+      "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGCATGCATGC.",
+      "expected": "genomic",
+      "predicted": {
+        "key": "genomic",
+        "name": "Genomic Sequence Expert",
+        "intent": "genomic_sequence",
+        "keywords": [
+          "dna",
+          "rna",
+          "genome",
+          "genomic",
+          "sequence",
+          "nucleotide",
+          "codon",
+          "crispr",
+          "cas9",
+          "atgc",
+          "protein",
+          "amino acid",
+          "variant",
+          "mutation",
+          "primer",
+          "transcription",
+          "alignment"
+        ]
+      },
+      "confidence": 0.8,
+      "keywords": [
+        "dna",
+        "sequence",
+        "crispr",
+        "atgc"
+      ]
+    },
+    {
+      "prompt": "Audit compliance for experiment #13: does it need containment screening?",
+      "expected": "biosecurity",
+      "predicted": {
+        "key": "biosecurity",
+        "name": "Biosecurity Audit Expert",
+        "intent": "biosecurity_audit",
+        "keywords": [
+          "biosecurity",
+          "biosafety",
+          "dual-use",
+          "pathogen",
+          "toxin",
+          "bwc",
+          "screening",
+          "audit",
+          "compliance",
+          "clearance",
+          "risk",
+          "hazard",
+          "containment",
+          "gain-of-function",
+          "bioweapon",
+          "safety review"
+        ]
+      },
+      "confidence": 0.8,
+      "keywords": [
+        "screening",
+        "audit",
+        "compliance",
+        "containment"
+      ]
+    },
+    {
+      "prompt": "Render a logo for a running club.",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Design an OpenQASM circuit for a 4-qubit GHZ state.",
+      "expected": "quantum",
+      "predicted": {
+        "key": "quantum",
+        "name": "Quantum Circuit Expert",
+        "intent": "quantum_computing",
+        "keywords": [
+          "quantum",
+          "qubit",
+          "qubits",
+          "qasm",
+          "openqasm",
+          "circuit",
+          "gate",
+          "hamiltonian",
+          "vqe",
+          "qiskit",
+          "cirq",
+          "superposition",
+          "entangle",
+          "schrodinger",
+          "anneal",
+          "pauli",
+          "trotter",
+          "eigensolver",
+          "grover",
+          "shor",
+          "bell state",
+          "hadamard"
+        ]
+      },
+      "confidence": 1.0,
+      "keywords": [
+        "qubit",
+        "qasm",
+        "openqasm",
+        "circuit"
+      ]
+    },
+    {
+      "prompt": "Write a Qiskit program for a 4-qubit circuit with Hadamard and CNOT gates.",
+      "expected": "quantum",
+      "predicted": {
+        "key": "quantum",
+        "name": "Quantum Circuit Expert",
+        "intent": "quantum_computing",
+        "keywords": [
+          "quantum",
+          "qubit",
+          "qubits",
+          "qasm",
+          "openqasm",
+          "circuit",
+          "gate",
+          "hamiltonian",
+          "vqe",
+          "qiskit",
+          "cirq",
+          "superposition",
+          "entangle",
+          "schrodinger",
+          "anneal",
+          "pauli",
+          "trotter",
+          "eigensolver",
+          "grover",
+          "shor",
+          "bell state",
+          "hadamard"
+        ]
+      },
+      "confidence": 1.0,
+      "keywords": [
+        "qubit",
+        "circuit",
+        "gate",
+        "qiskit",
+        "hadamard"
+      ]
+    },
+    {
+      "prompt": "Audit compliance for experiment #19: does it need containment screening?",
+      "expected": "biosecurity",
+      "predicted": {
+        "key": "biosecurity",
+        "name": "Biosecurity Audit Expert",
+        "intent": "biosecurity_audit",
+        "keywords": [
+          "biosecurity",
+          "biosafety",
+          "dual-use",
+          "pathogen",
+          "toxin",
+          "bwc",
+          "screening",
+          "audit",
+          "compliance",
+          "clearance",
+          "risk",
+          "hazard",
+          "containment",
+          "gain-of-function",
+          "bioweapon",
+          "safety review"
+        ]
+      },
+      "confidence": 0.8,
+      "keywords": [
+        "screening",
+        "audit",
+        "compliance",
+        "containment"
+      ]
+    },
+    {
+      "prompt": "Give me a fun fact about camels.",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "What is the fastest way to compute the largest eigenvalue of a symmetric matrix?",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "How do I grow tomatoes indoors?",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Audit compliance for experiment #14: does it need containment screening?",
+      "expected": "biosecurity",
+      "predicted": {
+        "key": "biosecurity",
+        "name": "Biosecurity Audit Expert",
+        "intent": "biosecurity_audit",
+        "keywords": [
+          "biosecurity",
+          "biosafety",
+          "dual-use",
+          "pathogen",
+          "toxin",
+          "bwc",
+          "screening",
+          "audit",
+          "compliance",
+          "clearance",
+          "risk",
+          "hazard",
+          "containment",
+          "gain-of-function",
+          "bioweapon",
+          "safety review"
+        ]
+      },
+      "confidence": 0.8,
+      "keywords": [
+        "screening",
+        "audit",
+        "compliance",
+        "containment"
+      ]
+    },
+    {
+      "prompt": "What is the difference between TCP and UDP?",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Write a Python generator for prime numbers.",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGCATGCATGC.",
+      "expected": "genomic",
+      "predicted": {
+        "key": "genomic",
+        "name": "Genomic Sequence Expert",
+        "intent": "genomic_sequence",
+        "keywords": [
+          "dna",
+          "rna",
+          "genome",
+          "genomic",
+          "sequence",
+          "nucleotide",
+          "codon",
+          "crispr",
+          "cas9",
+          "atgc",
+          "protein",
+          "amino acid",
+          "variant",
+          "mutation",
+          "primer",
+          "transcription",
+          "alignment"
+        ]
+      },
+      "confidence": 0.8,
+      "keywords": [
+        "dna",
+        "sequence",
+        "crispr",
+        "atgc"
+      ]
+    },
+    {
+      "prompt": "What is a memory-mapped file?",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "What is a database index?",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Design an OpenQASM circuit for a 6-qubit GHZ state.",
+      "expected": "quantum",
+      "predicted": {
+        "key": "quantum",
+        "name": "Quantum Circuit Expert",
+        "intent": "quantum_computing",
+        "keywords": [
+          "quantum",
+          "qubit",
+          "qubits",
+          "qasm",
+          "openqasm",
+          "circuit",
+          "gate",
+          "hamiltonian",
+          "vqe",
+          "qiskit",
+          "cirq",
+          "superposition",
+          "entangle",
+          "schrodinger",
+          "anneal",
+          "pauli",
+          "trotter",
+          "eigensolver",
+          "grover",
+          "shor",
+          "bell state",
+          "hadamard"
+        ]
+      },
+      "confidence": 1.0,
+      "keywords": [
+        "qubit",
+        "qasm",
+        "openqasm",
+        "circuit"
+      ]
+    },
+    {
+      "prompt": "What is the purpose of a unit test?",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Explain the observer pattern with a small example.",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGCATGC.",
+      "expected": "genomic",
+      "predicted": {
+        "key": "genomic",
+        "name": "Genomic Sequence Expert",
+        "intent": "genomic_sequence",
+        "keywords": [
+          "dna",
+          "rna",
+          "genome",
+          "genomic",
+          "sequence",
+          "nucleotide",
+          "codon",
+          "crispr",
+          "cas9",
+          "atgc",
+          "protein",
+          "amino acid",
+          "variant",
+          "mutation",
+          "primer",
+          "transcription",
+          "alignment"
+        ]
+      },
+      "confidence": 0.8,
+      "keywords": [
+        "dna",
+        "sequence",
+        "crispr",
+        "atgc"
+      ]
+    },
+    {
+      "prompt": "How do you health-check a Postgres database?",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Audit compliance for experiment #6: does it need containment screening?",
+      "expected": "biosecurity",
+      "predicted": {
+        "key": "biosecurity",
+        "name": "Biosecurity Audit Expert",
+        "intent": "biosecurity_audit",
+        "keywords": [
+          "biosecurity",
+          "biosafety",
+          "dual-use",
+          "pathogen",
+          "toxin",
+          "bwc",
+          "screening",
+          "audit",
+          "compliance",
+          "clearance",
+          "risk",
+          "hazard",
+          "containment",
+          "gain-of-function",
+          "bioweapon",
+          "safety review"
+        ]
+      },
+      "confidence": 0.8,
+      "keywords": [
+        "screening",
+        "audit",
+        "compliance",
+        "containment"
+      ]
+    },
+    {
+      "prompt": "Perform a biosecurity screening of this DNA synthesis order for dual-use markers.",
+      "expected": "biosecurity",
+      "predicted": {
+        "key": "biosecurity",
+        "name": "Biosecurity Audit Expert",
+        "intent": "biosecurity_audit",
+        "keywords": [
+          "biosecurity",
+          "biosafety",
+          "dual-use",
+          "pathogen",
+          "toxin",
+          "bwc",
+          "screening",
+          "audit",
+          "compliance",
+          "clearance",
+          "risk",
+          "hazard",
+          "containment",
+          "gain-of-function",
+          "bioweapon",
+          "safety review"
+        ]
+      },
+      "confidence": 0.6,
+      "keywords": [
+        "biosecurity",
+        "dual-use",
+        "screening"
+      ]
+    },
+    {
+      "prompt": "Audit compliance for experiment #20: does it need containment screening?",
+      "expected": "biosecurity",
+      "predicted": {
+        "key": "biosecurity",
+        "name": "Biosecurity Audit Expert",
+        "intent": "biosecurity_audit",
+        "keywords": [
+          "biosecurity",
+          "biosafety",
+          "dual-use",
+          "pathogen",
+          "toxin",
+          "bwc",
+          "screening",
+          "audit",
+          "compliance",
+          "clearance",
+          "risk",
+          "hazard",
+          "containment",
+          "gain-of-function",
+          "bioweapon",
+          "safety review"
+        ]
+      },
+      "confidence": 0.8,
+      "keywords": [
+        "screening",
+        "audit",
+        "compliance",
+        "containment"
+      ]
+    },
+    {
+      "prompt": "Write a Python function that returns the nth Fibonacci number.",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Summarize the water cycle in four bullet points.",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Describe trotterization for Hamiltonian simulation.",
+      "expected": "quantum",
+      "predicted": {
+        "key": "quantum",
+        "name": "Quantum Circuit Expert",
+        "intent": "quantum_computing",
+        "keywords": [
+          "quantum",
+          "qubit",
+          "qubits",
+          "qasm",
+          "openqasm",
+          "circuit",
+          "gate",
+          "hamiltonian",
+          "vqe",
+          "qiskit",
+          "cirq",
+          "superposition",
+          "entangle",
+          "schrodinger",
+          "anneal",
+          "pauli",
+          "trotter",
+          "eigensolver",
+          "grover",
+          "shor",
+          "bell state",
+          "hadamard"
+        ]
+      },
+      "confidence": 1.0,
+      "keywords": [
+        "hamiltonian",
+        "trotter"
+      ]
+    },
+    {
+      "prompt": "Design an OpenQASM circuit for a 4-qubit GHZ state.",
+      "expected": "quantum",
+      "predicted": {
+        "key": "quantum",
+        "name": "Quantum Circuit Expert",
+        "intent": "quantum_computing",
+        "keywords": [
+          "quantum",
+          "qubit",
+          "qubits",
+          "qasm",
+          "openqasm",
+          "circuit",
+          "gate",
+          "hamiltonian",
+          "vqe",
+          "qiskit",
+          "cirq",
+          "superposition",
+          "entangle",
+          "schrodinger",
+          "anneal",
+          "pauli",
+          "trotter",
+          "eigensolver",
+          "grover",
+          "shor",
+          "bell state",
+          "hadamard"
+        ]
+      },
+      "confidence": 1.0,
+      "keywords": [
+        "qubit",
+        "qasm",
+        "openqasm",
+        "circuit"
+      ]
+    },
+    {
+      "prompt": "Describe the water treatment process briefly.",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Assess the biosafety containment level required for this pathogen work.",
+      "expected": "biosecurity",
+      "predicted": {
+        "key": "biosecurity",
+        "name": "Biosecurity Audit Expert",
+        "intent": "biosecurity_audit",
+        "keywords": [
+          "biosecurity",
+          "biosafety",
+          "dual-use",
+          "pathogen",
+          "toxin",
+          "bwc",
+          "screening",
+          "audit",
+          "compliance",
+          "clearance",
+          "risk",
+          "hazard",
+          "containment",
+          "gain-of-function",
+          "bioweapon",
+          "safety review"
+        ]
+      },
+      "confidence": 0.8,
+      "keywords": [
+        "biosafety",
+        "pathogen",
+        "containment"
+      ]
+    },
+    {
+      "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGCATGCATGC.",
+      "expected": "genomic",
+      "predicted": {
+        "key": "genomic",
+        "name": "Genomic Sequence Expert",
+        "intent": "genomic_sequence",
+        "keywords": [
+          "dna",
+          "rna",
+          "genome",
+          "genomic",
+          "sequence",
+          "nucleotide",
+          "codon",
+          "crispr",
+          "cas9",
+          "atgc",
+          "protein",
+          "amino acid",
+          "variant",
+          "mutation",
+          "primer",
+          "transcription",
+          "alignment"
+        ]
+      },
+      "confidence": 0.8,
+      "keywords": [
+        "dna",
+        "sequence",
+        "crispr",
+        "atgc"
+      ]
+    },
+    {
+      "prompt": "Render a logo for a coffee shop.",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Explain the price elasticity of demand.",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Design an OpenQASM circuit for a 2-qubit GHZ state.",
+      "expected": "quantum",
+      "predicted": {
+        "key": "quantum",
+        "name": "Quantum Circuit Expert",
+        "intent": "quantum_computing",
+        "keywords": [
+          "quantum",
+          "qubit",
+          "qubits",
+          "qasm",
+          "openqasm",
+          "circuit",
+          "gate",
+          "hamiltonian",
+          "vqe",
+          "qiskit",
+          "cirq",
+          "superposition",
+          "entangle",
+          "schrodinger",
+          "anneal",
+          "pauli",
+          "trotter",
+          "eigensolver",
+          "grover",
+          "shor",
+          "bell state",
+          "hadamard"
+        ]
+      },
+      "confidence": 1.0,
+      "keywords": [
+        "qubit",
+        "qasm",
+        "openqasm",
+        "circuit"
+      ]
+    },
+    {
+      "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGCATGCATGC.",
+      "expected": "genomic",
+      "predicted": {
+        "key": "genomic",
+        "name": "Genomic Sequence Expert",
+        "intent": "genomic_sequence",
+        "keywords": [
+          "dna",
+          "rna",
+          "genome",
+          "genomic",
+          "sequence",
+          "nucleotide",
+          "codon",
+          "crispr",
+          "cas9",
+          "atgc",
+          "protein",
+          "amino acid",
+          "variant",
+          "mutation",
+          "primer",
+          "transcription",
+          "alignment"
+        ]
+      },
+      "confidence": 0.8,
+      "keywords": [
+        "dna",
+        "sequence",
+        "crispr",
+        "atgc"
+      ]
+    },
+    {
+      "prompt": "Tell me about the history of pizza.",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGC.",
+      "expected": "genomic",
+      "predicted": {
+        "key": "genomic",
+        "name": "Genomic Sequence Expert",
+        "intent": "genomic_sequence",
+        "keywords": [
+          "dna",
+          "rna",
+          "genome",
+          "genomic",
+          "sequence",
+          "nucleotide",
+          "codon",
+          "crispr",
+          "cas9",
+          "atgc",
+          "protein",
+          "amino acid",
+          "variant",
+          "mutation",
+          "primer",
+          "transcription",
+          "alignment"
+        ]
+      },
+      "confidence": 0.8,
+      "keywords": [
+        "dna",
+        "sequence",
+        "crispr",
+        "atgc"
+      ]
+    },
+    {
+      "prompt": "Explain how a load balancer works.",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Audit compliance for experiment #11: does it need containment screening?",
+      "expected": "biosecurity",
+      "predicted": {
+        "key": "biosecurity",
+        "name": "Biosecurity Audit Expert",
+        "intent": "biosecurity_audit",
+        "keywords": [
+          "biosecurity",
+          "biosafety",
+          "dual-use",
+          "pathogen",
+          "toxin",
+          "bwc",
+          "screening",
+          "audit",
+          "compliance",
+          "clearance",
+          "risk",
+          "hazard",
+          "containment",
+          "gain-of-function",
+          "bioweapon",
+          "safety review"
+        ]
+      },
+      "confidence": 0.8,
+      "keywords": [
+        "screening",
+        "audit",
+        "compliance",
+        "containment"
+      ]
+    },
+    {
+      "prompt": "Explain the difference between a thread and a process.",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Draw a picture of a sailboat at dawn.",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "How do I set up a virtual environment for a Python project?",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Design an OpenQASM circuit for a 6-qubit GHZ state.",
+      "expected": "quantum",
+      "predicted": {
+        "key": "quantum",
+        "name": "Quantum Circuit Expert",
+        "intent": "quantum_computing",
+        "keywords": [
+          "quantum",
+          "qubit",
+          "qubits",
+          "qasm",
+          "openqasm",
+          "circuit",
+          "gate",
+          "hamiltonian",
+          "vqe",
+          "qiskit",
+          "cirq",
+          "superposition",
+          "entangle",
+          "schrodinger",
+          "anneal",
+          "pauli",
+          "trotter",
+          "eigensolver",
+          "grover",
+          "shor",
+          "bell state",
+          "hadamard"
+        ]
+      },
+      "confidence": 1.0,
+      "keywords": [
+        "qubit",
+        "qasm",
+        "openqasm",
+        "circuit"
+      ]
+    },
+    {
+      "prompt": "Design an OpenQASM circuit for a 6-qubit GHZ state.",
+      "expected": "quantum",
+      "predicted": {
+        "key": "quantum",
+        "name": "Quantum Circuit Expert",
+        "intent": "quantum_computing",
+        "keywords": [
+          "quantum",
+          "qubit",
+          "qubits",
+          "qasm",
+          "openqasm",
+          "circuit",
+          "gate",
+          "hamiltonian",
+          "vqe",
+          "qiskit",
+          "cirq",
+          "superposition",
+          "entangle",
+          "schrodinger",
+          "anneal",
+          "pauli",
+          "trotter",
+          "eigensolver",
+          "grover",
+          "shor",
+          "bell state",
+          "hadamard"
+        ]
+      },
+      "confidence": 1.0,
+      "keywords": [
+        "qubit",
+        "qasm",
+        "openqasm",
+        "circuit"
+      ]
+    },
+    {
+      "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGCATGCATGC.",
+      "expected": "genomic",
+      "predicted": {
+        "key": "genomic",
+        "name": "Genomic Sequence Expert",
+        "intent": "genomic_sequence",
+        "keywords": [
+          "dna",
+          "rna",
+          "genome",
+          "genomic",
+          "sequence",
+          "nucleotide",
+          "codon",
+          "crispr",
+          "cas9",
+          "atgc",
+          "protein",
+          "amino acid",
+          "variant",
+          "mutation",
+          "primer",
+          "transcription",
+          "alignment"
+        ]
+      },
+      "confidence": 0.8,
+      "keywords": [
+        "dna",
+        "sequence",
+        "crispr",
+        "atgc"
+      ]
+    },
+    {
+      "prompt": "How does Grover search reduce the query complexity of unstructured search?",
+      "expected": "quantum",
+      "predicted": {
+        "key": "quantum",
+        "name": "Quantum Circuit Expert",
+        "intent": "quantum_computing",
+        "keywords": [
+          "quantum",
+          "qubit",
+          "qubits",
+          "qasm",
+          "openqasm",
+          "circuit",
+          "gate",
+          "hamiltonian",
+          "vqe",
+          "qiskit",
+          "cirq",
+          "superposition",
+          "entangle",
+          "schrodinger",
+          "anneal",
+          "pauli",
+          "trotter",
+          "eigensolver",
+          "grover",
+          "shor",
+          "bell state",
+          "hadamard"
+        ]
+      },
+      "confidence": 1.0,
+      "keywords": [
+        "grover"
+      ]
+    },
+    {
+      "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGC.",
+      "expected": "genomic",
+      "predicted": {
+        "key": "genomic",
+        "name": "Genomic Sequence Expert",
+        "intent": "genomic_sequence",
+        "keywords": [
+          "dna",
+          "rna",
+          "genome",
+          "genomic",
+          "sequence",
+          "nucleotide",
+          "codon",
+          "crispr",
+          "cas9",
+          "atgc",
+          "protein",
+          "amino acid",
+          "variant",
+          "mutation",
+          "primer",
+          "transcription",
+          "alignment"
+        ]
+      },
+      "confidence": 0.8,
+      "keywords": [
+        "dna",
+        "sequence",
+        "crispr",
+        "atgc"
+      ]
+    },
+    {
+      "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGCATGC.",
+      "expected": "genomic",
+      "predicted": {
+        "key": "genomic",
+        "name": "Genomic Sequence Expert",
+        "intent": "genomic_sequence",
+        "keywords": [
+          "dna",
+          "rna",
+          "genome",
+          "genomic",
+          "sequence",
+          "nucleotide",
+          "codon",
+          "crispr",
+          "cas9",
+          "atgc",
+          "protein",
+          "amino acid",
+          "variant",
+          "mutation",
+          "primer",
+          "transcription",
+          "alignment"
+        ]
+      },
+      "confidence": 0.8,
+      "keywords": [
+        "dna",
+        "sequence",
+        "crispr",
+        "atgc"
+      ]
+    },
+    {
+      "prompt": "Design an OpenQASM circuit for a 4-qubit GHZ state.",
+      "expected": "quantum",
+      "predicted": {
+        "key": "quantum",
+        "name": "Quantum Circuit Expert",
+        "intent": "quantum_computing",
+        "keywords": [
+          "quantum",
+          "qubit",
+          "qubits",
+          "qasm",
+          "openqasm",
+          "circuit",
+          "gate",
+          "hamiltonian",
+          "vqe",
+          "qiskit",
+          "cirq",
+          "superposition",
+          "entangle",
+          "schrodinger",
+          "anneal",
+          "pauli",
+          "trotter",
+          "eigensolver",
+          "grover",
+          "shor",
+          "bell state",
+          "hadamard"
+        ]
+      },
+      "confidence": 1.0,
+      "keywords": [
+        "qubit",
+        "qasm",
+        "openqasm",
+        "circuit"
+      ]
+    },
+    {
+      "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGC.",
+      "expected": "genomic",
+      "predicted": {
+        "key": "genomic",
+        "name": "Genomic Sequence Expert",
+        "intent": "genomic_sequence",
+        "keywords": [
+          "dna",
+          "rna",
+          "genome",
+          "genomic",
+          "sequence",
+          "nucleotide",
+          "codon",
+          "crispr",
+          "cas9",
+          "atgc",
+          "protein",
+          "amino acid",
+          "variant",
+          "mutation",
+          "primer",
+          "transcription",
+          "alignment"
+        ]
+      },
+      "confidence": 0.8,
+      "keywords": [
+        "dna",
+        "sequence",
+        "crispr",
+        "atgc"
+      ]
+    },
+    {
+      "prompt": "Audit compliance for experiment #9: does it need containment screening?",
+      "expected": "biosecurity",
+      "predicted": {
+        "key": "biosecurity",
+        "name": "Biosecurity Audit Expert",
+        "intent": "biosecurity_audit",
+        "keywords": [
+          "biosecurity",
+          "biosafety",
+          "dual-use",
+          "pathogen",
+          "toxin",
+          "bwc",
+          "screening",
+          "audit",
+          "compliance",
+          "clearance",
+          "risk",
+          "hazard",
+          "containment",
+          "gain-of-function",
+          "bioweapon",
+          "safety review"
+        ]
+      },
+      "confidence": 0.8,
+      "keywords": [
+        "screening",
+        "audit",
+        "compliance",
+        "containment"
+      ]
+    },
+    {
+      "prompt": "Draw a cartoon of a cat riding a skateboard.",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "What is a good morning routine?",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Design an OpenQASM circuit for a 3-qubit GHZ state.",
+      "expected": "quantum",
+      "predicted": {
+        "key": "quantum",
+        "name": "Quantum Circuit Expert",
+        "intent": "quantum_computing",
+        "keywords": [
+          "quantum",
+          "qubit",
+          "qubits",
+          "qasm",
+          "openqasm",
+          "circuit",
+          "gate",
+          "hamiltonian",
+          "vqe",
+          "qiskit",
+          "cirq",
+          "superposition",
+          "entangle",
+          "schrodinger",
+          "anneal",
+          "pauli",
+          "trotter",
+          "eigensolver",
+          "grover",
+          "shor",
+          "bell state",
+          "hadamard"
+        ]
+      },
+      "confidence": 1.0,
+      "keywords": [
+        "qubit",
+        "qasm",
+        "openqasm",
+        "circuit"
+      ]
+    },
+    {
+      "prompt": "How do I take a screenshot on Windows?",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Describe how you would implement a simple LRU cache.",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGCATGCATGC.",
+      "expected": "genomic",
+      "predicted": {
+        "key": "genomic",
+        "name": "Genomic Sequence Expert",
+        "intent": "genomic_sequence",
+        "keywords": [
+          "dna",
+          "rna",
+          "genome",
+          "genomic",
+          "sequence",
+          "nucleotide",
+          "codon",
+          "crispr",
+          "cas9",
+          "atgc",
+          "protein",
+          "amino acid",
+          "variant",
+          "mutation",
+          "primer",
+          "transcription",
+          "alignment"
+        ]
+      },
+      "confidence": 0.8,
+      "keywords": [
+        "dna",
+        "sequence",
+        "crispr",
+        "atgc"
+      ]
+    },
+    {
+      "prompt": "Use the Hadamard transform to prepare an equal superposition.",
+      "expected": "quantum",
+      "predicted": {
+        "key": "quantum",
+        "name": "Quantum Circuit Expert",
+        "intent": "quantum_computing",
+        "keywords": [
+          "quantum",
+          "qubit",
+          "qubits",
+          "qasm",
+          "openqasm",
+          "circuit",
+          "gate",
+          "hamiltonian",
+          "vqe",
+          "qiskit",
+          "cirq",
+          "superposition",
+          "entangle",
+          "schrodinger",
+          "anneal",
+          "pauli",
+          "trotter",
+          "eigensolver",
+          "grover",
+          "shor",
+          "bell state",
+          "hadamard"
+        ]
+      },
+      "confidence": 1.0,
+      "keywords": [
+        "superposition",
+        "hadamard"
+      ]
+    },
+    {
+      "prompt": "Write a SQL statement that adds a column to a table.",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Design an OpenQASM circuit for a 5-qubit GHZ state.",
+      "expected": "quantum",
+      "predicted": {
+        "key": "quantum",
+        "name": "Quantum Circuit Expert",
+        "intent": "quantum_computing",
+        "keywords": [
+          "quantum",
+          "qubit",
+          "qubits",
+          "qasm",
+          "openqasm",
+          "circuit",
+          "gate",
+          "hamiltonian",
+          "vqe",
+          "qiskit",
+          "cirq",
+          "superposition",
+          "entangle",
+          "schrodinger",
+          "anneal",
+          "pauli",
+          "trotter",
+          "eigensolver",
+          "grover",
+          "shor",
+          "bell state",
+          "hadamard"
+        ]
+      },
+      "confidence": 1.0,
+      "keywords": [
+        "qubit",
+        "qasm",
+        "openqasm",
+        "circuit"
+      ]
+    },
+    {
+      "prompt": "Design an OpenQASM circuit for a 2-qubit GHZ state.",
+      "expected": "quantum",
+      "predicted": {
+        "key": "quantum",
+        "name": "Quantum Circuit Expert",
+        "intent": "quantum_computing",
+        "keywords": [
+          "quantum",
+          "qubit",
+          "qubits",
+          "qasm",
+          "openqasm",
+          "circuit",
+          "gate",
+          "hamiltonian",
+          "vqe",
+          "qiskit",
+          "cirq",
+          "superposition",
+          "entangle",
+          "schrodinger",
+          "anneal",
+          "pauli",
+          "trotter",
+          "eigensolver",
+          "grover",
+          "shor",
+          "bell state",
+          "hadamard"
+        ]
+      },
+      "confidence": 1.0,
+      "keywords": [
+        "qubit",
+        "qasm",
+        "openqasm",
+        "circuit"
+      ]
+    },
+    {
+      "prompt": "Explain what a DNS resolver does.",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGCATGCATGC.",
+      "expected": "genomic",
+      "predicted": {
+        "key": "genomic",
+        "name": "Genomic Sequence Expert",
+        "intent": "genomic_sequence",
+        "keywords": [
+          "dna",
+          "rna",
+          "genome",
+          "genomic",
+          "sequence",
+          "nucleotide",
+          "codon",
+          "crispr",
+          "cas9",
+          "atgc",
+          "protein",
+          "amino acid",
+          "variant",
+          "mutation",
+          "primer",
+          "transcription",
+          "alignment"
+        ]
+      },
+      "confidence": 0.8,
+      "keywords": [
+        "dna",
+        "sequence",
+        "crispr",
+        "atgc"
+      ]
+    },
+    {
+      "prompt": "What is idempotency in the context of HTTP APIs?",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Write an awk one-liner to print the second column of a CSV.",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGC.",
+      "expected": "genomic",
+      "predicted": {
+        "key": "genomic",
+        "name": "Genomic Sequence Expert",
+        "intent": "genomic_sequence",
+        "keywords": [
+          "dna",
+          "rna",
+          "genome",
+          "genomic",
+          "sequence",
+          "nucleotide",
+          "codon",
+          "crispr",
+          "cas9",
+          "atgc",
+          "protein",
+          "amino acid",
+          "variant",
+          "mutation",
+          "primer",
+          "transcription",
+          "alignment"
+        ]
+      },
+      "confidence": 0.8,
+      "keywords": [
+        "dna",
+        "sequence",
+        "crispr",
+        "atgc"
+      ]
+    },
+    {
+      "prompt": "Write a shell loop to rename all .txt files.",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Design an OpenQASM circuit for a 3-qubit GHZ state.",
+      "expected": "quantum",
+      "predicted": {
+        "key": "quantum",
+        "name": "Quantum Circuit Expert",
+        "intent": "quantum_computing",
+        "keywords": [
+          "quantum",
+          "qubit",
+          "qubits",
+          "qasm",
+          "openqasm",
+          "circuit",
+          "gate",
+          "hamiltonian",
+          "vqe",
+          "qiskit",
+          "cirq",
+          "superposition",
+          "entangle",
+          "schrodinger",
+          "anneal",
+          "pauli",
+          "trotter",
+          "eigensolver",
+          "grover",
+          "shor",
+          "bell state",
+          "hadamard"
+        ]
+      },
+      "confidence": 1.0,
+      "keywords": [
+        "qubit",
+        "qasm",
+        "openqasm",
+        "circuit"
+      ]
+    },
+    {
+      "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGC.",
+      "expected": "genomic",
+      "predicted": {
+        "key": "genomic",
+        "name": "Genomic Sequence Expert",
+        "intent": "genomic_sequence",
+        "keywords": [
+          "dna",
+          "rna",
+          "genome",
+          "genomic",
+          "sequence",
+          "nucleotide",
+          "codon",
+          "crispr",
+          "cas9",
+          "atgc",
+          "protein",
+          "amino acid",
+          "variant",
+          "mutation",
+          "primer",
+          "transcription",
+          "alignment"
+        ]
+      },
+      "confidence": 0.8,
+      "keywords": [
+        "dna",
+        "sequence",
+        "crispr",
+        "atgc"
+      ]
+    },
+    {
+      "prompt": "Design an OpenQASM circuit for a 4-qubit GHZ state.",
+      "expected": "quantum",
+      "predicted": {
+        "key": "quantum",
+        "name": "Quantum Circuit Expert",
+        "intent": "quantum_computing",
+        "keywords": [
+          "quantum",
+          "qubit",
+          "qubits",
+          "qasm",
+          "openqasm",
+          "circuit",
+          "gate",
+          "hamiltonian",
+          "vqe",
+          "qiskit",
+          "cirq",
+          "superposition",
+          "entangle",
+          "schrodinger",
+          "anneal",
+          "pauli",
+          "trotter",
+          "eigensolver",
+          "grover",
+          "shor",
+          "bell state",
+          "hadamard"
+        ]
+      },
+      "confidence": 1.0,
+      "keywords": [
+        "qubit",
+        "qasm",
+        "openqasm",
+        "circuit"
+      ]
+    },
+    {
+      "prompt": "Explain the CAP theorem.",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Audit compliance for experiment #10: does it need containment screening?",
+      "expected": "biosecurity",
+      "predicted": {
+        "key": "biosecurity",
+        "name": "Biosecurity Audit Expert",
+        "intent": "biosecurity_audit",
+        "keywords": [
+          "biosecurity",
+          "biosafety",
+          "dual-use",
+          "pathogen",
+          "toxin",
+          "bwc",
+          "screening",
+          "audit",
+          "compliance",
+          "clearance",
+          "risk",
+          "hazard",
+          "containment",
+          "gain-of-function",
+          "bioweapon",
+          "safety review"
+        ]
+      },
+      "confidence": 0.8,
+      "keywords": [
+        "screening",
+        "audit",
+        "compliance",
+        "containment"
+      ]
+    },
+    {
+      "prompt": "Design an OpenQASM circuit for a 4-qubit GHZ state.",
+      "expected": "quantum",
+      "predicted": {
+        "key": "quantum",
+        "name": "Quantum Circuit Expert",
+        "intent": "quantum_computing",
+        "keywords": [
+          "quantum",
+          "qubit",
+          "qubits",
+          "qasm",
+          "openqasm",
+          "circuit",
+          "gate",
+          "hamiltonian",
+          "vqe",
+          "qiskit",
+          "cirq",
+          "superposition",
+          "entangle",
+          "schrodinger",
+          "anneal",
+          "pauli",
+          "trotter",
+          "eigensolver",
+          "grover",
+          "shor",
+          "bell state",
+          "hadamard"
+        ]
+      },
+      "confidence": 1.0,
+      "keywords": [
+        "qubit",
+        "qasm",
+        "openqasm",
+        "circuit"
+      ]
+    },
+    {
+      "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGCATGC.",
+      "expected": "genomic",
+      "predicted": {
+        "key": "genomic",
+        "name": "Genomic Sequence Expert",
+        "intent": "genomic_sequence",
+        "keywords": [
+          "dna",
+          "rna",
+          "genome",
+          "genomic",
+          "sequence",
+          "nucleotide",
+          "codon",
+          "crispr",
+          "cas9",
+          "atgc",
+          "protein",
+          "amino acid",
+          "variant",
+          "mutation",
+          "primer",
+          "transcription",
+          "alignment"
+        ]
+      },
+      "confidence": 0.8,
+      "keywords": [
+        "dna",
+        "sequence",
+        "crispr",
+        "atgc"
+      ]
+    },
+    {
+      "prompt": "Is it better to rent or buy a home?",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGCATGC.",
+      "expected": "genomic",
+      "predicted": {
+        "key": "genomic",
+        "name": "Genomic Sequence Expert",
+        "intent": "genomic_sequence",
+        "keywords": [
+          "dna",
+          "rna",
+          "genome",
+          "genomic",
+          "sequence",
+          "nucleotide",
+          "codon",
+          "crispr",
+          "cas9",
+          "atgc",
+          "protein",
+          "amino acid",
+          "variant",
+          "mutation",
+          "primer",
+          "transcription",
+          "alignment"
+        ]
+      },
+      "confidence": 0.8,
+      "keywords": [
+        "dna",
+        "sequence",
+        "crispr",
+        "atgc"
+      ]
+    },
+    {
+      "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGCATGC.",
+      "expected": "genomic",
+      "predicted": {
+        "key": "genomic",
+        "name": "Genomic Sequence Expert",
+        "intent": "genomic_sequence",
+        "keywords": [
+          "dna",
+          "rna",
+          "genome",
+          "genomic",
+          "sequence",
+          "nucleotide",
+          "codon",
+          "crispr",
+          "cas9",
+          "atgc",
+          "protein",
+          "amino acid",
+          "variant",
+          "mutation",
+          "primer",
+          "transcription",
+          "alignment"
+        ]
+      },
+      "confidence": 0.8,
+      "keywords": [
+        "dna",
+        "sequence",
+        "crispr",
+        "atgc"
+      ]
+    },
+    {
+      "prompt": "Design an OpenQASM circuit for a 2-qubit GHZ state.",
+      "expected": "quantum",
+      "predicted": {
+        "key": "quantum",
+        "name": "Quantum Circuit Expert",
+        "intent": "quantum_computing",
+        "keywords": [
+          "quantum",
+          "qubit",
+          "qubits",
+          "qasm",
+          "openqasm",
+          "circuit",
+          "gate",
+          "hamiltonian",
+          "vqe",
+          "qiskit",
+          "cirq",
+          "superposition",
+          "entangle",
+          "schrodinger",
+          "anneal",
+          "pauli",
+          "trotter",
+          "eigensolver",
+          "grover",
+          "shor",
+          "bell state",
+          "hadamard"
+        ]
+      },
+      "confidence": 1.0,
+      "keywords": [
+        "qubit",
+        "qasm",
+        "openqasm",
+        "circuit"
+      ]
+    },
+    {
+      "prompt": "Translate the DNA sequence ATG GCC TAA into amino acids.",
+      "expected": "genomic",
+      "predicted": {
+        "key": "genomic",
+        "name": "Genomic Sequence Expert",
+        "intent": "genomic_sequence",
+        "keywords": [
+          "dna",
+          "rna",
+          "genome",
+          "genomic",
+          "sequence",
+          "nucleotide",
+          "codon",
+          "crispr",
+          "cas9",
+          "atgc",
+          "protein",
+          "amino acid",
+          "variant",
+          "mutation",
+          "primer",
+          "transcription",
+          "alignment"
+        ]
+      },
+      "confidence": 0.8,
+      "keywords": [
+        "dna",
+        "sequence",
+        "amino acid"
+      ]
+    },
+    {
+      "prompt": "Create an illustration of a robot reading a book.",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Make a wallpaper of abstract geometric shapes.",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGCATGCATGC.",
+      "expected": "genomic",
+      "predicted": {
+        "key": "genomic",
+        "name": "Genomic Sequence Expert",
+        "intent": "genomic_sequence",
+        "keywords": [
+          "dna",
+          "rna",
+          "genome",
+          "genomic",
+          "sequence",
+          "nucleotide",
+          "codon",
+          "crispr",
+          "cas9",
+          "atgc",
+          "protein",
+          "amino acid",
+          "variant",
+          "mutation",
+          "primer",
+          "transcription",
+          "alignment"
+        ]
+      },
+      "confidence": 0.8,
+      "keywords": [
+        "dna",
+        "sequence",
+        "crispr",
+        "atgc"
+      ]
+    },
+    {
+      "prompt": "Draw a picture of a mountain lake at sunset.",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Design an OpenQASM circuit for a 2-qubit GHZ state.",
+      "expected": "quantum",
+      "predicted": {
+        "key": "quantum",
+        "name": "Quantum Circuit Expert",
+        "intent": "quantum_computing",
+        "keywords": [
+          "quantum",
+          "qubit",
+          "qubits",
+          "qasm",
+          "openqasm",
+          "circuit",
+          "gate",
+          "hamiltonian",
+          "vqe",
+          "qiskit",
+          "cirq",
+          "superposition",
+          "entangle",
+          "schrodinger",
+          "anneal",
+          "pauli",
+          "trotter",
+          "eigensolver",
+          "grover",
+          "shor",
+          "bell state",
+          "hadamard"
+        ]
+      },
+      "confidence": 1.0,
+      "keywords": [
+        "qubit",
+        "qasm",
+        "openqasm",
+        "circuit"
+      ]
+    },
+    {
+      "prompt": "How late is the grocery store open?",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGC.",
+      "expected": "genomic",
+      "predicted": {
+        "key": "genomic",
+        "name": "Genomic Sequence Expert",
+        "intent": "genomic_sequence",
+        "keywords": [
+          "dna",
+          "rna",
+          "genome",
+          "genomic",
+          "sequence",
+          "nucleotide",
+          "codon",
+          "crispr",
+          "cas9",
+          "atgc",
+          "protein",
+          "amino acid",
+          "variant",
+          "mutation",
+          "primer",
+          "transcription",
+          "alignment"
+        ]
+      },
+      "confidence": 0.8,
+      "keywords": [
+        "dna",
+        "sequence",
+        "crispr",
+        "atgc"
+      ]
+    },
+    {
+      "prompt": "Paint a portrait of a fox in winter.",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "What is the difference between static and dynamic typing?",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Design an OpenQASM circuit for a 3-qubit GHZ state.",
+      "expected": "quantum",
+      "predicted": {
+        "key": "quantum",
+        "name": "Quantum Circuit Expert",
+        "intent": "quantum_computing",
+        "keywords": [
+          "quantum",
+          "qubit",
+          "qubits",
+          "qasm",
+          "openqasm",
+          "circuit",
+          "gate",
+          "hamiltonian",
+          "vqe",
+          "qiskit",
+          "cirq",
+          "superposition",
+          "entangle",
+          "schrodinger",
+          "anneal",
+          "pauli",
+          "trotter",
+          "eigensolver",
+          "grover",
+          "shor",
+          "bell state",
+          "hadamard"
+        ]
+      },
+      "confidence": 1.0,
+      "keywords": [
+        "qubit",
+        "qasm",
+        "openqasm",
+        "circuit"
+      ]
+    },
+    {
+      "prompt": "What is your favorite color?",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Design an OpenQASM circuit for a 4-qubit GHZ state.",
+      "expected": "quantum",
+      "predicted": {
+        "key": "quantum",
+        "name": "Quantum Circuit Expert",
+        "intent": "quantum_computing",
+        "keywords": [
+          "quantum",
+          "qubit",
+          "qubits",
+          "qasm",
+          "openqasm",
+          "circuit",
+          "gate",
+          "hamiltonian",
+          "vqe",
+          "qiskit",
+          "cirq",
+          "superposition",
+          "entangle",
+          "schrodinger",
+          "anneal",
+          "pauli",
+          "trotter",
+          "eigensolver",
+          "grover",
+          "shor",
+          "bell state",
+          "hadamard"
+        ]
+      },
+      "confidence": 1.0,
+      "keywords": [
+        "qubit",
+        "qasm",
+        "openqasm",
+        "circuit"
+      ]
+    },
+    {
+      "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGCATGCATGC.",
+      "expected": "genomic",
+      "predicted": {
+        "key": "genomic",
+        "name": "Genomic Sequence Expert",
+        "intent": "genomic_sequence",
+        "keywords": [
+          "dna",
+          "rna",
+          "genome",
+          "genomic",
+          "sequence",
+          "nucleotide",
+          "codon",
+          "crispr",
+          "cas9",
+          "atgc",
+          "protein",
+          "amino acid",
+          "variant",
+          "mutation",
+          "primer",
+          "transcription",
+          "alignment"
+        ]
+      },
+      "confidence": 0.8,
+      "keywords": [
+        "dna",
+        "sequence",
+        "crispr",
+        "atgc"
+      ]
+    },
+    {
+      "prompt": "How do hash tables handle collisions?",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Audit compliance for experiment #7: does it need containment screening?",
+      "expected": "biosecurity",
+      "predicted": {
+        "key": "biosecurity",
+        "name": "Biosecurity Audit Expert",
+        "intent": "biosecurity_audit",
+        "keywords": [
+          "biosecurity",
+          "biosafety",
+          "dual-use",
+          "pathogen",
+          "toxin",
+          "bwc",
+          "screening",
+          "audit",
+          "compliance",
+          "clearance",
+          "risk",
+          "hazard",
+          "containment",
+          "gain-of-function",
+          "bioweapon",
+          "safety review"
+        ]
+      },
+      "confidence": 0.8,
+      "keywords": [
+        "screening",
+        "audit",
+        "compliance",
+        "containment"
+      ]
+    },
+    {
+      "prompt": "Reason about the Pauli X gate acting on a superposition.",
+      "expected": "quantum",
+      "predicted": {
+        "key": "quantum",
+        "name": "Quantum Circuit Expert",
+        "intent": "quantum_computing",
+        "keywords": [
+          "quantum",
+          "qubit",
+          "qubits",
+          "qasm",
+          "openqasm",
+          "circuit",
+          "gate",
+          "hamiltonian",
+          "vqe",
+          "qiskit",
+          "cirq",
+          "superposition",
+          "entangle",
+          "schrodinger",
+          "anneal",
+          "pauli",
+          "trotter",
+          "eigensolver",
+          "grover",
+          "shor",
+          "bell state",
+          "hadamard"
+        ]
+      },
+      "confidence": 1.0,
+      "keywords": [
+        "gate",
+        "superposition",
+        "pauli"
+      ]
+    },
+    {
+      "prompt": "Evaluate the hazard potential of this toxin-coding region.",
+      "expected": "biosecurity",
+      "predicted": {
+        "key": "biosecurity",
+        "name": "Biosecurity Audit Expert",
+        "intent": "biosecurity_audit",
+        "keywords": [
+          "biosecurity",
+          "biosafety",
+          "dual-use",
+          "pathogen",
+          "toxin",
+          "bwc",
+          "screening",
+          "audit",
+          "compliance",
+          "clearance",
+          "risk",
+          "hazard",
+          "containment",
+          "gain-of-function",
+          "bioweapon",
+          "safety review"
+        ]
+      },
+      "confidence": 0.8,
+      "keywords": [
+        "toxin",
+        "hazard"
+      ]
+    },
+    {
+      "prompt": "Sketch a diagram of a bicycle.",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Why would you choose a monorepo over multiple repositories?",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Describe the OSI model layers.",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Who won the football match last night?",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Explain how a Hadamard gate followed by a controlled-X creates a bell state.",
+      "expected": "quantum",
+      "predicted": {
+        "key": "quantum",
+        "name": "Quantum Circuit Expert",
+        "intent": "quantum_computing",
+        "keywords": [
+          "quantum",
+          "qubit",
+          "qubits",
+          "qasm",
+          "openqasm",
+          "circuit",
+          "gate",
+          "hamiltonian",
+          "vqe",
+          "qiskit",
+          "cirq",
+          "superposition",
+          "entangle",
+          "schrodinger",
+          "anneal",
+          "pauli",
+          "trotter",
+          "eigensolver",
+          "grover",
+          "shor",
+          "bell state",
+          "hadamard"
+        ]
+      },
+      "confidence": 1.0,
+      "keywords": [
+        "gate",
+        "bell state",
+        "hadamard"
+      ]
+    },
+    {
+      "prompt": "What causes the seasons on Earth?",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Draw a picture of the night sky full of stars.",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "How would you design a rate limiter?",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Audit compliance for experiment #22: does it need containment screening?",
+      "expected": "biosecurity",
+      "predicted": {
+        "key": "biosecurity",
+        "name": "Biosecurity Audit Expert",
+        "intent": "biosecurity_audit",
+        "keywords": [
+          "biosecurity",
+          "biosafety",
+          "dual-use",
+          "pathogen",
+          "toxin",
+          "bwc",
+          "screening",
+          "audit",
+          "compliance",
+          "clearance",
+          "risk",
+          "hazard",
+          "containment",
+          "gain-of-function",
+          "bioweapon",
+          "safety review"
+        ]
+      },
+      "confidence": 0.8,
+      "keywords": [
+        "screening",
+        "audit",
+        "compliance",
+        "containment"
+      ]
+    },
+    {
+      "prompt": "Explain the role of the oracle in Shor's algorithm.",
+      "expected": "quantum",
+      "predicted": {
+        "key": "quantum",
+        "name": "Quantum Circuit Expert",
+        "intent": "quantum_computing",
+        "keywords": [
+          "quantum",
+          "qubit",
+          "qubits",
+          "qasm",
+          "openqasm",
+          "circuit",
+          "gate",
+          "hamiltonian",
+          "vqe",
+          "qiskit",
+          "cirq",
+          "superposition",
+          "entangle",
+          "schrodinger",
+          "anneal",
+          "pauli",
+          "trotter",
+          "eigensolver",
+          "grover",
+          "shor",
+          "bell state",
+          "hadamard"
+        ]
+      },
+      "confidence": 1.0,
+      "keywords": [
+        "shor"
+      ]
+    },
+    {
+      "prompt": "What circuit depth does a Bell-state measurement basis require?",
+      "expected": "quantum",
+      "predicted": {
+        "key": "quantum",
+        "name": "Quantum Circuit Expert",
+        "intent": "quantum_computing",
+        "keywords": [
+          "quantum",
+          "qubit",
+          "qubits",
+          "qasm",
+          "openqasm",
+          "circuit",
+          "gate",
+          "hamiltonian",
+          "vqe",
+          "qiskit",
+          "cirq",
+          "superposition",
+          "entangle",
+          "schrodinger",
+          "anneal",
+          "pauli",
+          "trotter",
+          "eigensolver",
+          "grover",
+          "shor",
+          "bell state",
+          "hadamard"
+        ]
+      },
+      "confidence": 1.0,
+      "keywords": [
+        "circuit"
+      ]
+    },
+    {
+      "prompt": "Design an OpenQASM circuit for a 6-qubit GHZ state.",
+      "expected": "quantum",
+      "predicted": {
+        "key": "quantum",
+        "name": "Quantum Circuit Expert",
+        "intent": "quantum_computing",
+        "keywords": [
+          "quantum",
+          "qubit",
+          "qubits",
+          "qasm",
+          "openqasm",
+          "circuit",
+          "gate",
+          "hamiltonian",
+          "vqe",
+          "qiskit",
+          "cirq",
+          "superposition",
+          "entangle",
+          "schrodinger",
+          "anneal",
+          "pauli",
+          "trotter",
+          "eigensolver",
+          "grover",
+          "shor",
+          "bell state",
+          "hadamard"
+        ]
+      },
+      "confidence": 1.0,
+      "keywords": [
+        "qubit",
+        "qasm",
+        "openqasm",
+        "circuit"
+      ]
+    },
+    {
+      "prompt": "Design an OpenQASM circuit for a 5-qubit GHZ state.",
+      "expected": "quantum",
+      "predicted": {
+        "key": "quantum",
+        "name": "Quantum Circuit Expert",
+        "intent": "quantum_computing",
+        "keywords": [
+          "quantum",
+          "qubit",
+          "qubits",
+          "qasm",
+          "openqasm",
+          "circuit",
+          "gate",
+          "hamiltonian",
+          "vqe",
+          "qiskit",
+          "cirq",
+          "superposition",
+          "entangle",
+          "schrodinger",
+          "anneal",
+          "pauli",
+          "trotter",
+          "eigensolver",
+          "grover",
+          "shor",
+          "bell state",
+          "hadamard"
+        ]
+      },
+      "confidence": 1.0,
+      "keywords": [
+        "qubit",
+        "qasm",
+        "openqasm",
+        "circuit"
+      ]
+    },
+    {
+      "prompt": "Design an OpenQASM circuit for a 6-qubit GHZ state.",
+      "expected": "quantum",
+      "predicted": {
+        "key": "quantum",
+        "name": "Quantum Circuit Expert",
+        "intent": "quantum_computing",
+        "keywords": [
+          "quantum",
+          "qubit",
+          "qubits",
+          "qasm",
+          "openqasm",
+          "circuit",
+          "gate",
+          "hamiltonian",
+          "vqe",
+          "qiskit",
+          "cirq",
+          "superposition",
+          "entangle",
+          "schrodinger",
+          "anneal",
+          "pauli",
+          "trotter",
+          "eigensolver",
+          "grover",
+          "shor",
+          "bell state",
+          "hadamard"
+        ]
+      },
+      "confidence": 1.0,
+      "keywords": [
+        "qubit",
+        "qasm",
+        "openqasm",
+        "circuit"
+      ]
+    },
+    {
+      "prompt": "Audit compliance for experiment #1: does it need containment screening?",
+      "expected": "biosecurity",
+      "predicted": {
+        "key": "biosecurity",
+        "name": "Biosecurity Audit Expert",
+        "intent": "biosecurity_audit",
+        "keywords": [
+          "biosecurity",
+          "biosafety",
+          "dual-use",
+          "pathogen",
+          "toxin",
+          "bwc",
+          "screening",
+          "audit",
+          "compliance",
+          "clearance",
+          "risk",
+          "hazard",
+          "containment",
+          "gain-of-function",
+          "bioweapon",
+          "safety review"
+        ]
+      },
+      "confidence": 0.8,
+      "keywords": [
+        "screening",
+        "audit",
+        "compliance",
+        "containment"
+      ]
+    },
+    {
+      "prompt": "Write a small SQL query to find duplicate emails.",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Design an OpenQASM circuit for a 5-qubit GHZ state.",
+      "expected": "quantum",
+      "predicted": {
+        "key": "quantum",
+        "name": "Quantum Circuit Expert",
+        "intent": "quantum_computing",
+        "keywords": [
+          "quantum",
+          "qubit",
+          "qubits",
+          "qasm",
+          "openqasm",
+          "circuit",
+          "gate",
+          "hamiltonian",
+          "vqe",
+          "qiskit",
+          "cirq",
+          "superposition",
+          "entangle",
+          "schrodinger",
+          "anneal",
+          "pauli",
+          "trotter",
+          "eigensolver",
+          "grover",
+          "shor",
+          "bell state",
+          "hadamard"
+        ]
+      },
+      "confidence": 1.0,
+      "keywords": [
+        "qubit",
+        "qasm",
+        "openqasm",
+        "circuit"
+      ]
+    },
+    {
+      "prompt": "What is the time complexity of binary search?",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Create an illustration of a farmer market.",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Compare two sorting algorithms on large inputs.",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Design an OpenQASM circuit for a 4-qubit GHZ state.",
+      "expected": "quantum",
+      "predicted": {
+        "key": "quantum",
+        "name": "Quantum Circuit Expert",
+        "intent": "quantum_computing",
+        "keywords": [
+          "quantum",
+          "qubit",
+          "qubits",
+          "qasm",
+          "openqasm",
+          "circuit",
+          "gate",
+          "hamiltonian",
+          "vqe",
+          "qiskit",
+          "cirq",
+          "superposition",
+          "entangle",
+          "schrodinger",
+          "anneal",
+          "pauli",
+          "trotter",
+          "eigensolver",
+          "grover",
+          "shor",
+          "bell state",
+          "hadamard"
+        ]
+      },
+      "confidence": 1.0,
+      "keywords": [
+        "qubit",
+        "qasm",
+        "openqasm",
+        "circuit"
+      ]
+    },
+    {
+      "prompt": "Help me write a complaint email to my landlord.",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Design an OpenQASM circuit for a 3-qubit GHZ state.",
+      "expected": "quantum",
+      "predicted": {
+        "key": "quantum",
+        "name": "Quantum Circuit Expert",
+        "intent": "quantum_computing",
+        "keywords": [
+          "quantum",
+          "qubit",
+          "qubits",
+          "qasm",
+          "openqasm",
+          "circuit",
+          "gate",
+          "hamiltonian",
+          "vqe",
+          "qiskit",
+          "cirq",
+          "superposition",
+          "entangle",
+          "schrodinger",
+          "anneal",
+          "pauli",
+          "trotter",
+          "eigensolver",
+          "grover",
+          "shor",
+          "bell state",
+          "hadamard"
+        ]
+      },
+      "confidence": 1.0,
+      "keywords": [
+        "qubit",
+        "qasm",
+        "openqasm",
+        "circuit"
+      ]
+    },
+    {
+      "prompt": "Give Cirq code for a quantum Fourier transform on 5 qubits.",
+      "expected": "quantum",
+      "predicted": {
+        "key": "quantum",
+        "name": "Quantum Circuit Expert",
+        "intent": "quantum_computing",
+        "keywords": [
+          "quantum",
+          "qubit",
+          "qubits",
+          "qasm",
+          "openqasm",
+          "circuit",
+          "gate",
+          "hamiltonian",
+          "vqe",
+          "qiskit",
+          "cirq",
+          "superposition",
+          "entangle",
+          "schrodinger",
+          "anneal",
+          "pauli",
+          "trotter",
+          "eigensolver",
+          "grover",
+          "shor",
+          "bell state",
+          "hadamard"
+        ]
+      },
+      "confidence": 1.0,
+      "keywords": [
+        "quantum",
+        "qubit",
+        "qubits",
+        "cirq"
+      ]
+    },
+    {
+      "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGCATGCATGC.",
+      "expected": "genomic",
+      "predicted": {
+        "key": "genomic",
+        "name": "Genomic Sequence Expert",
+        "intent": "genomic_sequence",
+        "keywords": [
+          "dna",
+          "rna",
+          "genome",
+          "genomic",
+          "sequence",
+          "nucleotide",
+          "codon",
+          "crispr",
+          "cas9",
+          "atgc",
+          "protein",
+          "amino acid",
+          "variant",
+          "mutation",
+          "primer",
+          "transcription",
+          "alignment"
+        ]
+      },
+      "confidence": 0.8,
+      "keywords": [
+        "dna",
+        "sequence",
+        "crispr",
+        "atgc"
+      ]
+    },
+    {
+      "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGCATGC.",
+      "expected": "genomic",
+      "predicted": {
+        "key": "genomic",
+        "name": "Genomic Sequence Expert",
+        "intent": "genomic_sequence",
+        "keywords": [
+          "dna",
+          "rna",
+          "genome",
+          "genomic",
+          "sequence",
+          "nucleotide",
+          "codon",
+          "crispr",
+          "cas9",
+          "atgc",
+          "protein",
+          "amino acid",
+          "variant",
+          "mutation",
+          "primer",
+          "transcription",
+          "alignment"
+        ]
+      },
+      "confidence": 0.8,
+      "keywords": [
+        "dna",
+        "sequence",
+        "crispr",
+        "atgc"
+      ]
+    },
+    {
+      "prompt": "What music should I listen to while coding?",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    },
+    {
+      "prompt": "Design an OpenQASM circuit for a 4-qubit GHZ state.",
+      "expected": "quantum",
+      "predicted": {
+        "key": "quantum",
+        "name": "Quantum Circuit Expert",
+        "intent": "quantum_computing",
+        "keywords": [
+          "quantum",
+          "qubit",
+          "qubits",
+          "qasm",
+          "openqasm",
+          "circuit",
+          "gate",
+          "hamiltonian",
+          "vqe",
+          "qiskit",
+          "cirq",
+          "superposition",
+          "entangle",
+          "schrodinger",
+          "anneal",
+          "pauli",
+          "trotter",
+          "eigensolver",
+          "grover",
+          "shor",
+          "bell state",
+          "hadamard"
+        ]
+      },
+      "confidence": 1.0,
+      "keywords": [
+        "qubit",
+        "qasm",
+        "openqasm",
+        "circuit"
+      ]
+    },
+    {
+      "prompt": "Design an OpenQASM circuit for a 6-qubit GHZ state.",
+      "expected": "quantum",
+      "predicted": {
+        "key": "quantum",
+        "name": "Quantum Circuit Expert",
+        "intent": "quantum_computing",
+        "keywords": [
+          "quantum",
+          "qubit",
+          "qubits",
+          "qasm",
+          "openqasm",
+          "circuit",
+          "gate",
+          "hamiltonian",
+          "vqe",
+          "qiskit",
+          "cirq",
+          "superposition",
+          "entangle",
+          "schrodinger",
+          "anneal",
+          "pauli",
+          "trotter",
+          "eigensolver",
+          "grover",
+          "shor",
+          "bell state",
+          "hadamard"
+        ]
+      },
+      "confidence": 1.0,
+      "keywords": [
+        "qubit",
+        "qasm",
+        "openqasm",
+        "circuit"
+      ]
+    },
+    {
+      "prompt": "How do you measure the running time of an algorithm?",
+      "expected": "general",
+      "predicted": {
+        "key": "general",
+        "name": "General Reasoning Expert",
+        "intent": "general_reasoning",
+        "keywords": []
+      },
+      "confidence": 0.0,
+      "keywords": []
+    }
+  ]
+}

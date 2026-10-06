@@ -1,0 +1,66 @@
+@startuml router
+!theme plain
+title Class Diagram - Semantic MoE Router & Experts
+
+class MoERouter {
+  - diffusion_backend: DiffusionBackend | None
+  - experts: dict[str, BaseExpert]
+  - gates: dict[str, tuple]
+  - gate_scores: dict[str, float]
+  + __init__(backend, diffusion_backend)
+  + route(prompt) -> tuple[str, RouteDecision]
+  + evaluate(prompt) -> dict
+}
+
+class BaseExpert {
+  # key: str
+  # display_name: str
+  # intent: str
+  # keywords: tuple
+  # system_prompt: str
+  # backend: InferenceBackend
+  + generate(prompt, max_tokens, temperature) -> str
+  + describe() -> dict
+}
+
+class QuantumCircuitExpert {
+  # intent = quantum_computing
+  # keywords = (quantum, qubit, qasm, vqe, ...)
+}
+
+class GenomicSequenceExpert {
+  # intent = genomic_sequence
+  # keywords = (dna, rna, crispr, codon, ...)
+}
+
+class BiosecurityAuditExpert {
+  # intent = biosecurity_audit
+  # keywords = (biosecurity, dual-use, toxin, ...)
+}
+
+class GeneralReasoningExpert {
+  # intent = general_reasoning
+}
+
+class CreativeImagingExpert {
+  # intent = image_generation
+  # diffusion_backend: DiffusionBackend | None
+}
+
+class RouteDecision {
+  + expert_key: str
+  + confidence: float
+  + intent: str
+  + keywords_hit: list
+}
+
+MoERouter o-- BaseExpert : manages
+BaseExpert <|-- QuantumCircuitExpert
+BaseExpert <|-- GenomicSequenceExpert
+BaseExpert <|-- BiosecurityAuditExpert
+BaseExpert <|-- GeneralReasoningExpert
+BaseExpert <|-- CreativeImagingExpert
+MoERouter ..> RouteDecision : returns
+CreativeImagingExpert o-- "0..1" DiffusionBackend
+
+@enduml

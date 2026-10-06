@@ -1,0 +1,56 @@
+{
+  "methodology": "OS-level verification: the real server (uvicorn) served HTTP on 127.0.0.1 while a watcher polled Get-NetTCPConnection for ALL processes every 400 ms for 30 s, covering /health, /v1/models, /v1/route and a real /v1/chat/completions LLM inference. Every sampled row with a non-loopback RemoteAddress is recorded with its owning PID. Rows owned by the server process tree (venv launcher + spawned interpreter, see process_tree) are the PROOF TARGET and must be zero; rows owned by other processes document ambient machine noise (browsers, OneDrive etc.). Firewall profiles from netsh. Limitation: TCP only (UDP/ICMP are not listed by Get-NetTCPConnection); llama.cpp/uvicorn make no UDP calls, and offline_check.json already confirmed 0 externally-addressed sockets at the Python API level.",
+  "zero_external_tcp_connections_proven": true,
+  "server_process_tree": [
+    13052,
+    17388
+  ],
+  "server_attributed_non_loopback": {},
+  "ambient_non_loopback_other_processes": {},
+  "tcp_watch_raw": {
+    "samples": 573,
+    "remote": [
+      "104.94.102.137:80",
+      "104.94.102.145:443",
+      "104.94.102.146:443",
+      "172.65.90.23:443",
+      "20.184.175.14:443",
+      "34.77.83.240:7500",
+      "34.98.110.65:443",
+      "35.163.34.237:443",
+      "4.213.25.241:443",
+      "fe80::f3c4:4722:e1b:c239%19:1521",
+      "fe80::f3c4:4722:e1b:c239%19:61048"
+    ],
+    "local": [],
+    "states": {
+      "Established": 458,
+      "TimeWait": 57,
+      "CloseWait": 57,
+      "FinWait1": 1
+    }
+  },
+  "sampled_window_s": 30,
+  "firewall": {
+    "profiles": {
+      "domainprofile": {
+        "state_on": true,
+        "logging_query": [
+          "The requested operation requires elevation (Run as administrator)."
+        ]
+      },
+      "publicprofile": {
+        "state_on": true,
+        "logging_query": [
+          "The requested operation requires elevation (Run as administrator)."
+        ]
+      },
+      "privateprofile": {
+        "state_on": true,
+        "logging_query": [
+          "The requested operation requires elevation (Run as administrator)."
+        ]
+      }
+    }
+  }
+}

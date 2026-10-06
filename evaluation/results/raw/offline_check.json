@@ -1,0 +1,31 @@
+{
+  "methodology": "1) Regex audit of all quantumbio_moe source for non-local http(s) URLs. 2) apply_airgap_config must set HF_HUB_OFFLINE / TRANSFORMERS_OFFLINE in-process. 3) Live netstat sampling during engine startup + inference looking for outbound (non-localhost) TCP connections. Note: Docker / Postgres / Redis / Qdrant are absent in this environment; infra auto-connect falls back to in-memory stores, all targets are localhost.",
+  "env_enforced": {
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1",
+    "TOKENIZERS_PARALLELISM": null,
+    "HOST": null,
+    "PORT": null
+  },
+  "source_audit": {
+    "external_urls_found": [],
+    "telemetry_endpoints_found": [],
+    "parameterized_infra_urls_default_localhost": [
+      {
+        "file": "quantumbio_moe\\config.py",
+        "line": 33,
+        "url": "http://{self.QDRANT_HOST}:{self.QDRANT_PORT}"
+      },
+      {
+        "file": "quantumbio_moe\\storage\\memory.py",
+        "line": 26,
+        "url": "http://{self.host}:{self.port}"
+      }
+    ]
+  },
+  "live_watch": {
+    "observed_non_local_connections_during_startup_and_inference": [],
+    "during_s": "startup + generation (~45s window sampled from +3s after launch)"
+  },
+  "conclusion": "AIR-GAPPED"
+}

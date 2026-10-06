@@ -1,0 +1,251 @@
+{
+  "methodology": "30 independent chat completions of one fixed prompt, default model (routed expert=general), max_tokens=96, temperatures cycled 0.1,0.25,0.4,0.55,0.7 (5 temps x 6 repeats). Time measured from engine call to full response ('wall' per-call latency includes prompt evaluation + decode); tok/s = completion tokens / wall latency. Not incl. engine boot. 95% CI is the normal approximation mean +/- 1.96*s/sqrt(n). Note: a reasoning model (DeepSeek-R1) may emit variable-length thinking; latency and tok/s therefore co-vary with response token count, and tok/s here is a per-call end-to-end rate, not a pure decode rate.",
+  "model": "D:\\Gen AI Applications\\LLMS\\DeepSeek-R1-Distill-Qwen-1.5B-Q6_K_L.gguf",
+  "trials": 30,
+  "temps": [
+    0.1,
+    0.25,
+    0.4,
+    0.55,
+    0.7
+  ],
+  "max_tokens": 96,
+  "latency_s": {
+    "n": 30,
+    "mean": 8.1061,
+    "std": 1.4892,
+    "median": 7.6753,
+    "p95": 10.6464,
+    "min": 6.8797,
+    "max": 13.7399,
+    "ci95_low": 7.5732,
+    "ci95_high": 8.639
+  },
+  "tok_per_s": {
+    "n": 30,
+    "mean": 8.3858,
+    "std": 1.3253,
+    "median": 8.5995,
+    "p95": 9.949,
+    "min": 4.585,
+    "max": 11.192,
+    "ci95_low": 7.9116,
+    "ci95_high": 8.8601
+  },
+  "tokens_per_call": {
+    "mean": 66.23,
+    "std": 3.64
+  },
+  "rows": [
+    {
+      "trial": 1,
+      "temperature": 0.1,
+      "latency_s": 10.409,
+      "tokens": 64,
+      "tok_per_s": 6.149
+    },
+    {
+      "trial": 2,
+      "temperature": 0.25,
+      "latency_s": 6.9833,
+      "tokens": 64,
+      "tok_per_s": 9.165
+    },
+    {
+      "trial": 3,
+      "temperature": 0.4,
+      "latency_s": 7.2369,
+      "tokens": 72,
+      "tok_per_s": 9.949
+    },
+    {
+      "trial": 4,
+      "temperature": 0.55,
+      "latency_s": 6.8797,
+      "tokens": 77,
+      "tok_per_s": 11.192
+    },
+    {
+      "trial": 5,
+      "temperature": 0.7,
+      "latency_s": 7.5557,
+      "tokens": 70,
+      "tok_per_s": 9.264
+    },
+    {
+      "trial": 6,
+      "temperature": 0.1,
+      "latency_s": 8.3273,
+      "tokens": 63,
+      "tok_per_s": 7.565
+    },
+    {
+      "trial": 7,
+      "temperature": 0.25,
+      "latency_s": 7.3332,
+      "tokens": 66,
+      "tok_per_s": 9.0
+    },
+    {
+      "trial": 8,
+      "temperature": 0.4,
+      "latency_s": 7.7962,
+      "tokens": 65,
+      "tok_per_s": 8.337
+    },
+    {
+      "trial": 9,
+      "temperature": 0.55,
+      "latency_s": 7.1069,
+      "tokens": 67,
+      "tok_per_s": 9.427
+    },
+    {
+      "trial": 10,
+      "temperature": 0.7,
+      "latency_s": 13.7399,
+      "tokens": 63,
+      "tok_per_s": 4.585
+    },
+    {
+      "trial": 11,
+      "temperature": 0.1,
+      "latency_s": 9.1871,
+      "tokens": 64,
+      "tok_per_s": 6.966
+    },
+    {
+      "trial": 12,
+      "temperature": 0.25,
+      "latency_s": 10.6464,
+      "tokens": 67,
+      "tok_per_s": 6.293
+    },
+    {
+      "trial": 13,
+      "temperature": 0.4,
+      "latency_s": 9.7287,
+      "tokens": 71,
+      "tok_per_s": 7.298
+    },
+    {
+      "trial": 14,
+      "temperature": 0.55,
+      "latency_s": 8.5091,
+      "tokens": 65,
+      "tok_per_s": 7.639
+    },
+    {
+      "trial": 15,
+      "temperature": 0.7,
+      "latency_s": 7.9256,
+      "tokens": 69,
+      "tok_per_s": 8.706
+    },
+    {
+      "trial": 16,
+      "temperature": 0.1,
+      "latency_s": 9.6037,
+      "tokens": 63,
+      "tok_per_s": 6.56
+    },
+    {
+      "trial": 17,
+      "temperature": 0.25,
+      "latency_s": 7.9175,
+      "tokens": 61,
+      "tok_per_s": 7.704
+    },
+    {
+      "trial": 18,
+      "temperature": 0.4,
+      "latency_s": 8.2685,
+      "tokens": 70,
+      "tok_per_s": 8.466
+    },
+    {
+      "trial": 19,
+      "temperature": 0.55,
+      "latency_s": 8.1183,
+      "tokens": 71,
+      "tok_per_s": 8.746
+    },
+    {
+      "trial": 20,
+      "temperature": 0.7,
+      "latency_s": 7.8006,
+      "tokens": 70,
+      "tok_per_s": 8.974
+    },
+    {
+      "trial": 21,
+      "temperature": 0.1,
+      "latency_s": 7.4918,
+      "tokens": 63,
+      "tok_per_s": 8.409
+    },
+    {
+      "trial": 22,
+      "temperature": 0.25,
+      "latency_s": 7.0254,
+      "tokens": 66,
+      "tok_per_s": 9.395
+    },
+    {
+      "trial": 23,
+      "temperature": 0.4,
+      "latency_s": 6.9476,
+      "tokens": 65,
+      "tok_per_s": 9.356
+    },
+    {
+      "trial": 24,
+      "temperature": 0.55,
+      "latency_s": 6.8928,
+      "tokens": 65,
+      "tok_per_s": 9.43
+    },
+    {
+      "trial": 25,
+      "temperature": 0.7,
+      "latency_s": 7.3091,
+      "tokens": 66,
+      "tok_per_s": 9.03
+    },
+    {
+      "trial": 26,
+      "temperature": 0.1,
+      "latency_s": 7.5359,
+      "tokens": 64,
+      "tok_per_s": 8.493
+    },
+    {
+      "trial": 27,
+      "temperature": 0.25,
+      "latency_s": 6.9339,
+      "tokens": 65,
+      "tok_per_s": 9.374
+    },
+    {
+      "trial": 28,
+      "temperature": 0.4,
+      "latency_s": 7.0631,
+      "tokens": 65,
+      "tok_per_s": 9.203
+    },
+    {
+      "trial": 29,
+      "temperature": 0.55,
+      "latency_s": 7.7948,
+      "tokens": 66,
+      "tok_per_s": 8.467
+    },
+    {
+      "trial": 30,
+      "temperature": 0.7,
+      "latency_s": 7.1147,
+      "tokens": 60,
+      "tok_per_s": 8.433
+    }
+  ]
+}

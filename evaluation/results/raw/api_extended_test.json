@@ -1,0 +1,84 @@
+{
+  "methodology": "One app lifespan: model select (loads gemma), restore deepseek, error-path checks, prompt override persistence, one curated report draft and one pdf report generate via the live LLM.",
+  "findings": [
+    {
+      "test": "FT-004 select gemma (dense 0.8GB)",
+      "status": 200,
+      "elapsed_s": 0.78,
+      "body": {
+        "ok": true,
+        "active": "D:\\Gen AI Applications\\project\\models\\gemma-3-1b-it-Q4_K_M.gguf",
+        "backend": "llama.cpp",
+        "fallback": false
+      }
+    },
+    {
+      "test": "select back to deepseek (default)",
+      "status": 200,
+      "elapsed_s": 0.6
+    },
+    {
+      "test": "scan nonexistent dir",
+      "status": 400,
+      "expect": 400,
+      "pass": true
+    },
+    {
+      "test": "select missing path",
+      "status": 400,
+      "expect": 400,
+      "pass": true
+    },
+    {
+      "test": "images without diffusion runtime",
+      "status": 503,
+      "expect": 503,
+      "pass": true,
+      "body": "{\"detail\":\"No diffusion model available (missing GGUF or stable-diffusion-cpp).\"}"
+    },
+    {
+      "test": "audio without whisper runtime",
+      "status": 503,
+      "expect": 503,
+      "pass": true,
+      "body": "{\"detail\":\"No audio model available.\"}"
+    },
+    {
+      "test": "prompt override visible",
+      "status": 200,
+      "override_seen": true,
+      "pass": true
+    },
+    {
+      "test": "prompt override clear",
+      "status": 200,
+      "cleared": true,
+      "pass": true
+    },
+    {
+      "test": "report draft (LLM curated)",
+      "status": 200,
+      "elapsed_s": 62.02,
+      "has_sections": true
+    },
+    {
+      "test": "report generate pdf",
+      "status": 200,
+      "elapsed_s": 59.26,
+      "files": [
+        {
+          "format": "pdf",
+          "filename": "QuantumBio-LocalMoE_Report_20260923-103726.pdf",
+          "path": "D:\\Gen AI Applications\\project\\reports\\QuantumBio-LocalMoE_Report_20260923-103726.pdf",
+          "url": "/reports/QuantumBio-LocalMoE_Report_20260923-103726.pdf"
+        }
+      ],
+      "pdf_servable": true
+    },
+    {
+      "test": "reports listed",
+      "status": 200,
+      "n_reports": 4
+    }
+  ]
+}

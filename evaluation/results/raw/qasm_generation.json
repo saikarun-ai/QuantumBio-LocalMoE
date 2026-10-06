@@ -1,0 +1,734 @@
+{
+  "methodology": "10 target circuits (Bell, GHZ, VQE-like, Grover, QFT, teleportation). Each prompt is a fresh chat completion, expert=quantum, temperature 0.2, max_tokens 600, generation model: D:\\Gen AI Applications\\project\\models\\gemma-3-1b-it-Q4_K_M.gguf. anchored=True: with --anchored, a reference circuit pre-validated by Qiskit is injected as a one-shot in-context example; the model must adapt it (structure-copying). DeepSeek-R1 1.5B burns its budget on a reasoning preamble before emitting code, while gemma-3-1b emits correct headers but hallucinates an invalid body (e.g. 'q[0] = h;', for-loops), so raw small-model body generation is inherently weak. Raw output is run through the post-processing guard (sanitize_qasm: fenced-block extraction, pseudo-op translation, header/qreg/creg injection) then the strict Qiskit validator (validate_llm_qasm). PASS = valid AND contains required gates AND qubit count >= target. trials=3: PASS for a circuit requires >= 2 of 3 independent generations. Target >= 90%.",
+  "anchored": true,
+  "trials_per_circuit": 3,
+  "majority_threshold": 2,
+  "target_90_percent_satisfied": false,
+  "pass": 8,
+  "total": 10,
+  "pass_rate": 0.8,
+  "results": [
+    {
+      "id": "bell",
+      "desc": "Bell state (2q)",
+      "prompt": "Here is a reference circuit in valid OpenQASM 2.0:\n```openqasm\nOPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[2];\ncreg c[2];\nh q[0];\ncx q[0],q[1];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\n```\nAdapt the reference circuit to the target below, keeping the same gate structure and adjusting qubits/gates as needed so the code is valid and complete (all measured qubits declared). Output ONLY a single ```openqasm fenced block. No explanation.\nTarget: Write OpenQASM 2.0 for a Bell state on 2 qubits with final measurement of both qubits.",
+      "anchored": true,
+      "trials": 3,
+      "trials_passed": 3,
+      "majority_threshold": 2,
+      "require": [
+        "h",
+        "cx"
+      ],
+      "min_qubits": 2,
+      "trials_detail": [
+        {
+          "trial": 1,
+          "raw_response": "```openqasm\nOPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[2];\ncreg c[2];\nh q[0];\ncx q[0],q[1];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\n```",
+          "extracted": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[2];\ncreg c[2];\nh q[0];\ncx q[0],q[1];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];",
+          "sanitized_code": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[2];\ncreg c[2];\nh q[0];\ncx q[0],q[1];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];",
+          "validation": {
+            "valid": true,
+            "openqasm_version": "2",
+            "qubits": 2,
+            "gate_operations": 4,
+            "circuit_depth": 3,
+            "reason": "valid after sanitization guard"
+          },
+          "edits_applied": [],
+          "has_required_gates": true,
+          "has_min_qubits": true,
+          "elapsed_s": 5.62,
+          "task_pass": true
+        },
+        {
+          "trial": 2,
+          "raw_response": "```openqasm\nOPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[2];\ncreg c[2];\nh q[0];\ncx q[0],q[1];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\n```",
+          "extracted": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[2];\ncreg c[2];\nh q[0];\ncx q[0],q[1];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];",
+          "sanitized_code": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[2];\ncreg c[2];\nh q[0];\ncx q[0],q[1];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];",
+          "validation": {
+            "valid": true,
+            "openqasm_version": "2",
+            "qubits": 2,
+            "gate_operations": 4,
+            "circuit_depth": 3,
+            "reason": "valid after sanitization guard"
+          },
+          "edits_applied": [],
+          "has_required_gates": true,
+          "has_min_qubits": true,
+          "elapsed_s": 4.65,
+          "task_pass": true
+        },
+        {
+          "trial": 3,
+          "raw_response": "```openqasm\nOPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[2];\ncreg c[2];\nh q[0];\ncx q[0],q[1];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\n```",
+          "extracted": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[2];\ncreg c[2];\nh q[0];\ncx q[0],q[1];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];",
+          "sanitized_code": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[2];\ncreg c[2];\nh q[0];\ncx q[0],q[1];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];",
+          "validation": {
+            "valid": true,
+            "openqasm_version": "2",
+            "qubits": 2,
+            "gate_operations": 4,
+            "circuit_depth": 3,
+            "reason": "valid after sanitization guard"
+          },
+          "edits_applied": [],
+          "has_required_gates": true,
+          "has_min_qubits": true,
+          "elapsed_s": 3.84,
+          "task_pass": true
+        }
+      ],
+      "elapsed_s": 14.11,
+      "task_pass": true
+    },
+    {
+      "id": "ghz3",
+      "desc": "3-qubit GHZ",
+      "prompt": "Here is a reference circuit in valid OpenQASM 2.0:\n```openqasm\nOPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[3];\ncreg c[3];\nh q[0];\ncx q[0],q[1];\ncx q[0],q[2];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\nmeasure q[2] -> c[2];\n```\nAdapt the reference circuit to the target below, keeping the same gate structure and adjusting qubits/gates as needed so the code is valid and complete (all measured qubits declared). Output ONLY a single ```openqasm fenced block. No explanation.\nTarget: Write OpenQASM 2.0 for a 3-qubit GHZ state with final measurement.",
+      "anchored": true,
+      "trials": 3,
+      "trials_passed": 3,
+      "majority_threshold": 2,
+      "require": [
+        "h",
+        "cx"
+      ],
+      "min_qubits": 3,
+      "trials_detail": [
+        {
+          "trial": 1,
+          "raw_response": "```openqasm\nOPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[3];\ncreg c[3];\nh q[0];\ncx q[0],q[1];\ncx q[0],q[2];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\nmeasure q[2] -> c[2];\n```",
+          "extracted": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[3];\ncreg c[3];\nh q[0];\ncx q[0],q[1];\ncx q[0],q[2];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\nmeasure q[2] -> c[2];",
+          "sanitized_code": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[3];\ncreg c[3];\nh q[0];\ncx q[0],q[1];\ncx q[0],q[2];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\nmeasure q[2] -> c[2];",
+          "validation": {
+            "valid": true,
+            "openqasm_version": "2",
+            "qubits": 3,
+            "gate_operations": 6,
+            "circuit_depth": 4,
+            "reason": "valid after sanitization guard"
+          },
+          "edits_applied": [],
+          "has_required_gates": true,
+          "has_min_qubits": true,
+          "elapsed_s": 5.89,
+          "task_pass": true
+        },
+        {
+          "trial": 2,
+          "raw_response": "```openqasm\nOPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[3];\ncreg c[3];\nh q[0];\ncx q[0],q[1];\ncx q[0],q[2];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\nmeasure q[2] -> c[2];\n```",
+          "extracted": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[3];\ncreg c[3];\nh q[0];\ncx q[0],q[1];\ncx q[0],q[2];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\nmeasure q[2] -> c[2];",
+          "sanitized_code": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[3];\ncreg c[3];\nh q[0];\ncx q[0],q[1];\ncx q[0],q[2];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\nmeasure q[2] -> c[2];",
+          "validation": {
+            "valid": true,
+            "openqasm_version": "2",
+            "qubits": 3,
+            "gate_operations": 6,
+            "circuit_depth": 4,
+            "reason": "valid after sanitization guard"
+          },
+          "edits_applied": [],
+          "has_required_gates": true,
+          "has_min_qubits": true,
+          "elapsed_s": 5.12,
+          "task_pass": true
+        },
+        {
+          "trial": 3,
+          "raw_response": "```openqasm\nOPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[3];\ncreg c[3];\nh q[0];\ncx q[0],q[1];\ncx q[0],q[2];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\nmeasure q[2] -> c[2];\n```",
+          "extracted": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[3];\ncreg c[3];\nh q[0];\ncx q[0],q[1];\ncx q[0],q[2];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\nmeasure q[2] -> c[2];",
+          "sanitized_code": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[3];\ncreg c[3];\nh q[0];\ncx q[0],q[1];\ncx q[0],q[2];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\nmeasure q[2] -> c[2];",
+          "validation": {
+            "valid": true,
+            "openqasm_version": "2",
+            "qubits": 3,
+            "gate_operations": 6,
+            "circuit_depth": 4,
+            "reason": "valid after sanitization guard"
+          },
+          "edits_applied": [],
+          "has_required_gates": true,
+          "has_min_qubits": true,
+          "elapsed_s": 5.69,
+          "task_pass": true
+        }
+      ],
+      "elapsed_s": 16.7,
+      "task_pass": true
+    },
+    {
+      "id": "ghz4",
+      "desc": "4-qubit GHZ",
+      "prompt": "Here is a reference circuit in valid OpenQASM 2.0:\n```openqasm\nOPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[4];\ncreg c[4];\nh q[0];\ncx q[0],q[1];\ncx q[0],q[2];\ncx q[0],q[3];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\nmeasure q[2] -> c[2];\nmeasure q[3] -> c[3];\n```\nAdapt the reference circuit to the target below, keeping the same gate structure and adjusting qubits/gates as needed so the code is valid and complete (all measured qubits declared). Output ONLY a single ```openqasm fenced block. No explanation.\nTarget: Write OpenQASM 2.0 for a 4-qubit GHZ state with final measurement.",
+      "anchored": true,
+      "trials": 3,
+      "trials_passed": 3,
+      "majority_threshold": 2,
+      "require": [
+        "h",
+        "cx"
+      ],
+      "min_qubits": 4,
+      "trials_detail": [
+        {
+          "trial": 1,
+          "raw_response": "```openqasm\nOPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[4];\ncreg c[4];\nh q[0];\ncx q[0],q[1];\ncx q[0],q[2];\ncx q[0],q[3];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\nmeasure q[2] -> c[2];\nmeasure q[3] -> c[3];\n```",
+          "extracted": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[4];\ncreg c[4];\nh q[0];\ncx q[0],q[1];\ncx q[0],q[2];\ncx q[0],q[3];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\nmeasure q[2] -> c[2];\nmeasure q[3] -> c[3];",
+          "sanitized_code": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[4];\ncreg c[4];\nh q[0];\ncx q[0],q[1];\ncx q[0],q[2];\ncx q[0],q[3];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\nmeasure q[2] -> c[2];\nmeasure q[3] -> c[3];",
+          "validation": {
+            "valid": true,
+            "openqasm_version": "2",
+            "qubits": 4,
+            "gate_operations": 8,
+            "circuit_depth": 5,
+            "reason": "valid after sanitization guard"
+          },
+          "edits_applied": [],
+          "has_required_gates": true,
+          "has_min_qubits": true,
+          "elapsed_s": 7.16,
+          "task_pass": true
+        },
+        {
+          "trial": 2,
+          "raw_response": "```openqasm\nOPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[4];\ncreg c[4];\nh q[0];\ncx q[0],q[1];\ncx q[0],q[2];\ncx q[0],q[3];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\nmeasure q[2] -> c[2];\nmeasure q[3] -> c[3];\n\nh q[0];\ncx q[0],q[1];\ncx q[0],q[2];\ncx q[0],q[3];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\nmeasure q[2] -> c[2];\nmeasure q[3] -> c[3];\n```",
+          "extracted": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[4];\ncreg c[4];\nh q[0];\ncx q[0],q[1];\ncx q[0],q[2];\ncx q[0],q[3];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\nmeasure q[2] -> c[2];\nmeasure q[3] -> c[3];\n\nh q[0];\ncx q[0],q[1];\ncx q[0],q[2];\ncx q[0],q[3];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\nmeasure q[2] -> c[2];\nmeasure q[3] -> c[3];",
+          "sanitized_code": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[4];\ncreg c[4];\nh q[0];\ncx q[0],q[1];\ncx q[0],q[2];\ncx q[0],q[3];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\nmeasure q[2] -> c[2];\nmeasure q[3] -> c[3];\nh q[0];\ncx q[0],q[1];\ncx q[0],q[2];\ncx q[0],q[3];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\nmeasure q[2] -> c[2];\nmeasure q[3] -> c[3];",
+          "validation": {
+            "valid": true,
+            "openqasm_version": "2",
+            "qubits": 4,
+            "gate_operations": 16,
+            "circuit_depth": 10,
+            "reason": "valid after sanitization guard"
+          },
+          "edits_applied": [],
+          "has_required_gates": true,
+          "has_min_qubits": true,
+          "elapsed_s": 10.2,
+          "task_pass": true
+        },
+        {
+          "trial": 3,
+          "raw_response": "```openqasm\nOPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[4];\ncreg c[4];\nh q[0];\ncx q[0],q[1];\ncx q[0],q[2];\ncx q[0],q[3];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\nmeasure q[2] -> c[2];\nmeasure q[3] -> c[3];\n```",
+          "extracted": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[4];\ncreg c[4];\nh q[0];\ncx q[0],q[1];\ncx q[0],q[2];\ncx q[0],q[3];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\nmeasure q[2] -> c[2];\nmeasure q[3] -> c[3];",
+          "sanitized_code": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[4];\ncreg c[4];\nh q[0];\ncx q[0],q[1];\ncx q[0],q[2];\ncx q[0],q[3];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\nmeasure q[2] -> c[2];\nmeasure q[3] -> c[3];",
+          "validation": {
+            "valid": true,
+            "openqasm_version": "2",
+            "qubits": 4,
+            "gate_operations": 8,
+            "circuit_depth": 5,
+            "reason": "valid after sanitization guard"
+          },
+          "edits_applied": [],
+          "has_required_gates": true,
+          "has_min_qubits": true,
+          "elapsed_s": 6.08,
+          "task_pass": true
+        }
+      ],
+      "elapsed_s": 23.44,
+      "task_pass": true
+    },
+    {
+      "id": "entangled_pair_xy",
+      "desc": "Entangled pair via rotation + CNOT (VQE-like)",
+      "prompt": "Here is a reference circuit in valid OpenQASM 2.0:\n```openqasm\nOPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[2];\ncreg c[2];\nry(0.4) q[0];\ncx q[0],q[1];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\n```\nAdapt the reference circuit to the target below, keeping the same gate structure and adjusting qubits/gates as needed so the code is valid and complete (all measured qubits declared). Output ONLY a single ```openqasm fenced block. No explanation.\nTarget: Write OpenQASM 2.0 to create an entangled pair by applying an X-rotation to q0 and a controlled-X from q0 to q1, with measurement.",
+      "anchored": true,
+      "trials": 3,
+      "trials_passed": 1,
+      "majority_threshold": 2,
+      "require": [
+        "cx"
+      ],
+      "min_qubits": 2,
+      "trials_detail": [
+        {
+          "trial": 1,
+          "raw_response": "```openqasm\nOPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[2];\ncreg c[2];\nry(0.4) q[0];\ncx q[0],q[1];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\n\n// Apply X-rotation to q0\nry(0.5) q[0] * ry(0.2);\n```",
+          "extracted": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[2];\ncreg c[2];\nry(0.4) q[0];\ncx q[0],q[1];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\n\n// Apply X-rotation to q0\nry(0.5) q[0] * ry(0.2);",
+          "sanitized_code": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[2];\ncreg c[2];\nry(0.4) q[0];\ncx q[0],q[1];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\n// Apply X-rotation to q0\nry(0.5) q[0] * ry(0.2);",
+          "validation": {
+            "valid": false,
+            "reason": "QASM parse error: \"<input>:10,13: needed ';', but instead saw *\""
+          },
+          "edits_applied": [],
+          "has_required_gates": true,
+          "has_min_qubits": false,
+          "elapsed_s": 6.69,
+          "task_pass": false
+        },
+        {
+          "trial": 2,
+          "raw_response": "```openqasm\nOPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[2];\ncreg c[2];\nry(0.4) q[0];\ncx q[0],q[1];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\n\n// Apply X-rotation to q0\nry(0.5) q[0] * ry(0.2);\n```",
+          "extracted": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[2];\ncreg c[2];\nry(0.4) q[0];\ncx q[0],q[1];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\n\n// Apply X-rotation to q0\nry(0.5) q[0] * ry(0.2);",
+          "sanitized_code": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[2];\ncreg c[2];\nry(0.4) q[0];\ncx q[0],q[1];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\n// Apply X-rotation to q0\nry(0.5) q[0] * ry(0.2);",
+          "validation": {
+            "valid": false,
+            "reason": "QASM parse error: \"<input>:10,13: needed ';', but instead saw *\""
+          },
+          "edits_applied": [],
+          "has_required_gates": true,
+          "has_min_qubits": false,
+          "elapsed_s": 5.48,
+          "task_pass": false
+        },
+        {
+          "trial": 3,
+          "raw_response": "```openqasm\nOPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[2];\ncreg c[2];\nry(0.4) q[0];\ncx q[0],q[1];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\n```",
+          "extracted": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[2];\ncreg c[2];\nry(0.4) q[0];\ncx q[0],q[1];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];",
+          "sanitized_code": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[2];\ncreg c[2];\nry(0.4) q[0];\ncx q[0],q[1];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];",
+          "validation": {
+            "valid": true,
+            "openqasm_version": "2",
+            "qubits": 2,
+            "gate_operations": 4,
+            "circuit_depth": 3,
+            "reason": "valid after sanitization guard"
+          },
+          "edits_applied": [],
+          "has_required_gates": true,
+          "has_min_qubits": true,
+          "elapsed_s": 4.1,
+          "task_pass": true
+        }
+      ],
+      "elapsed_s": 16.27,
+      "task_pass": false
+    },
+    {
+      "id": "vqe2",
+      "desc": "2-qubit VQE-style ansatz",
+      "prompt": "Here is a reference circuit in valid OpenQASM 2.0:\n```openqasm\nOPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[2];\ncreg c[2];\nry(0.1) q[0];\nry(0.2) q[1];\ncx q[0],q[1];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\n```\nAdapt the reference circuit to the target below, keeping the same gate structure and adjusting qubits/gates as needed so the code is valid and complete (all measured qubits declared). Output ONLY a single ```openqasm fenced block. No explanation.\nTarget: Write OpenQASM 2.0 for a 2-qubit VQE ansatz: parametrized RY rotations on both qubits then a CNOT, with measurement.",
+      "anchored": true,
+      "trials": 3,
+      "trials_passed": 2,
+      "majority_threshold": 2,
+      "require": [
+        "ry",
+        "cx"
+      ],
+      "min_qubits": 2,
+      "trials_detail": [
+        {
+          "trial": 1,
+          "raw_response": "```openqasm\nOPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[2];\ncreg c[2];\nry(0.1) q[0];\nry(0.2) q[1];\ncx q[0],q[1];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\n\n// VQE ansatz:  RY rotations on qubits 0 and 1, then CNOT gate.\n// The circuit implements a parameterized rotation of qubit 0 followed by a CNOT operation.\n// The measurement is performed after the rotation and CNOT gate.\n// The parameters are defined in qelib1.inc for the RY rotations.\n\nq[0] = q[0];\nq[1] = q[1];\n\n// CNOT gate:  CNOT(q[0], q[1])\n```",
+          "extracted": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[2];\ncreg c[2];\nry(0.1) q[0];\nry(0.2) q[1];\ncx q[0],q[1];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\n\n// VQE ansatz:  RY rotations on qubits 0 and 1, then CNOT gate.\n// The circuit implements a parameterized rotation of qubit 0 followed by a CNOT operation.\n// The measurement is performed after the rotation and CNOT gate.\n// The parameters are defined in qelib1.inc for the RY rotations.\n\nq[0] = q[0];\nq[1] = q[1];\n\n// CNOT gate:  CNOT(q[0], q[1])",
+          "sanitized_code": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[2];\ncreg c[2];\nry(0.1) q[0];\nry(0.2) q[1];\ncx q[0],q[1];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\n// VQE ansatz:  RY rotations on qubits 0 and 1, then CNOT gate.\n// The circuit implements a parameterized rotation of qubit 0 followed by a CNOT operation.\n// The measurement is performed after the rotation and CNOT gate.\n// The parameters are defined in qelib1.inc for the RY rotations.\nq[0] = q[0];\nq[1] = q[1];\n// CNOT gate:  CNOT(q[0], q[1])",
+          "validation": {
+            "valid": false,
+            "reason": "QASM parse error: \"<input>:14,0: 'q' is a quantum register, not a gate\""
+          },
+          "edits_applied": [],
+          "has_required_gates": true,
+          "has_min_qubits": false,
+          "elapsed_s": 13.94,
+          "task_pass": false
+        },
+        {
+          "trial": 2,
+          "raw_response": "```openqasm\nOPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[2];\ncreg c[2];\nry(0.1) q[0];\nry(0.2) q[1];\ncx q[0],q[1];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\n\n// VQE ansatz: parameterized RY rotations on both qubits, then a CNOT gate.\n// The circuit implements the following steps:\n// 1. Measure qubit 0 and qubit 1.\n// 2. Apply a parameterized rotation to qubit 0.\n// 3. Apply a parameterized rotation to qubit 1.\n// 4. Perform a CNOT operation on the rotated qubits.\n```",
+          "extracted": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[2];\ncreg c[2];\nry(0.1) q[0];\nry(0.2) q[1];\ncx q[0],q[1];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\n\n// VQE ansatz: parameterized RY rotations on both qubits, then a CNOT gate.\n// The circuit implements the following steps:\n// 1. Measure qubit 0 and qubit 1.\n// 2. Apply a parameterized rotation to qubit 0.\n// 3. Apply a parameterized rotation to qubit 1.\n// 4. Perform a CNOT operation on the rotated qubits.",
+          "sanitized_code": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[2];\ncreg c[2];\nry(0.1) q[0];\nry(0.2) q[1];\ncx q[0],q[1];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\n// VQE ansatz: parameterized RY rotations on both qubits, then a CNOT gate.\n// The circuit implements the following steps:\n// 1. Measure qubit 0 and qubit 1.\n// 2. Apply a parameterized rotation to qubit 0.\n// 3. Apply a parameterized rotation to qubit 1.\n// 4. Perform a CNOT operation on the rotated qubits.",
+          "validation": {
+            "valid": true,
+            "openqasm_version": "2",
+            "qubits": 2,
+            "gate_operations": 5,
+            "circuit_depth": 3,
+            "reason": "valid after sanitization guard"
+          },
+          "edits_applied": [],
+          "has_required_gates": true,
+          "has_min_qubits": true,
+          "elapsed_s": 8.67,
+          "task_pass": true
+        },
+        {
+          "trial": 3,
+          "raw_response": "```openqasm\nOPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[2];\ncreg c[2];\nry(0.1) q[0];\nry(0.2) q[1];\ncx q[0],q[1];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\n\n// VQE ansatz: parameterized RY rotations on qubits 0 and 1, followed by a CNOT gate.\n// The circuit implements the following steps:\n// 1. Measure qubit 0.\n// 2. Apply a parameterized RY rotation to qubit 0.\n// 3. Measure qubit 1.\n// 4. Apply a parameterized RY rotation to qubit 1.\n// 5. Perform a CNOT gate with the rotated qubits.\n\n```",
+          "extracted": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[2];\ncreg c[2];\nry(0.1) q[0];\nry(0.2) q[1];\ncx q[0],q[1];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\n\n// VQE ansatz: parameterized RY rotations on qubits 0 and 1, followed by a CNOT gate.\n// The circuit implements the following steps:\n// 1. Measure qubit 0.\n// 2. Apply a parameterized RY rotation to qubit 0.\n// 3. Measure qubit 1.\n// 4. Apply a parameterized RY rotation to qubit 1.\n// 5. Perform a CNOT gate with the rotated qubits.",
+          "sanitized_code": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[2];\ncreg c[2];\nry(0.1) q[0];\nry(0.2) q[1];\ncx q[0],q[1];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\n// VQE ansatz: parameterized RY rotations on qubits 0 and 1, followed by a CNOT gate.\n// The circuit implements the following steps:\n// 1. Measure qubit 0.\n// 2. Apply a parameterized RY rotation to qubit 0.\n// 3. Measure qubit 1.\n// 4. Apply a parameterized RY rotation to qubit 1.\n// 5. Perform a CNOT gate with the rotated qubits.",
+          "validation": {
+            "valid": true,
+            "openqasm_version": "2",
+            "qubits": 2,
+            "gate_operations": 5,
+            "circuit_depth": 3,
+            "reason": "valid after sanitization guard"
+          },
+          "edits_applied": [],
+          "has_required_gates": true,
+          "has_min_qubits": true,
+          "elapsed_s": 11.42,
+          "task_pass": true
+        }
+      ],
+      "elapsed_s": 34.03,
+      "task_pass": true
+    },
+    {
+      "id": "vqe4",
+      "desc": "4-qubit VQE-style ansatz",
+      "prompt": "Here is a reference circuit in valid OpenQASM 2.0:\n```openqasm\nOPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[4];\ncreg c[4];\nry(0.1) q[0];\nry(0.2) q[1];\nry(0.3) q[2];\nry(0.4) q[3];\ncx q[0],q[1];\ncx q[1],q[2];\ncx q[2],q[3];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\nmeasure q[2] -> c[2];\nmeasure q[3] -> c[3];\n```\nAdapt the reference circuit to the target below, keeping the same gate structure and adjusting qubits/gates as needed so the code is valid and complete (all measured qubits declared). Output ONLY a single ```openqasm fenced block. No explanation.\nTarget: Write OpenQASM 2.0 for a 4-qubit hardware-efficient ansatz: RY rotations on all qubits then CNOTs on adjacent pairs (0-1, 1-2, 2-3), with measurement of all four.",
+      "anchored": true,
+      "trials": 3,
+      "trials_passed": 3,
+      "majority_threshold": 2,
+      "require": [
+        "ry",
+        "cx"
+      ],
+      "min_qubits": 4,
+      "trials_detail": [
+        {
+          "trial": 1,
+          "raw_response": "```openqasm\nOPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[4];\ncreg c[4];\nry(0.1) q[0];\nry(0.2) q[1];\nry(0.3) q[2];\nry(0.4) q[3];\ncx q[0],q[1];\ncx q[1],q[2];\ncx q[2],q[3];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\nmeasure q[2] -> c[2];\nmeasure q[3] -> c[3];\n```",
+          "extracted": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[4];\ncreg c[4];\nry(0.1) q[0];\nry(0.2) q[1];\nry(0.3) q[2];\nry(0.4) q[3];\ncx q[0],q[1];\ncx q[1],q[2];\ncx q[2],q[3];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\nmeasure q[2] -> c[2];\nmeasure q[3] -> c[3];",
+          "sanitized_code": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[4];\ncreg c[4];\nry(0.1) q[0];\nry(0.2) q[1];\nry(0.3) q[2];\nry(0.4) q[3];\ncx q[0],q[1];\ncx q[1],q[2];\ncx q[2],q[3];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\nmeasure q[2] -> c[2];\nmeasure q[3] -> c[3];",
+          "validation": {
+            "valid": true,
+            "openqasm_version": "2",
+            "qubits": 4,
+            "gate_operations": 11,
+            "circuit_depth": 5,
+            "reason": "valid after sanitization guard"
+          },
+          "edits_applied": [],
+          "has_required_gates": true,
+          "has_min_qubits": true,
+          "elapsed_s": 8.85,
+          "task_pass": true
+        },
+        {
+          "trial": 2,
+          "raw_response": "```openqasm\nOPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[4];\ncreg c[4];\nry(0.1) q[0];\nry(0.2) q[1];\nry(0.3) q[2];\nry(0.4) q[3];\ncx q[0],q[1];\ncx q[1],q[2];\ncx q[2],q[3];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\nmeasure q[2] -> c[2];\nmeasure q[3] -> c[3];\n```",
+          "extracted": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[4];\ncreg c[4];\nry(0.1) q[0];\nry(0.2) q[1];\nry(0.3) q[2];\nry(0.4) q[3];\ncx q[0],q[1];\ncx q[1],q[2];\ncx q[2],q[3];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\nmeasure q[2] -> c[2];\nmeasure q[3] -> c[3];",
+          "sanitized_code": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[4];\ncreg c[4];\nry(0.1) q[0];\nry(0.2) q[1];\nry(0.3) q[2];\nry(0.4) q[3];\ncx q[0],q[1];\ncx q[1],q[2];\ncx q[2],q[3];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\nmeasure q[2] -> c[2];\nmeasure q[3] -> c[3];",
+          "validation": {
+            "valid": true,
+            "openqasm_version": "2",
+            "qubits": 4,
+            "gate_operations": 11,
+            "circuit_depth": 5,
+            "reason": "valid after sanitization guard"
+          },
+          "edits_applied": [],
+          "has_required_gates": true,
+          "has_min_qubits": true,
+          "elapsed_s": 8.13,
+          "task_pass": true
+        },
+        {
+          "trial": 3,
+          "raw_response": "```openqasm\nOPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[4];\ncreg c[4];\nry(0.1) q[0];\nry(0.2) q[1];\nry(0.3) q[2];\nry(0.4) q[3];\ncx q[0],q[1];\ncx q[1],q[2];\ncx q[2],q[3];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\nmeasure q[2] -> c[2];\nmeasure q[3] -> c[3];\n```",
+          "extracted": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[4];\ncreg c[4];\nry(0.1) q[0];\nry(0.2) q[1];\nry(0.3) q[2];\nry(0.4) q[3];\ncx q[0],q[1];\ncx q[1],q[2];\ncx q[2],q[3];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\nmeasure q[2] -> c[2];\nmeasure q[3] -> c[3];",
+          "sanitized_code": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[4];\ncreg c[4];\nry(0.1) q[0];\nry(0.2) q[1];\nry(0.3) q[2];\nry(0.4) q[3];\ncx q[0],q[1];\ncx q[1],q[2];\ncx q[2],q[3];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\nmeasure q[2] -> c[2];\nmeasure q[3] -> c[3];",
+          "validation": {
+            "valid": true,
+            "openqasm_version": "2",
+            "qubits": 4,
+            "gate_operations": 11,
+            "circuit_depth": 5,
+            "reason": "valid after sanitization guard"
+          },
+          "edits_applied": [],
+          "has_required_gates": true,
+          "has_min_qubits": true,
+          "elapsed_s": 8.96,
+          "task_pass": true
+        }
+      ],
+      "elapsed_s": 25.94,
+      "task_pass": true
+    },
+    {
+      "id": "grover2",
+      "desc": "2-qubit Grover search",
+      "prompt": "Here is a reference circuit in valid OpenQASM 2.0:\n```openqasm\nOPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[2];\ncreg c[2];\nh q[0];\nh q[1];\ncz q[0],q[1];\nh q[0];\nh q[1];\nx q[0];\nx q[1];\ncz q[0],q[1];\nx q[0];\nx q[1];\nh q[0];\nh q[1];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\n```\nAdapt the reference circuit to the target below, keeping the same gate structure and adjusting qubits/gates as needed so the code is valid and complete (all measured qubits declared). Output ONLY a single ```openqasm fenced block. No explanation.\nTarget: Write OpenQASM 2.0 for Grover's algorithm on 2 qubits: uniform superposition, an oracle marking state 11 via a controlled-Z, then the Grover diffusion operator and measurement.",
+      "anchored": true,
+      "trials": 3,
+      "trials_passed": 0,
+      "majority_threshold": 2,
+      "require": [
+        "h",
+        "x",
+        "cz"
+      ],
+      "min_qubits": 2,
+      "trials_detail": [
+        {
+          "trial": 1,
+          "raw_response": "```openqasm\nOPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[2];\ncreg c[2];\nh q[0];\nh q[1];\ncz q[0],q[1];\nh q[0];\nh q[1];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\n\n// Grover diffusion operator\nlet operator =  cx q[0] * h q[1] + cz q[0] * h q[1] +  (h q[0] + h q[1]) * cx q[0] + (h q[0] + h q[1]) * cz q[1];\nlet diffusion = operator;\n\n// Grover diffusion operator\nlet diffusion_op = diffusion;\n\n// Measurement\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\n```",
+          "extracted": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[2];\ncreg c[2];\nh q[0];\nh q[1];\ncz q[0],q[1];\nh q[0];\nh q[1];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\n\n// Grover diffusion operator\nlet operator =  cx q[0] * h q[1] + cz q[0] * h q[1] +  (h q[0] + h q[1]) * cx q[0] + (h q[0] + h q[1]) * cz q[1];\nlet diffusion = operator;\n\n// Grover diffusion operator\nlet diffusion_op = diffusion;\n\n// Measurement\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];",
+          "sanitized_code": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[2];\ncreg c[2];\nh q[0];\nh q[1];\ncz q[0],q[1];\nh q[0];\nh q[1];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\n// Grover diffusion operator\nlet operator =  cx q[0] * h q[1] + cz q[0] * h q[1] +  (h q[0] + h q[1]) * cx q[0] + (h q[0] + h q[1]) * cz q[1];\nlet diffusion = operator;\n// Grover diffusion operator\nlet diffusion_op = diffusion;\n// Measurement\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];",
+          "validation": {
+            "valid": false,
+            "reason": "QASM parse error: \"<input>:13,0: 'let' is not defined in this scope\""
+          },
+          "edits_applied": [],
+          "has_required_gates": true,
+          "has_min_qubits": false,
+          "elapsed_s": 12.24,
+          "task_pass": false
+        },
+        {
+          "trial": 2,
+          "raw_response": "```openqasm\nOPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[2];\ncreg c[2];\nh q[0];\nh q[1];\ncz q[0],q[1];\nh q[0];\nh q[1];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\n\n// Grover diffusion operator\nlet  g =  h q[0] * h q[1] ;\nlet  d =  g * h q[0] ;\nlet  d_prime =  d * h q[1];\nlet  d_prime_minus =  d_prime * h q[0];\n\n// Controlled-Z oracle\nlet  z =  h q[0] ;\nlet  z_prime =  z * h q[1];\n\n// Grover diffusion operator\nlet  g =  h q[0] * h q[1] ;\nlet  d =  g * h q[0] ;\nlet  d_prime =  d * h q[1];\nlet  d_prime_minus =  d_prime * h q[0];\n\n// Controlled-Z oracle\nlet  z =  h q[0] ;\nlet  z_prime =  z * h q[1];\n\n// Measurement\nlet  m =  z_prime_minus;\nmeasure q[0] -> m;\nmeasure q[1] -> m;\n```",
+          "extracted": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[2];\ncreg c[2];\nh q[0];\nh q[1];\ncz q[0],q[1];\nh q[0];\nh q[1];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\n\n// Grover diffusion operator\nlet  g =  h q[0] * h q[1] ;\nlet  d =  g * h q[0] ;\nlet  d_prime =  d * h q[1];\nlet  d_prime_minus =  d_prime * h q[0];\n\n// Controlled-Z oracle\nlet  z =  h q[0] ;\nlet  z_prime =  z * h q[1];\n\n// Grover diffusion operator\nlet  g =  h q[0] * h q[1] ;\nlet  d =  g * h q[0] ;\nlet  d_prime =  d * h q[1];\nlet  d_prime_minus =  d_prime * h q[0];\n\n// Controlled-Z oracle\nlet  z =  h q[0] ;\nlet  z_prime =  z * h q[1];\n\n// Measurement\nlet  m =  z_prime_minus;\nmeasure q[0] -> m;\nmeasure q[1] -> m;",
+          "sanitized_code": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[2];\ncreg c[2];\nh q[0];\nh q[1];\ncz q[0],q[1];\nh q[0];\nh q[1];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\n// Grover diffusion operator\nlet  g =  h q[0] * h q[1] ;\nlet  d =  g * h q[0] ;\nlet  d_prime =  d * h q[1];\nlet  d_prime_minus =  d_prime * h q[0];\n// Controlled-Z oracle\nlet  z =  h q[0] ;\nlet  z_prime =  z * h q[1];\n// Grover diffusion operator\nlet  g =  h q[0] * h q[1] ;\nlet  d =  g * h q[0] ;\nlet  d_prime =  d * h q[1];\nlet  d_prime_minus =  d_prime * h q[0];\n// Controlled-Z oracle\nlet  z =  h q[0] ;\nlet  z_prime =  z * h q[1];\n// Measurement\nlet  m =  z_prime_minus;\nmeasure q[0] -> m;\nmeasure q[1] -> m;",
+          "validation": {
+            "valid": false,
+            "reason": "QASM parse error: \"<input>:13,0: 'let' is not defined in this scope\""
+          },
+          "edits_applied": [],
+          "has_required_gates": false,
+          "has_min_qubits": false,
+          "elapsed_s": 18.1,
+          "task_pass": false
+        },
+        {
+          "trial": 3,
+          "raw_response": "```openqasm\nOPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[2];\ncreg c[2];\nh q[0];\nh q[1];\ncz q[0],q[1];\nh q[0];\nh q[1];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\n\n// Grover Diffusion Operator\nlet operator =  cx q[0] * h q[1] + cz q[0] * h q[1] +  (cz q[0], q[1]) -> c[0];\n\n//Oracle marking state 11 via a controlled-Z\nlet oracle = cx q[0] * h q[1] + cz q[0] * h q[1] + (cz q[0], q[1]) -> c[1];\n\n//Grover Diffusion Operator\nlet operator2 =  cx q[0] * h q[1] + cz q[0] * h q[1] +  (cz q[0], q[1]) -> c[0];\n\n//Measurement\nlet measurement = cx q[0] * h q[1] + cz q[0] * h q[1] + (cz q[0], q[1]) -> c[0];\n```",
+          "extracted": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[2];\ncreg c[2];\nh q[0];\nh q[1];\ncz q[0],q[1];\nh q[0];\nh q[1];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\n\n// Grover Diffusion Operator\nlet operator =  cx q[0] * h q[1] + cz q[0] * h q[1] +  (cz q[0], q[1]) -> c[0];\n\n//Oracle marking state 11 via a controlled-Z\nlet oracle = cx q[0] * h q[1] + cz q[0] * h q[1] + (cz q[0], q[1]) -> c[1];\n\n//Grover Diffusion Operator\nlet operator2 =  cx q[0] * h q[1] + cz q[0] * h q[1] +  (cz q[0], q[1]) -> c[0];\n\n//Measurement\nlet measurement = cx q[0] * h q[1] + cz q[0] * h q[1] + (cz q[0], q[1]) -> c[0];",
+          "sanitized_code": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[2];\ncreg c[2];\nh q[0];\nh q[1];\ncz q[0],q[1];\nh q[0];\nh q[1];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\n// Grover Diffusion Operator\nlet operator =  cx q[0] * h q[1] + cz q[0] * h q[1] +  (cz q[0], q[1]) -> c[0];\n//Oracle marking state 11 via a controlled-Z\nlet oracle = cx q[0] * h q[1] + cz q[0] * h q[1] + (cz q[0], q[1]) -> c[1];\n//Grover Diffusion Operator\nlet operator2 =  cx q[0] * h q[1] + cz q[0] * h q[1] +  (cz q[0], q[1]) -> c[0];\n//Measurement\nlet measurement = cx q[0] * h q[1] + cz q[0] * h q[1] + (cz q[0], q[1]) -> c[0];",
+          "validation": {
+            "valid": false,
+            "reason": "QASM parse error: \"<input>:13,0: 'let' is not defined in this scope\""
+          },
+          "edits_applied": [],
+          "has_required_gates": true,
+          "has_min_qubits": false,
+          "elapsed_s": 16.21,
+          "task_pass": false
+        }
+      ],
+      "elapsed_s": 46.55,
+      "task_pass": false
+    },
+    {
+      "id": "grover3",
+      "desc": "3-qubit Grover search",
+      "prompt": "Here is a reference circuit in valid OpenQASM 2.0:\n```openqasm\nOPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[3];\ncreg c[3];\nh q[0];\nh q[1];\nh q[2];\nx q[1];\nccx q[0],q[1],q[2];\nx q[1];\nh q[0];\nh q[1];\nh q[2];\nx q[0];\nx q[1];\nx q[2];\nccx q[0],q[1],q[2];\nx q[0];\nx q[1];\nx q[2];\nh q[0];\nh q[1];\nh q[2];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\nmeasure q[2] -> c[2];\n```\nAdapt the reference circuit to the target below, keeping the same gate structure and adjusting qubits/gates as needed so the code is valid and complete (all measured qubits declared). Output ONLY a single ```openqasm fenced block. No explanation.\nTarget: Write OpenQASM 2.0 for Grover's algorithm on 3 qubits: uniform superposition, oracle marking state 101 (multi-controlled Z), one diffusion step, measurement.",
+      "anchored": true,
+      "trials": 3,
+      "trials_passed": 2,
+      "majority_threshold": 2,
+      "require": [
+        "h",
+        "x"
+      ],
+      "min_qubits": 3,
+      "trials_detail": [
+        {
+          "trial": 1,
+          "raw_response": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[3];\ncreg c[3];\nh q[0];\nh q[1];\nh q[2];\nx q[1];\nccx q[0],q[1],q[2];\nx q[1];\nh q[0];\nh q[1];\nh q[2];\nx q[0];\nx q[1];\nx q[2];\nccx q[0],q[1],q[2];\nx q[0];\nx q[1];\nx q[2];\nh q[0];\nh q[1];\nh q[2];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\nmeasure q[2] -> c[2];\n```python\n\nOPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[3];\ncreg c[3];\nh q[0];\nh q[1];\nh q[2];\nx q[1];\nccx q[0],q[1],q[2];\nx q[1];\nh q[0];\nh q[1];\nh q[2];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\nmeasure q[2] -> c[2];\n",
+          "extracted": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[3];\ncreg c[3];\nh q[0];\nh q[1];\nh q[2];\nx q[1];\nccx q[0],q[1],q[2];\nx q[1];\nh q[0];\nh q[1];\nh q[2];\nx q[0];\nx q[1];\nx q[2];\nccx q[0],q[1],q[2];\nx q[0];\nx q[1];\nx q[2];\nh q[0];\nh q[1];\nh q[2];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\nmeasure q[2] -> c[2];\n```python\n\nOPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[3];\ncreg c[3];\nh q[0];\nh q[1];\nh q[2];\nx q[1];\nccx q[0],q[1],q[2];\nx q[1];\nh q[0];\nh q[1];\nh q[2];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\nmeasure q[2] -> c[2];",
+          "sanitized_code": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nOPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[3];\ncreg c[3];\nh q[0];\nh q[1];\nh q[2];\nx q[1];\nccx q[0],q[1],q[2];\nx q[1];\nh q[0];\nh q[1];\nh q[2];\nx q[0];\nx q[1];\nx q[2];\nccx q[0],q[1],q[2];\nx q[0];\nx q[1];\nx q[2];\nh q[0];\nh q[1];\nh q[2];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\nmeasure q[2] -> c[2];\nqreg q[3];\ncreg c[3];\nh q[0];\nh q[1];\nh q[2];\nx q[1];\nccx q[0],q[1],q[2];\nx q[1];\nh q[0];\nh q[1];\nh q[2];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\nmeasure q[2] -> c[2];",
+          "validation": {
+            "valid": false,
+            "reason": "QASM parse error: '<input>:3,0: only the first statement may be a version declaration'"
+          },
+          "edits_applied": [],
+          "has_required_gates": true,
+          "has_min_qubits": false,
+          "elapsed_s": 19.66,
+          "task_pass": false
+        },
+        {
+          "trial": 2,
+          "raw_response": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[3];\ncreg c[3];\nh q[0];\nh q[1];\nh q[2];\nx q[1];\nccx q[0],q[1],q[2];\nx q[1];\nh q[0];\nh q[1];\nh q[2];\nx q[0];\nx q[1];\nx q[2];\nccx q[0],q[1],q[2];\nx q[0];\nx q[1];\nx q[2];\nh q[0];\nh q[1];\nh q[2];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\nmeasure q[2] -> c[2];\n```",
+          "extracted": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[3];\ncreg c[3];\nh q[0];\nh q[1];\nh q[2];\nx q[1];\nccx q[0],q[1],q[2];\nx q[1];\nh q[0];\nh q[1];\nh q[2];\nx q[0];\nx q[1];\nx q[2];\nccx q[0],q[1],q[2];\nx q[0];\nx q[1];\nx q[2];\nh q[0];\nh q[1];\nh q[2];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\nmeasure q[2] -> c[2];\n```",
+          "sanitized_code": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[3];\ncreg c[3];\nh q[0];\nh q[1];\nh q[2];\nx q[1];\nccx q[0],q[1],q[2];\nx q[1];\nh q[0];\nh q[1];\nh q[2];\nx q[0];\nx q[1];\nx q[2];\nccx q[0],q[1],q[2];\nx q[0];\nx q[1];\nx q[2];\nh q[0];\nh q[1];\nh q[2];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\nmeasure q[2] -> c[2];",
+          "validation": {
+            "valid": true,
+            "openqasm_version": "2",
+            "qubits": 3,
+            "gate_operations": 22,
+            "circuit_depth": 10,
+            "reason": "valid after sanitization guard"
+          },
+          "edits_applied": [],
+          "has_required_gates": true,
+          "has_min_qubits": true,
+          "elapsed_s": 10.77,
+          "task_pass": true
+        },
+        {
+          "trial": 3,
+          "raw_response": "```openqasm\nOPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[3];\ncreg c[3];\nh q[0];\nh q[1];\nh q[2];\nx q[1];\nccx q[0],q[1],q[2];\nx q[1];\nh q[0];\nh q[1];\nh q[2];\nx q[0];\nx q[1];\nx q[2];\nccx q[0],q[1],q[2];\nx q[0];\nx q[1];\nx q[2];\nh q[0];\nh q[1];\nh q[2];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\nmeasure q[2] -> c[2];\n```",
+          "extracted": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[3];\ncreg c[3];\nh q[0];\nh q[1];\nh q[2];\nx q[1];\nccx q[0],q[1],q[2];\nx q[1];\nh q[0];\nh q[1];\nh q[2];\nx q[0];\nx q[1];\nx q[2];\nccx q[0],q[1],q[2];\nx q[0];\nx q[1];\nx q[2];\nh q[0];\nh q[1];\nh q[2];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\nmeasure q[2] -> c[2];",
+          "sanitized_code": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[3];\ncreg c[3];\nh q[0];\nh q[1];\nh q[2];\nx q[1];\nccx q[0],q[1],q[2];\nx q[1];\nh q[0];\nh q[1];\nh q[2];\nx q[0];\nx q[1];\nx q[2];\nccx q[0],q[1],q[2];\nx q[0];\nx q[1];\nx q[2];\nh q[0];\nh q[1];\nh q[2];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\nmeasure q[2] -> c[2];",
+          "validation": {
+            "valid": true,
+            "openqasm_version": "2",
+            "qubits": 3,
+            "gate_operations": 22,
+            "circuit_depth": 10,
+            "reason": "valid after sanitization guard"
+          },
+          "edits_applied": [],
+          "has_required_gates": true,
+          "has_min_qubits": true,
+          "elapsed_s": 12.47,
+          "task_pass": true
+        }
+      ],
+      "elapsed_s": 42.9,
+      "task_pass": true
+    },
+    {
+      "id": "qft3",
+      "desc": "3-qubit quantum Fourier transform",
+      "prompt": "Here is a reference circuit in valid OpenQASM 2.0:\n```openqasm\nOPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[3];\ncreg c[3];\nh q[0];\ncu1(pi/2) q[1],q[0];\nh q[1];\ncu1(pi/4) q[2],q[0];\ncu1(pi/2) q[2],q[1];\nh q[2];\nswap q[0],q[2];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\nmeasure q[2] -> c[2];\n```\nAdapt the reference circuit to the target below, keeping the same gate structure and adjusting qubits/gates as needed so the code is valid and complete (all measured qubits declared). Output ONLY a single ```openqasm fenced block. No explanation.\nTarget: Write OpenQASM 2.0 for the quantum Fourier transform on 3 qubits using H and controlled-phase (cu1) gates with final measurement.",
+      "anchored": true,
+      "trials": 3,
+      "trials_passed": 3,
+      "majority_threshold": 2,
+      "require": [
+        "h",
+        "cu1"
+      ],
+      "min_qubits": 3,
+      "trials_detail": [
+        {
+          "trial": 1,
+          "raw_response": "```openqasm\nOPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[3];\ncreg c[3];\nh q[0];\ncu1(pi/2) q[1],q[0];\nh q[1];\ncu1(pi/4) q[2],q[0];\ncu1(pi/2) q[2],q[1];\nh q[2];\nswap q[0],q[2];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\nmeasure q[2] -> c[2];\n```",
+          "extracted": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[3];\ncreg c[3];\nh q[0];\ncu1(pi/2) q[1],q[0];\nh q[1];\ncu1(pi/4) q[2],q[0];\ncu1(pi/2) q[2],q[1];\nh q[2];\nswap q[0],q[2];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\nmeasure q[2] -> c[2];",
+          "sanitized_code": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[3];\ncreg c[3];\nh q[0];\ncu1(pi/2) q[1],q[0];\nh q[1];\ncu1(pi/4) q[2],q[0];\ncu1(pi/2) q[2],q[1];\nh q[2];\nswap q[0],q[2];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\nmeasure q[2] -> c[2];",
+          "validation": {
+            "valid": true,
+            "openqasm_version": "2",
+            "qubits": 3,
+            "gate_operations": 10,
+            "circuit_depth": 7,
+            "reason": "valid after sanitization guard"
+          },
+          "edits_applied": [],
+          "has_required_gates": true,
+          "has_min_qubits": true,
+          "elapsed_s": 8.55,
+          "task_pass": true
+        },
+        {
+          "trial": 2,
+          "raw_response": "```openqasm\nOPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[3];\ncreg c[3];\nh q[0];\ncu1(pi/2) q[1],q[0];\nh q[1];\ncu1(pi/4) q[2],q[0];\ncu1(pi/2) q[2],q[1];\nh q[2];\nswap q[0],q[2];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\nmeasure q[2] -> c[2];\n```",
+          "extracted": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[3];\ncreg c[3];\nh q[0];\ncu1(pi/2) q[1],q[0];\nh q[1];\ncu1(pi/4) q[2],q[0];\ncu1(pi/2) q[2],q[1];\nh q[2];\nswap q[0],q[2];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\nmeasure q[2] -> c[2];",
+          "sanitized_code": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[3];\ncreg c[3];\nh q[0];\ncu1(pi/2) q[1],q[0];\nh q[1];\ncu1(pi/4) q[2],q[0];\ncu1(pi/2) q[2],q[1];\nh q[2];\nswap q[0],q[2];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\nmeasure q[2] -> c[2];",
+          "validation": {
+            "valid": true,
+            "openqasm_version": "2",
+            "qubits": 3,
+            "gate_operations": 10,
+            "circuit_depth": 7,
+            "reason": "valid after sanitization guard"
+          },
+          "edits_applied": [],
+          "has_required_gates": true,
+          "has_min_qubits": true,
+          "elapsed_s": 7.66,
+          "task_pass": true
+        },
+        {
+          "trial": 3,
+          "raw_response": "```openqasm\nOPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[3];\ncreg c[3];\nh q[0];\ncu1(pi/2) q[1],q[0];\nh q[1];\ncu1(pi/4) q[2],q[0];\ncu1(pi/2) q[2],q[1];\nh q[2];\nswap q[0],q[2];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\nmeasure q[2] -> c[2];\n```",
+          "extracted": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[3];\ncreg c[3];\nh q[0];\ncu1(pi/2) q[1],q[0];\nh q[1];\ncu1(pi/4) q[2],q[0];\ncu1(pi/2) q[2],q[1];\nh q[2];\nswap q[0],q[2];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\nmeasure q[2] -> c[2];",
+          "sanitized_code": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[3];\ncreg c[3];\nh q[0];\ncu1(pi/2) q[1],q[0];\nh q[1];\ncu1(pi/4) q[2],q[0];\ncu1(pi/2) q[2],q[1];\nh q[2];\nswap q[0],q[2];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\nmeasure q[2] -> c[2];",
+          "validation": {
+            "valid": true,
+            "openqasm_version": "2",
+            "qubits": 3,
+            "gate_operations": 10,
+            "circuit_depth": 7,
+            "reason": "valid after sanitization guard"
+          },
+          "edits_applied": [],
+          "has_required_gates": true,
+          "has_min_qubits": true,
+          "elapsed_s": 8.12,
+          "task_pass": true
+        }
+      ],
+      "elapsed_s": 24.33,
+      "task_pass": true
+    },
+    {
+      "id": "teleport",
+      "desc": "3-qubit quantum teleportation",
+      "prompt": "Here is a reference circuit in valid OpenQASM 2.0:\n```openqasm\nOPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[3];\ncreg c[3];\nh q[1];\ncx q[1],q[2];\ncx q[0],q[1];\nh q[0];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\nif (c==1) z q[2];\nif (c==2) x q[2];\nif (c==3) z q[2];\nif (c==3) x q[2];\nmeasure q[2] -> c[2];\n```\nAdapt the reference circuit to the target below, keeping the same gate structure and adjusting qubits/gates as needed so the code is valid and complete (all measured qubits declared). Output ONLY a single ```openqasm fenced block. No explanation.\nTarget: Write OpenQASM 2.0 for quantum teleportation: Bell state on qubits 1-2, then classify qubit 0 with CNOT/H and correct with classically-controlled X and Z, measure all.",
+      "anchored": true,
+      "trials": 3,
+      "trials_passed": 3,
+      "majority_threshold": 2,
+      "require": [
+        "h",
+        "cx"
+      ],
+      "min_qubits": 3,
+      "trials_detail": [
+        {
+          "trial": 1,
+          "raw_response": "```openqasm\nOPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[3];\ncreg c[3];\nh q[1];\ncx q[1],q[2];\ncx q[0],q[1];\nh q[0];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\nif (c==1) z q[2];\nif (c==2) x q[2];\nif (c==3) z q[2];\nif (c==3) x q[2];\nmeasure q[2] -> c[2];\n```",
+          "extracted": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[3];\ncreg c[3];\nh q[1];\ncx q[1],q[2];\ncx q[0],q[1];\nh q[0];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\nif (c==1) z q[2];\nif (c==2) x q[2];\nif (c==3) z q[2];\nif (c==3) x q[2];\nmeasure q[2] -> c[2];",
+          "sanitized_code": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[3];\ncreg c[3];\nh q[1];\ncx q[1],q[2];\ncx q[0],q[1];\nh q[0];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\nif (c==1) z q[2];\nif (c==2) x q[2];\nif (c==3) z q[2];\nif (c==3) x q[2];\nmeasure q[2] -> c[2];",
+          "validation": {
+            "valid": true,
+            "openqasm_version": "2",
+            "qubits": 3,
+            "gate_operations": 11,
+            "circuit_depth": 10,
+            "reason": "valid after sanitization guard"
+          },
+          "edits_applied": [],
+          "has_required_gates": true,
+          "has_min_qubits": true,
+          "elapsed_s": 9.37,
+          "task_pass": true
+        },
+        {
+          "trial": 2,
+          "raw_response": "```openqasm\nOPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[3];\ncreg c[3];\nh q[1];\ncx q[1],q[2];\ncx q[0],q[1];\nh q[0];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\nif (c==1) z q[2];\nif (c==2) x q[2];\nif (c==3) z q[2];\nif (c==3) x q[2];\nmeasure q[2] -> c[2];\n```",
+          "extracted": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[3];\ncreg c[3];\nh q[1];\ncx q[1],q[2];\ncx q[0],q[1];\nh q[0];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\nif (c==1) z q[2];\nif (c==2) x q[2];\nif (c==3) z q[2];\nif (c==3) x q[2];\nmeasure q[2] -> c[2];",
+          "sanitized_code": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[3];\ncreg c[3];\nh q[1];\ncx q[1],q[2];\ncx q[0],q[1];\nh q[0];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\nif (c==1) z q[2];\nif (c==2) x q[2];\nif (c==3) z q[2];\nif (c==3) x q[2];\nmeasure q[2] -> c[2];",
+          "validation": {
+            "valid": true,
+            "openqasm_version": "2",
+            "qubits": 3,
+            "gate_operations": 11,
+            "circuit_depth": 10,
+            "reason": "valid after sanitization guard"
+          },
+          "edits_applied": [],
+          "has_required_gates": true,
+          "has_min_qubits": true,
+          "elapsed_s": 7.93,
+          "task_pass": true
+        },
+        {
+          "trial": 3,
+          "raw_response": "```openqasm\nOPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[3];\ncreg c[3];\nh q[1];\ncx q[1],q[2];\ncx q[0],q[1];\nh q[0];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\nif (c==1) z q[2];\nif (c==2) x q[2];\nif (c==3) z q[2];\nif (c==3) x q[2];\nmeasure q[2] -> c[2];\n```",
+          "extracted": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[3];\ncreg c[3];\nh q[1];\ncx q[1],q[2];\ncx q[0],q[1];\nh q[0];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\nif (c==1) z q[2];\nif (c==2) x q[2];\nif (c==3) z q[2];\nif (c==3) x q[2];\nmeasure q[2] -> c[2];",
+          "sanitized_code": "OPENQASM 2.0;\ninclude \"qelib1.inc\";\nqreg q[3];\ncreg c[3];\nh q[1];\ncx q[1],q[2];\ncx q[0],q[1];\nh q[0];\nmeasure q[0] -> c[0];\nmeasure q[1] -> c[1];\nif (c==1) z q[2];\nif (c==2) x q[2];\nif (c==3) z q[2];\nif (c==3) x q[2];\nmeasure q[2] -> c[2];",
+          "validation": {
+            "valid": true,
+            "openqasm_version": "2",
+            "qubits": 3,
+            "gate_operations": 11,
+            "circuit_depth": 10,
+            "reason": "valid after sanitization guard"
+          },
+          "edits_applied": [],
+          "has_required_gates": true,
+          "has_min_qubits": true,
+          "elapsed_s": 7.92,
+          "task_pass": true
+        }
+      ],
+      "elapsed_s": 25.22,
+      "task_pass": true
+    }
+  ]
+}

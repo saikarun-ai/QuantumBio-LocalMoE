@@ -1,0 +1,57 @@
+@startuml engine
+!theme plain
+title Class Diagram - LocalMoEEngine
+
+class LocalMoEEngine {
+  + model_path: str | None
+  + quantization: str
+  + directories: list[str]
+  - backend: InferenceBackend
+  - diffusion_backend: DiffusionBackend | None
+  - whisper_backend: WhisperBackend | None
+  - router: MoERouter | None
+  - cache: VectorCache
+  - redis: RedisStore
+  - database: Database
+  - quantum: QuantumBridge
+  - _started: bool
+  + __init__(model_path, quantization, draft_model_path, directories)
+  + start(): None
+  + close(): None
+  + generate(prompt, max_tokens, temperature, expert) -> GenerationResponse
+  + generate_image(prompt, negative_prompt, width, height, steps) -> str
+  + transcribe(audio_path) -> str
+  + expert_catalog() -> list[dict]
+}
+
+class GenerationResponse {
+  + text: str
+  + prompt_tokens: int
+  + completion_tokens: int
+  + tokens_per_second: float
+  + expert: str
+  + model: str
+  + finish_reason: str
+  + total_tokens: int
+}
+
+class InferenceBackend
+class DiffusionBackend
+class WhisperBackend
+class MoERouter
+class VectorCache
+class RedisStore
+class Database
+class QuantumBridge
+
+LocalMoEEngine *-- InferenceBackend
+LocalMoEEngine *-- MoERouter
+LocalMoEEngine *-- VectorCache
+LocalMoEEngine *-- RedisStore
+LocalMoEEngine *-- Database
+LocalMoEEngine *-- QuantumBridge
+LocalMoEEngine ..> DiffusionBackend : optional
+LocalMoEEngine ..> WhisperBackend : optional
+LocalMoEEngine ..> GenerationResponse : produces
+
+@enduml

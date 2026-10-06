@@ -1,0 +1,59 @@
+{
+  "routing": {
+    "total_prompts": 231,
+    "class_distribution_pct": {
+      "biosecurity": 13.0,
+      "general": 43.3,
+      "genomic": 17.3,
+      "quantum": 26.4
+    },
+    "entropy_bits": 1.851,
+    "max_entropy_4_classes": 2.0,
+    "imbalance_ratio_max_min": 3.33,
+    "max_expert_load": 100,
+    "min_expert_load": 30,
+    "ablation_always_general_accuracy": 0.4329,
+    "measured_router_accuracy": 0.9913
+  },
+  "quantum": {
+    "quantum_validate_latency_ms": {
+      "bell_2q": 0.841,
+      "ghz_3q": 0.381,
+      "pauli5_depth": 0.383,
+      "invalid_no_header": 0.004,
+      "invalid_no_qreg": 0.004,
+      "invalid_bad_gate": 0.254
+    },
+    "vqe_latency_ms": {
+      "n": 12,
+      "mean": 2.168,
+      "median": 2.49
+    }
+  },
+  "chat_inference": {
+    "mean_ms": 1227.63,
+    "p95_ms": 1609.45,
+    "n": 5,
+    "completion_tokens": [
+      13,
+      13,
+      13,
+      13,
+      13
+    ]
+  },
+  "integration": {
+    "report_draft_elapsed_s": [
+      62.02
+    ],
+    "report_generate_pdf_elapsed_s": [
+      59.26
+    ],
+    "model_select_elapsed_s": [
+      0.78,
+      0.6
+    ]
+  },
+  "reliability_success_rate": 100.0,
+  "reliability_requests": 705
+}

@@ -1,0 +1,209 @@
+{
+  "methodology": "Same fixed prompts run through both models in the same engine process: per-call wall latency includes prompt evaluation + decode; tok/s = completion tokens / wall latency. Throughput: 5 runs of the error-correction prompt, max_tokens 64, temperature 0.2. Accuracy: 6 shared MCQs (3 quantum, 3 bioinformatics), temperature 0, max_tokens 256; correct if the expected answer phrase appears in the response. Note per-call end-to-end tok/s reports effective throughput incl. variable R1 thinking preamble, so it is lower than the earlier pure-decode quantization figures; both models are compared on the identical, router-less (expert=general) harness for apples-to-apples.",
+  "models": [
+    {
+      "model_path": "D:\\Gen AI Applications\\LLMS\\DeepSeek-R1-Distill-Qwen-1.5B-Q6_K_L.gguf",
+      "file_size_bytes": 1577219168,
+      "throughput_tok_per_s": {
+        "n": 5,
+        "mean": 11.058,
+        "std": 0.972,
+        "median": 11.38,
+        "p95": 11.545,
+        "min": 9.399,
+        "max": 11.886
+      },
+      "throughput_latency_s": {
+        "n": 5,
+        "mean": 4.5691,
+        "std": 0.4263,
+        "median": 4.4225,
+        "p95": 4.4814,
+        "min": 4.2908,
+        "max": 5.3197
+      },
+      "throughput_rows": [
+        {
+          "run": 1,
+          "latency_s": 5.3197,
+          "tokens": 50,
+          "tok_per_s": 9.399
+        },
+        {
+          "run": 2,
+          "latency_s": 4.4225,
+          "tokens": 49,
+          "tok_per_s": 11.08
+        },
+        {
+          "run": 3,
+          "latency_s": 4.4814,
+          "tokens": 51,
+          "tok_per_s": 11.38
+        },
+        {
+          "run": 4,
+          "latency_s": 4.3309,
+          "tokens": 50,
+          "tok_per_s": 11.545
+        },
+        {
+          "run": 5,
+          "latency_s": 4.2908,
+          "tokens": 51,
+          "tok_per_s": 11.886
+        }
+      ],
+      "mcq_accuracy": 1.0,
+      "mcq_correct": 6,
+      "mcq_total": 6,
+      "mcq_rows": [
+        {
+          "id": "q1",
+          "correct": true,
+          "expected": "thymine",
+          "text": "<think>\nOkay, so I'm trying to figure out which base adenine pairs with in DNA. The options are guanine, cytosine, thymine, or uracil. Hmm, let me think about this step by step.\n\nFirst, I remember that DNA is a double helix structure, and each base has a complementary counterpart. Adenine is one of the four main bases: A, T, C, G. Wait, no, actually, in DNA, it's A, T, C, G, but in RNA, it's A, U, C, G. So adenine pairs with thymine? Or wait, maybe I'm mixing things up.\n\nWait, no, in the double helix structure, each base pairs with a specific complement. Adenine is paired with thymine because they are both purines and form hydrogen bonds. But wait, isn't that only in RNA? No, DNA uses the same pairing rules as RNA for complementary bases. So adenine would pair with thymine.\n\nBut hold on, I'm getting confused because sometimes people confuse DNA and RNA base pairing. Let me think again. In DNA, adenine pairs with thymine because both are purines (A and"
+        },
+        {
+          "id": "q3",
+          "correct": true,
+          "expected": "x gate",
+          "text": "<think>\nOkay, so I'm trying to figure out which single-qubit gate is its own inverse and maps |0> to |1>. The options are X, T, S, or Z gates. Let me break this down step by step.\n\nFirst, what does it mean for a gate to be its own inverse? That means if you apply the gate twice, you get back to where you started. So mathematically, G\u00b2 = I, where G is the gate and I is the identity matrix. This also implies that applying the gate once will invert the effect of another application.\n\nNext, the gate must map |0> to |1>. That means when the qubit is in state |0>, after applying the gate, it should be in state |1>.\n\nLet me recall each gate's behavior:\n\n- **X Gate (Not X)**: The Pauli-X gate flips the qubit. So, X|0> = |1> and X|1> = |0>. This is its own inverse because applying X twice brings you back to the original state.\n\n- **T Gate**: The Phase Shift Gate. It applies a phase shift of e^(2\u03c0i/3) when the qubit is in state |1>."
+        },
+        {
+          "id": "q4",
+          "correct": true,
+          "expected": "h then cnot",
+          "text": "<think>\nOkay, so I'm trying to figure out which gate sequence produces the Bell state |00> + |11> divided by sqrt(2) starting from the initial state |00>. The options are H then CNOT, CNOT then H, two T gates, or SWAP. \n\nFirst, let me recall what each of these gates does. The Hadamard gate (H) takes a qubit in state |0> and puts it into an equal superposition of |0> and |1>. Similarly, it takes |1> to |-+>. The CNOT gate flips the target qubit if the control is |1>. So, when you have two qubits, applying CNOT with one as control and another as target would affect their states.\n\nThe Bell state we're looking at is a maximally entangled state. It's symmetric in both qubits, meaning swapping them doesn't change it. That might be useful because some of the options involve swaps or T gates which are also related to phase shifts.\n\nLet me think about each option step by step.\n\nOption A: H then CNOT. So first apply H to one qubit (say the first), turning |0> into (|0> + |"
+        },
+        {
+          "id": "q5",
+          "correct": true,
+          "expected": "aug",
+          "text": "<think>\nOkay, so I'm trying to figure out which codon is the universal start codon in the standard genetic code. The options are A) UAA, B) AUG, C) UGA, and D) GGU. Hmm, let me think about this step by step.\n\nFirst, I remember that the genetic code has some exceptions because of the degeneracy of codons. That means multiple amino acids can be coded by the same codon. The standard genetic code is mostly AUG, but there are some exceptions like UAA and UGA which code for leucine instead of asparagine or glutamine.\n\nWait, so the question is about the universal start codon. I think that's a specific term used in genetics to refer to the codon that codes for the start of translation, which is AUG. But sometimes people might confuse it with the exceptions like UAA and UGA because they are considered \"universal\" in some contexts.\n\nLet me double-check what defines a universal start codon. From what I recall, the start codon is always AUG, regardless of any exceptions or variations. The exceptions are just specific cases where other codons code for different amino acids. So even though there are UAA and UGA as exceptions"
+        },
+        {
+          "id": "q7",
+          "correct": true,
+          "expected": "sqrt(n)",
+          "text": "<think>\nOkay, so I'm trying to figure out the correct answer for this question about Grover's algorithm. The question is asking what the optimal number of oracle iterations scales as in Grover's algorithm on N unstructured items. The options are (A) pi/4*sqrt(N), (B) 2*N, (C) log(N), and (D) N/2.\n\nFirst, I remember that Grover's algorithm is a quantum search algorithm. It's used to find an item in an unsorted database with a time complexity of O(sqrt(N)). So the number of iterations needed should be proportional to sqrt(N). That already rules out option B because it's 2*N, which would be linear and way too slow for large N.\n\nNow, looking at the other options: A is pi/4 times sqrt(N), C is log(N), and D is N/2. I think that in Grover's algorithm, the number of iterations isn't just a constant multiplied by sqrt(N). Instead, it's something like (pi/4) * sqrt(N) plus some terms related to the phase shifts during each iteration.\n\nI recall that each iteration involves two phases: one where the amplitude is increased and another where it's decreased."
+        },
+        {
+          "id": "q8",
+          "correct": true,
+          "expected": "guide rna",
+          "text": "<think>\nOkay, so I'm trying to figure out this question about CRISPR-Cas9. The question is asking which molecule guides the Cas9 enzyme in making a double-strand break. The options are guide RNA (A), primer DNA (B), ribozyme (C), or transfer RNA (D). \n\nFirst, I remember that CRISPR stands for Clustered Regularly Interspaced Short Palindromic Repeats. It's used to make precise cuts in the DNA, which is super important for gene editing. The Cas9 enzyme is the key player here because it does the cutting.\n\nI think about how Cas9 works. From what I've read before, there are a couple of molecules involved: one that guides it and another that actually performs the cutting. The guide RNA must be responsible for directing where the cut will happen. It's like a signal that tells Cas9 to make the break at the right spot.\n\nThen there's the primer DNA part. I recall hearing about something called a \"primer\" in PCR, which is primers that bind to the template and initiate the reaction. But wait, isn't that different from what happens with CRISPR? Maybe the primer here refers to something else. Oh, maybe it's"
+        }
+      ]
+    },
+    {
+      "model_path": "D:\\Gen AI Applications\\LLMS\\Phi-3-mini-4k-instruct-q4.gguf",
+      "file_size_bytes": 2393231072,
+      "throughput_tok_per_s": {
+        "n": 5,
+        "mean": 8.7196,
+        "std": 2.5979,
+        "median": 9.763,
+        "p95": 10.023,
+        "min": 4.083,
+        "max": 10.075
+      },
+      "throughput_latency_s": {
+        "n": 5,
+        "mean": 6.1072,
+        "std": 3.0251,
+        "median": 4.814,
+        "p95": 4.9883,
+        "min": 4.5577,
+        "max": 11.5109
+      },
+      "throughput_rows": [
+        {
+          "run": 1,
+          "latency_s": 4.9883,
+          "tokens": 50,
+          "tok_per_s": 10.023
+        },
+        {
+          "run": 2,
+          "latency_s": 4.6651,
+          "tokens": 47,
+          "tok_per_s": 10.075
+        },
+        {
+          "run": 3,
+          "latency_s": 4.5577,
+          "tokens": 44,
+          "tok_per_s": 9.654
+        },
+        {
+          "run": 4,
+          "latency_s": 4.814,
+          "tokens": 47,
+          "tok_per_s": 9.763
+        },
+        {
+          "run": 5,
+          "latency_s": 11.5109,
+          "tokens": 47,
+          "tok_per_s": 4.083
+        }
+      ],
+      "mcq_accuracy": 1.0,
+      "mcq_correct": 6,
+      "mcq_total": 6,
+      "mcq_rows": [
+        {
+          "id": "q1",
+          "correct": true,
+          "expected": "thymine",
+          "text": " In DNA, adenine (A) pairs with thymine (T). This is due to the specific base pairing rules known as Chargaff's rules. Adenine forms two hydrogen bonds with thymine, which helps maintain the double helix structure of DNA. Guanine (G) pairs with cytosine (C), but this does not involve adenine. Uracil (U) is found in RNA instead of thymine and replaces thymine when pairing with adenine, which is why it's not the correct answer for DNA."
+        },
+        {
+          "id": "q3",
+          "correct": true,
+          "expected": "x gate",
+          "text": " The single-qubit gate that maps |0> to |1> and is its own inverse (meaning applying it twice returns the qubit to its original state) is the X gate. This gate performs a bit flip, which changes |0> to |1> and vice versa. Therefore, the correct answer is:\n\n(A) X gate"
+        },
+        {
+          "id": "q4",
+          "correct": true,
+          "expected": "h then cnot",
+          "text": " The Bell state (|00> + |11>)/sqrt(2) can be produced by applying a Hadamard gate (H) to the initial state |00>, followed by a Controlled-NOT (CNOT) operation with the first qubit as the control and the second qubit as the target. The CNOT gate flips the target qubit if the control qubit is in the state |1>. After applying H, the initial state becomes (|0> + |1>)/sqrt(2) for both qubits. Then, when we apply the CNOT gate with these states as inputs, it results in the Bell state:\n\nH(|00>) = (|0> + |1>)/sqrt(2) \u2297 (|0> + |1>)/sqrt(2)\n         = (|00> + |01> + |10> + |11>)/2\n       \u2248 (|00> + |11>)/sqrt(2)\n\nSo, the correct sequence is:\n\n(A) H then CNOT\n\nThis produces the Bell state (|00> + |11>)/sqrt("
+        },
+        {
+          "id": "q5",
+          "correct": true,
+          "expected": "aug",
+          "text": " The universal start codon in the standard genetic code is (B) AUG. This codon not only signals the beginning of translation but also codes for the amino acid methionine, which is typically the first amino acid incorporated into a nascent polypeptide chain. In eukaryotes and Archaea, as well as in most bacteria (prokaryotes), AUG serves this critical role. However, it's important to note that some organisms have alternative start codons, but within the context of the standard genetic code, AUG is recognized universally as the initiation signal for protein synthesis."
+        },
+        {
+          "id": "q7",
+          "correct": true,
+          "expected": "sqrt(n)",
+          "text": " Grover's algorithm is a quantum algorithm that provides a quadratic speedup for unstructured search problems. It can be used to find an item in an N-item database with optimal probability and complexity.\n\nThe number of iterations required by Grover's algorithm scales approximately as the square root of the size of the input (N). Therefore, the correct answer is:\n\n(C) log(N)\n\nHowever, it should be noted that this option does not accurately represent the scaling factor for Grover's algorithm. The more accurate representation would be N^(1/2), which corresponds to the square root of N. None of the given options exactly match this value, but (C) log(N) is closest in terms of representing a relationship with N.\n\nTo clarify, if we were to express Grover's algorithm iterations as a function of N using the correct scaling factor, it would be:\n\nO = \u03c0 * sqrt(N) / 4\n\nThis formula represents the number of oracle queries required by Grover's algorithm for an unstructured search problem with N items. However, since this option is not available in the given choices, we will go with (C)"
+        },
+        {
+          "id": "q8",
+          "correct": true,
+          "expected": "guide rna",
+          "text": " The correct answer is (A) guide RNA. CRISPR-Cas9 technology utilizes a molecule known as guide RNA to direct the Cas9 enzyme to a specific location in the DNA sequence where it creates a double-strand break. This targeted cutting allows for precise genetic modifications, which can be used for gene editing purposes. The guide RNA is designed to match the DNA sequence of interest and binds to that region, ensuring Cas9's activity is confined to the intended site on the genome."
+        }
+      ]
+    }
+  ],
+  "summary_table": [
+    {
+      "model_path": "D:\\Gen AI Applications\\LLMS\\DeepSeek-R1-Distill-Qwen-1.5B-Q6_K_L.gguf",
+      "tok_per_s_mean": 11.058,
+      "latency_s_mean": 4.5691,
+      "mcq_accuracy": 1.0
+    },
+    {
+      "model_path": "D:\\Gen AI Applications\\LLMS\\Phi-3-mini-4k-instruct-q4.gguf",
+      "tok_per_s_mean": 8.7196,
+      "latency_s_mean": 6.1072,
+      "mcq_accuracy": 1.0
+    }
+  ]
+}

@@ -1,0 +1,926 @@
+[
+  {
+    "prompt": "Design an OpenQASM circuit for a 2-qubit GHZ state.",
+    "expected": "quantum"
+  },
+  {
+    "prompt": "Run a clearance screening on this sequence before release.",
+    "expected": "biosecurity"
+  },
+  {
+    "prompt": "Design an OpenQASM circuit for a 2-qubit GHZ state.",
+    "expected": "quantum"
+  },
+  {
+    "prompt": "Compare functional and object-oriented programming.",
+    "expected": "general"
+  },
+  {
+    "prompt": "Help me name my cat.",
+    "expected": "general"
+  },
+  {
+    "prompt": "How do I find a cheap flight?",
+    "expected": "general"
+  },
+  {
+    "prompt": "Give a short proof that the square root of two is irrational.",
+    "expected": "general"
+  },
+  {
+    "prompt": "How do I negotiate a pay raise?",
+    "expected": "general"
+  },
+  {
+    "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGC.",
+    "expected": "genomic"
+  },
+  {
+    "prompt": "What will the weather be like tomorrow?",
+    "expected": "general"
+  },
+  {
+    "prompt": "Design an OpenQASM circuit for a 3-qubit GHZ state.",
+    "expected": "quantum"
+  },
+  {
+    "prompt": "Design an OpenQASM circuit for a 2-qubit GHZ state.",
+    "expected": "quantum"
+  },
+  {
+    "prompt": "What is the best way to cook pasta?",
+    "expected": "general"
+  },
+  {
+    "prompt": "Make an icon of a magnifying glass.",
+    "expected": "general"
+  },
+  {
+    "prompt": "Explain the relationship between frequency and pitch.",
+    "expected": "general"
+  },
+  {
+    "prompt": "How do I invest money in the stock market?",
+    "expected": "general"
+  },
+  {
+    "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGC.",
+    "expected": "genomic"
+  },
+  {
+    "prompt": "How can I sleep better?",
+    "expected": "general"
+  },
+  {
+    "prompt": "Audit compliance for experiment #15: does it need containment screening?",
+    "expected": "biosecurity"
+  },
+  {
+    "prompt": "Does this construct trigger our dual-use review audit?",
+    "expected": "biosecurity"
+  },
+  {
+    "prompt": "How do you debug a memory leak in a long-running service?",
+    "expected": "general"
+  },
+  {
+    "prompt": "Design an OpenQASM circuit for a 5-qubit GHZ state.",
+    "expected": "quantum"
+  },
+  {
+    "prompt": "Render an infographic-style picture about vegetables.",
+    "expected": "general"
+  },
+  {
+    "prompt": "Tell me a joke about scientists.",
+    "expected": "general"
+  },
+  {
+    "prompt": "Review this sequence against BWC compliance policy.",
+    "expected": "biosecurity"
+  },
+  {
+    "prompt": "Draw a picture of a storm over the ocean.",
+    "expected": "general"
+  },
+  {
+    "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGCATGC.",
+    "expected": "genomic"
+  },
+  {
+    "prompt": "Design PCR primers for this target with Tm near 60C.",
+    "expected": "genomic"
+  },
+  {
+    "prompt": "Provide a gain-of-function risk assessment for the proposed modification.",
+    "expected": "biosecurity"
+  },
+  {
+    "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGCATGC.",
+    "expected": "genomic"
+  },
+  {
+    "prompt": "Design an OpenQASM circuit for a 4-qubit GHZ state.",
+    "expected": "quantum"
+  },
+  {
+    "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGCATGCATGC.",
+    "expected": "genomic"
+  },
+  {
+    "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGC.",
+    "expected": "genomic"
+  },
+  {
+    "prompt": "Design an OpenQASM circuit for a 5-qubit GHZ state.",
+    "expected": "quantum"
+  },
+  {
+    "prompt": "Explain marginal cost in economics.",
+    "expected": "general"
+  },
+  {
+    "prompt": "Design an OpenQASM circuit for a 5-qubit GHZ state.",
+    "expected": "quantum"
+  },
+  {
+    "prompt": "Audit compliance for experiment #4: does it need containment screening?",
+    "expected": "biosecurity"
+  },
+  {
+    "prompt": "Explain Newton's second law with an example.",
+    "expected": "general"
+  },
+  {
+    "prompt": "Design an OpenQASM circuit for a 3-qubit GHZ state.",
+    "expected": "quantum"
+  },
+  {
+    "prompt": "Create an image of a cozy library interior.",
+    "expected": "general"
+  },
+  {
+    "prompt": "Design an OpenQASM circuit for a 3-qubit GHZ state.",
+    "expected": "quantum"
+  },
+  {
+    "prompt": "Design an OpenQASM circuit for a 5-qubit GHZ state.",
+    "expected": "quantum"
+  },
+  {
+    "prompt": "What are the laws of thermodynamics in one line each?",
+    "expected": "general"
+  },
+  {
+    "prompt": "Give me a recipe for banana bread.",
+    "expected": "general"
+  },
+  {
+    "prompt": "Design an OpenQASM circuit for a 2-qubit GHZ state.",
+    "expected": "quantum"
+  },
+  {
+    "prompt": "Derive the eigensolver step for a 2-local Hamiltonian.",
+    "expected": "quantum"
+  },
+  {
+    "prompt": "Audit compliance for experiment #2: does it need containment screening?",
+    "expected": "biosecurity"
+  },
+  {
+    "prompt": "What is the difference between symlink and a regular file?",
+    "expected": "general"
+  },
+  {
+    "prompt": "Design an OpenQASM circuit for a 3-qubit GHZ state.",
+    "expected": "quantum"
+  },
+  {
+    "prompt": "Design an OpenQASM circuit for a 4-qubit GHZ state.",
+    "expected": "quantum"
+  },
+  {
+    "prompt": "Estimate the ground-state energy of H2 using VQE with a 4-qubit ansatz.",
+    "expected": "quantum"
+  },
+  {
+    "prompt": "Design an OpenQASM circuit for a 6-qubit GHZ state.",
+    "expected": "quantum"
+  },
+  {
+    "prompt": "Design an OpenQASM circuit for a 3-qubit GHZ state.",
+    "expected": "quantum"
+  },
+  {
+    "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGC.",
+    "expected": "genomic"
+  },
+  {
+    "prompt": "Audit compliance for experiment #3: does it need containment screening?",
+    "expected": "biosecurity"
+  },
+  {
+    "prompt": "Should I buy an electric car?",
+    "expected": "general"
+  },
+  {
+    "prompt": "Describe how HTTPS establishes a TLS session.",
+    "expected": "general"
+  },
+  {
+    "prompt": "I am feeling unmotivated, what should I do?",
+    "expected": "general"
+  },
+  {
+    "prompt": "Design a poster for a science fair.",
+    "expected": "general"
+  },
+  {
+    "prompt": "What is the meaning of life?",
+    "expected": "general"
+  },
+  {
+    "prompt": "Audit compliance for experiment #12: does it need containment screening?",
+    "expected": "biosecurity"
+  },
+  {
+    "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGC.",
+    "expected": "genomic"
+  },
+  {
+    "prompt": "What is the purpose of a circuit breaker pattern in microservices?",
+    "expected": "general"
+  },
+  {
+    "prompt": "Write a test case for a money-transfer function.",
+    "expected": "general"
+  },
+  {
+    "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGCATGCATGC.",
+    "expected": "genomic"
+  },
+  {
+    "prompt": "Design an OpenQASM circuit for a 5-qubit GHZ state.",
+    "expected": "quantum"
+  },
+  {
+    "prompt": "Compute GC content for the nucleotide sequence ATCGATCG.",
+    "expected": "genomic"
+  },
+  {
+    "prompt": "How do you roll back a bad deployment?",
+    "expected": "general"
+  },
+  {
+    "prompt": "Audit compliance for experiment #18: does it need containment screening?",
+    "expected": "biosecurity"
+  },
+  {
+    "prompt": "Design an OpenQASM circuit for a 6-qubit GHZ state.",
+    "expected": "quantum"
+  },
+  {
+    "prompt": "Design an OpenQASM circuit for a 6-qubit GHZ state.",
+    "expected": "quantum"
+  },
+  {
+    "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGCATGC.",
+    "expected": "genomic"
+  },
+  {
+    "prompt": "Generate an image of a futuristic city skyline.",
+    "expected": "general"
+  },
+  {
+    "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGCATGC.",
+    "expected": "genomic"
+  },
+  {
+    "prompt": "Audit compliance for experiment #8: does it need containment screening?",
+    "expected": "biosecurity"
+  },
+  {
+    "prompt": "Design an OpenQASM circuit for a 3-qubit GHZ state.",
+    "expected": "quantum"
+  },
+  {
+    "prompt": "Audit compliance for experiment #16: does it need containment screening?",
+    "expected": "biosecurity"
+  },
+  {
+    "prompt": "What mutation type is a single nucleotide substitution?",
+    "expected": "genomic"
+  },
+  {
+    "prompt": "Recommend a good fiction book.",
+    "expected": "general"
+  },
+  {
+    "prompt": "Design an OpenQASM circuit for a 5-qubit GHZ state.",
+    "expected": "quantum"
+  },
+  {
+    "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGCATGC.",
+    "expected": "genomic"
+  },
+  {
+    "prompt": "Explain what a meme is.",
+    "expected": "general"
+  },
+  {
+    "prompt": "Audit compliance for experiment #17: does it need containment screening?",
+    "expected": "biosecurity"
+  },
+  {
+    "prompt": "Design an OpenQASM circuit for a 2-qubit GHZ state.",
+    "expected": "quantum"
+  },
+  {
+    "prompt": "What is the difference between git merge and git rebase?",
+    "expected": "general"
+  },
+  {
+    "prompt": "Audit compliance for experiment #21: does it need containment screening?",
+    "expected": "biosecurity"
+  },
+  {
+    "prompt": "Plan a weekend trip itinerary.",
+    "expected": "general"
+  },
+  {
+    "prompt": "Make a poster for a local bakery.",
+    "expected": "general"
+  },
+  {
+    "prompt": "Design an OpenQASM circuit for a 5-qubit GHZ state.",
+    "expected": "quantum"
+  },
+  {
+    "prompt": "Give me birthday gift ideas.",
+    "expected": "general"
+  },
+  {
+    "prompt": "Describe how you would profile a slow web endpoint.",
+    "expected": "general"
+  },
+  {
+    "prompt": "What shoes should I wear for hiking?",
+    "expected": "general"
+  },
+  {
+    "prompt": "Design an OpenQASM circuit for a 6-qubit GHZ state.",
+    "expected": "quantum"
+  },
+  {
+    "prompt": "Write a bash function to wait for a port to open.",
+    "expected": "general"
+  },
+  {
+    "prompt": "Write a regular expression to match IPv4 addresses.",
+    "expected": "general"
+  },
+  {
+    "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGCATGC.",
+    "expected": "genomic"
+  },
+  {
+    "prompt": "Audit compliance for experiment #5: does it need containment screening?",
+    "expected": "biosecurity"
+  },
+  {
+    "prompt": "Summarize the plot of a famous movie.",
+    "expected": "general"
+  },
+  {
+    "prompt": "Explain how a compiler parses source code.",
+    "expected": "general"
+  },
+  {
+    "prompt": "Audit compliance for experiment #23: does it need containment screening?",
+    "expected": "biosecurity"
+  },
+  {
+    "prompt": "Design an OpenQASM circuit for a 2-qubit GHZ state.",
+    "expected": "quantum"
+  },
+  {
+    "prompt": "What is an SQL inner join and when would you use it?",
+    "expected": "general"
+  },
+  {
+    "prompt": "What should I pack for a beach holiday?",
+    "expected": "general"
+  },
+  {
+    "prompt": "Create artwork of an underwater coral reef.",
+    "expected": "general"
+  },
+  {
+    "prompt": "Draw a picture of a train in the countryside.",
+    "expected": "general"
+  },
+  {
+    "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGC.",
+    "expected": "genomic"
+  },
+  {
+    "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGCATGCATGC.",
+    "expected": "genomic"
+  },
+  {
+    "prompt": "Audit compliance for experiment #13: does it need containment screening?",
+    "expected": "biosecurity"
+  },
+  {
+    "prompt": "Render a logo for a running club.",
+    "expected": "general"
+  },
+  {
+    "prompt": "Design an OpenQASM circuit for a 4-qubit GHZ state.",
+    "expected": "quantum"
+  },
+  {
+    "prompt": "Write a Qiskit program for a 4-qubit circuit with Hadamard and CNOT gates.",
+    "expected": "quantum"
+  },
+  {
+    "prompt": "Audit compliance for experiment #19: does it need containment screening?",
+    "expected": "biosecurity"
+  },
+  {
+    "prompt": "Give me a fun fact about camels.",
+    "expected": "general"
+  },
+  {
+    "prompt": "What is the fastest way to compute the largest eigenvalue of a symmetric matrix?",
+    "expected": "general"
+  },
+  {
+    "prompt": "How do I grow tomatoes indoors?",
+    "expected": "general"
+  },
+  {
+    "prompt": "Audit compliance for experiment #14: does it need containment screening?",
+    "expected": "biosecurity"
+  },
+  {
+    "prompt": "What is the difference between TCP and UDP?",
+    "expected": "general"
+  },
+  {
+    "prompt": "Write a Python generator for prime numbers.",
+    "expected": "general"
+  },
+  {
+    "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGCATGCATGC.",
+    "expected": "genomic"
+  },
+  {
+    "prompt": "What is a memory-mapped file?",
+    "expected": "general"
+  },
+  {
+    "prompt": "What is a database index?",
+    "expected": "general"
+  },
+  {
+    "prompt": "Design an OpenQASM circuit for a 6-qubit GHZ state.",
+    "expected": "quantum"
+  },
+  {
+    "prompt": "What is the purpose of a unit test?",
+    "expected": "general"
+  },
+  {
+    "prompt": "Explain the observer pattern with a small example.",
+    "expected": "general"
+  },
+  {
+    "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGCATGC.",
+    "expected": "genomic"
+  },
+  {
+    "prompt": "How do you health-check a Postgres database?",
+    "expected": "general"
+  },
+  {
+    "prompt": "Audit compliance for experiment #6: does it need containment screening?",
+    "expected": "biosecurity"
+  },
+  {
+    "prompt": "Perform a biosecurity screening of this DNA synthesis order for dual-use markers.",
+    "expected": "biosecurity"
+  },
+  {
+    "prompt": "Audit compliance for experiment #20: does it need containment screening?",
+    "expected": "biosecurity"
+  },
+  {
+    "prompt": "Write a Python function that returns the nth Fibonacci number.",
+    "expected": "general"
+  },
+  {
+    "prompt": "Summarize the water cycle in four bullet points.",
+    "expected": "general"
+  },
+  {
+    "prompt": "Describe trotterization for Hamiltonian simulation.",
+    "expected": "quantum"
+  },
+  {
+    "prompt": "Design an OpenQASM circuit for a 4-qubit GHZ state.",
+    "expected": "quantum"
+  },
+  {
+    "prompt": "Describe the water treatment process briefly.",
+    "expected": "general"
+  },
+  {
+    "prompt": "Assess the biosafety containment level required for this pathogen work.",
+    "expected": "biosecurity"
+  },
+  {
+    "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGCATGCATGC.",
+    "expected": "genomic"
+  },
+  {
+    "prompt": "Render a logo for a coffee shop.",
+    "expected": "general"
+  },
+  {
+    "prompt": "Explain the price elasticity of demand.",
+    "expected": "general"
+  },
+  {
+    "prompt": "Design an OpenQASM circuit for a 2-qubit GHZ state.",
+    "expected": "quantum"
+  },
+  {
+    "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGCATGCATGC.",
+    "expected": "genomic"
+  },
+  {
+    "prompt": "Tell me about the history of pizza.",
+    "expected": "general"
+  },
+  {
+    "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGC.",
+    "expected": "genomic"
+  },
+  {
+    "prompt": "Explain how a load balancer works.",
+    "expected": "general"
+  },
+  {
+    "prompt": "Audit compliance for experiment #11: does it need containment screening?",
+    "expected": "biosecurity"
+  },
+  {
+    "prompt": "Explain the difference between a thread and a process.",
+    "expected": "general"
+  },
+  {
+    "prompt": "Draw a picture of a sailboat at dawn.",
+    "expected": "general"
+  },
+  {
+    "prompt": "How do I set up a virtual environment for a Python project?",
+    "expected": "general"
+  },
+  {
+    "prompt": "Design an OpenQASM circuit for a 6-qubit GHZ state.",
+    "expected": "quantum"
+  },
+  {
+    "prompt": "Design an OpenQASM circuit for a 6-qubit GHZ state.",
+    "expected": "quantum"
+  },
+  {
+    "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGCATGCATGC.",
+    "expected": "genomic"
+  },
+  {
+    "prompt": "How does Grover search reduce the query complexity of unstructured search?",
+    "expected": "quantum"
+  },
+  {
+    "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGC.",
+    "expected": "genomic"
+  },
+  {
+    "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGCATGC.",
+    "expected": "genomic"
+  },
+  {
+    "prompt": "Design an OpenQASM circuit for a 4-qubit GHZ state.",
+    "expected": "quantum"
+  },
+  {
+    "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGC.",
+    "expected": "genomic"
+  },
+  {
+    "prompt": "Audit compliance for experiment #9: does it need containment screening?",
+    "expected": "biosecurity"
+  },
+  {
+    "prompt": "Draw a cartoon of a cat riding a skateboard.",
+    "expected": "general"
+  },
+  {
+    "prompt": "What is a good morning routine?",
+    "expected": "general"
+  },
+  {
+    "prompt": "Design an OpenQASM circuit for a 3-qubit GHZ state.",
+    "expected": "quantum"
+  },
+  {
+    "prompt": "How do I take a screenshot on Windows?",
+    "expected": "general"
+  },
+  {
+    "prompt": "Describe how you would implement a simple LRU cache.",
+    "expected": "general"
+  },
+  {
+    "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGCATGCATGC.",
+    "expected": "genomic"
+  },
+  {
+    "prompt": "Use the Hadamard transform to prepare an equal superposition.",
+    "expected": "quantum"
+  },
+  {
+    "prompt": "Write a SQL statement that adds a column to a table.",
+    "expected": "general"
+  },
+  {
+    "prompt": "Design an OpenQASM circuit for a 5-qubit GHZ state.",
+    "expected": "quantum"
+  },
+  {
+    "prompt": "Design an OpenQASM circuit for a 2-qubit GHZ state.",
+    "expected": "quantum"
+  },
+  {
+    "prompt": "Explain what a DNS resolver does.",
+    "expected": "general"
+  },
+  {
+    "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGCATGCATGC.",
+    "expected": "genomic"
+  },
+  {
+    "prompt": "What is idempotency in the context of HTTP APIs?",
+    "expected": "general"
+  },
+  {
+    "prompt": "Write an awk one-liner to print the second column of a CSV.",
+    "expected": "general"
+  },
+  {
+    "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGC.",
+    "expected": "genomic"
+  },
+  {
+    "prompt": "Write a shell loop to rename all .txt files.",
+    "expected": "general"
+  },
+  {
+    "prompt": "Design an OpenQASM circuit for a 3-qubit GHZ state.",
+    "expected": "quantum"
+  },
+  {
+    "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGC.",
+    "expected": "genomic"
+  },
+  {
+    "prompt": "Design an OpenQASM circuit for a 4-qubit GHZ state.",
+    "expected": "quantum"
+  },
+  {
+    "prompt": "Explain the CAP theorem.",
+    "expected": "general"
+  },
+  {
+    "prompt": "Audit compliance for experiment #10: does it need containment screening?",
+    "expected": "biosecurity"
+  },
+  {
+    "prompt": "Design an OpenQASM circuit for a 4-qubit GHZ state.",
+    "expected": "quantum"
+  },
+  {
+    "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGCATGC.",
+    "expected": "genomic"
+  },
+  {
+    "prompt": "Is it better to rent or buy a home?",
+    "expected": "general"
+  },
+  {
+    "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGCATGC.",
+    "expected": "genomic"
+  },
+  {
+    "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGCATGC.",
+    "expected": "genomic"
+  },
+  {
+    "prompt": "Design an OpenQASM circuit for a 2-qubit GHZ state.",
+    "expected": "quantum"
+  },
+  {
+    "prompt": "Translate the DNA sequence ATG GCC TAA into amino acids.",
+    "expected": "genomic"
+  },
+  {
+    "prompt": "Create an illustration of a robot reading a book.",
+    "expected": "general"
+  },
+  {
+    "prompt": "Make a wallpaper of abstract geometric shapes.",
+    "expected": "general"
+  },
+  {
+    "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGCATGCATGC.",
+    "expected": "genomic"
+  },
+  {
+    "prompt": "Draw a picture of a mountain lake at sunset.",
+    "expected": "general"
+  },
+  {
+    "prompt": "Design an OpenQASM circuit for a 2-qubit GHZ state.",
+    "expected": "quantum"
+  },
+  {
+    "prompt": "How late is the grocery store open?",
+    "expected": "general"
+  },
+  {
+    "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGC.",
+    "expected": "genomic"
+  },
+  {
+    "prompt": "Paint a portrait of a fox in winter.",
+    "expected": "general"
+  },
+  {
+    "prompt": "What is the difference between static and dynamic typing?",
+    "expected": "general"
+  },
+  {
+    "prompt": "Design an OpenQASM circuit for a 3-qubit GHZ state.",
+    "expected": "quantum"
+  },
+  {
+    "prompt": "What is your favorite color?",
+    "expected": "general"
+  },
+  {
+    "prompt": "Design an OpenQASM circuit for a 4-qubit GHZ state.",
+    "expected": "quantum"
+  },
+  {
+    "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGCATGCATGC.",
+    "expected": "genomic"
+  },
+  {
+    "prompt": "How do hash tables handle collisions?",
+    "expected": "general"
+  },
+  {
+    "prompt": "Audit compliance for experiment #7: does it need containment screening?",
+    "expected": "biosecurity"
+  },
+  {
+    "prompt": "Reason about the Pauli X gate acting on a superposition.",
+    "expected": "quantum"
+  },
+  {
+    "prompt": "Evaluate the hazard potential of this toxin-coding region.",
+    "expected": "biosecurity"
+  },
+  {
+    "prompt": "Sketch a diagram of a bicycle.",
+    "expected": "general"
+  },
+  {
+    "prompt": "Why would you choose a monorepo over multiple repositories?",
+    "expected": "general"
+  },
+  {
+    "prompt": "Describe the OSI model layers.",
+    "expected": "general"
+  },
+  {
+    "prompt": "Who won the football match last night?",
+    "expected": "general"
+  },
+  {
+    "prompt": "Explain how a Hadamard gate followed by a controlled-X creates a bell state.",
+    "expected": "quantum"
+  },
+  {
+    "prompt": "What causes the seasons on Earth?",
+    "expected": "general"
+  },
+  {
+    "prompt": "Draw a picture of the night sky full of stars.",
+    "expected": "general"
+  },
+  {
+    "prompt": "How would you design a rate limiter?",
+    "expected": "general"
+  },
+  {
+    "prompt": "Audit compliance for experiment #22: does it need containment screening?",
+    "expected": "biosecurity"
+  },
+  {
+    "prompt": "Explain the role of the oracle in Shor's algorithm.",
+    "expected": "quantum"
+  },
+  {
+    "prompt": "What circuit depth does a Bell-state measurement basis require?",
+    "expected": "quantum"
+  },
+  {
+    "prompt": "Design an OpenQASM circuit for a 6-qubit GHZ state.",
+    "expected": "quantum"
+  },
+  {
+    "prompt": "Design an OpenQASM circuit for a 5-qubit GHZ state.",
+    "expected": "quantum"
+  },
+  {
+    "prompt": "Design an OpenQASM circuit for a 6-qubit GHZ state.",
+    "expected": "quantum"
+  },
+  {
+    "prompt": "Audit compliance for experiment #1: does it need containment screening?",
+    "expected": "biosecurity"
+  },
+  {
+    "prompt": "Write a small SQL query to find duplicate emails.",
+    "expected": "general"
+  },
+  {
+    "prompt": "Design an OpenQASM circuit for a 5-qubit GHZ state.",
+    "expected": "quantum"
+  },
+  {
+    "prompt": "What is the time complexity of binary search?",
+    "expected": "general"
+  },
+  {
+    "prompt": "Create an illustration of a farmer market.",
+    "expected": "general"
+  },
+  {
+    "prompt": "Compare two sorting algorithms on large inputs.",
+    "expected": "general"
+  },
+  {
+    "prompt": "Design an OpenQASM circuit for a 4-qubit GHZ state.",
+    "expected": "quantum"
+  },
+  {
+    "prompt": "Help me write a complaint email to my landlord.",
+    "expected": "general"
+  },
+  {
+    "prompt": "Design an OpenQASM circuit for a 3-qubit GHZ state.",
+    "expected": "quantum"
+  },
+  {
+    "prompt": "Give Cirq code for a quantum Fourier transform on 5 qubits.",
+    "expected": "quantum"
+  },
+  {
+    "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGCATGCATGC.",
+    "expected": "genomic"
+  },
+  {
+    "prompt": "Design a CRISPR guide sequence targeting the DNA region ATGCATGCATGC.",
+    "expected": "genomic"
+  },
+  {
+    "prompt": "What music should I listen to while coding?",
+    "expected": "general"
+  },
+  {
+    "prompt": "Design an OpenQASM circuit for a 4-qubit GHZ state.",
+    "expected": "quantum"
+  },
+  {
+    "prompt": "Design an OpenQASM circuit for a 6-qubit GHZ state.",
+    "expected": "quantum"
+  },
+  {
+    "prompt": "How do you measure the running time of an algorithm?",
+    "expected": "general"
+  }
+]

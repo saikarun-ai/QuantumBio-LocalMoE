@@ -1,0 +1,27 @@
+@startuml quantum
+!theme plain
+title Class Diagram - Quantum Bridge (Qiskit / Cirq)
+
+class QuantumBridge {
+  - _qiskit: QuantumCircuit | None
+  - _cirq: module | None
+  - _aer: AerSimulator | None
+  + load(): None
+  - _parse_circuit(qasm_text)
+  + validate_qasm(qasm_text) -> dict
+  + simulate_qasm(qasm_text, shots) -> dict
+  + evaluate_vqe_program(qubits, layers) -> dict
+}
+
+class validate_circuit_text {
+  {static} validate_circuit_text(text) -> dict
+}
+
+QuantumBridge ..> validate_circuit_text : used by
+note right of QuantumBridge
+  Compatible with Qiskit 1.x and 2.x.
+  Simulation requires optional qiskit-aer;
+  VQE evaluation uses Cirq Simulator.
+end note
+
+@enduml

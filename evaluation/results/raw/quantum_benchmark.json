@@ -1,0 +1,233 @@
+{
+  "methodology": "Validates a curated QASM corpus through QuantumBridge.validate_qasm (the exact path the LLM-generated-circuit validator uses), probes simulation and repeats VQE-program evaluation 3x per configuration for reproducibility.",
+  "validate_cases": {
+    "bell_2q": {
+      "valid": true,
+      "openqasm_version": "2",
+      "qubits": 2,
+      "gate_operations": 4,
+      "circuit_depth": 3
+    },
+    "ghz_3q": {
+      "valid": true,
+      "openqasm_version": "2",
+      "qubits": 3,
+      "gate_operations": 6,
+      "circuit_depth": 4
+    },
+    "pauli5_depth": {
+      "valid": true,
+      "openqasm_version": "2",
+      "qubits": 5,
+      "gate_operations": 6,
+      "circuit_depth": 4
+    },
+    "invalid_no_header": {
+      "valid": false,
+      "reason": "Missing OPENQASM version header"
+    },
+    "invalid_no_qreg": {
+      "valid": false,
+      "reason": "No qreg declarations found"
+    },
+    "invalid_bad_gate": {
+      "valid": false,
+      "reason": "QASM parse error: \"<input>:4,0: 'foo' is not defined in this scope\""
+    }
+  },
+  "validate_latency_ms": {
+    "bell_2q": 0.709,
+    "ghz_3q": 0.28,
+    "pauli5_depth": 1.73,
+    "invalid_no_header": 0.003,
+    "invalid_no_qreg": 0.005,
+    "invalid_bad_gate": 0.226
+  },
+  "simulate_qasm_bell": {
+    "status": "ok",
+    "shots": 1024,
+    "counts": {
+      "11": 518,
+      "00": 506
+    }
+  },
+  "vqe_program": {
+    "runs": [
+      {
+        "qubits": 2,
+        "layers": 1,
+        "rep": 0,
+        "result": {
+          "status": "ok",
+          "qubits": 2,
+          "layers": 1,
+          "operations": 3,
+          "final_state_measurements": "(4,)"
+        },
+        "latency_ms": 4.851
+      },
+      {
+        "qubits": 2,
+        "layers": 1,
+        "rep": 1,
+        "result": {
+          "status": "ok",
+          "qubits": 2,
+          "layers": 1,
+          "operations": 3,
+          "final_state_measurements": "(4,)"
+        },
+        "latency_ms": 1.286
+      },
+      {
+        "qubits": 2,
+        "layers": 1,
+        "rep": 2,
+        "result": {
+          "status": "ok",
+          "qubits": 2,
+          "layers": 1,
+          "operations": 3,
+          "final_state_measurements": "(4,)"
+        },
+        "latency_ms": 1.005
+      },
+      {
+        "qubits": 4,
+        "layers": 1,
+        "rep": 0,
+        "result": {
+          "status": "ok",
+          "qubits": 4,
+          "layers": 1,
+          "operations": 5,
+          "final_state_measurements": "(16,)"
+        },
+        "latency_ms": 1.539
+      },
+      {
+        "qubits": 4,
+        "layers": 1,
+        "rep": 1,
+        "result": {
+          "status": "ok",
+          "qubits": 4,
+          "layers": 1,
+          "operations": 5,
+          "final_state_measurements": "(16,)"
+        },
+        "latency_ms": 1.359
+      },
+      {
+        "qubits": 4,
+        "layers": 1,
+        "rep": 2,
+        "result": {
+          "status": "ok",
+          "qubits": 4,
+          "layers": 1,
+          "operations": 5,
+          "final_state_measurements": "(16,)"
+        },
+        "latency_ms": 1.516
+      },
+      {
+        "qubits": 8,
+        "layers": 1,
+        "rep": 0,
+        "result": {
+          "status": "ok",
+          "qubits": 8,
+          "layers": 1,
+          "operations": 9,
+          "final_state_measurements": "(256,)"
+        },
+        "latency_ms": 2.948
+      },
+      {
+        "qubits": 8,
+        "layers": 1,
+        "rep": 1,
+        "result": {
+          "status": "ok",
+          "qubits": 8,
+          "layers": 1,
+          "operations": 9,
+          "final_state_measurements": "(256,)"
+        },
+        "latency_ms": 2.493
+      },
+      {
+        "qubits": 8,
+        "layers": 1,
+        "rep": 2,
+        "result": {
+          "status": "ok",
+          "qubits": 8,
+          "layers": 1,
+          "operations": 9,
+          "final_state_measurements": "(256,)"
+        },
+        "latency_ms": 2.483
+      },
+      {
+        "qubits": 6,
+        "layers": 2,
+        "rep": 0,
+        "result": {
+          "status": "ok",
+          "qubits": 6,
+          "layers": 2,
+          "operations": 11,
+          "final_state_measurements": "(64,)"
+        },
+        "latency_ms": 3.335
+      },
+      {
+        "qubits": 6,
+        "layers": 2,
+        "rep": 1,
+        "result": {
+          "status": "ok",
+          "qubits": 6,
+          "layers": 2,
+          "operations": 11,
+          "final_state_measurements": "(64,)"
+        },
+        "latency_ms": 3.3
+      },
+      {
+        "qubits": 6,
+        "layers": 2,
+        "rep": 2,
+        "result": {
+          "status": "ok",
+          "qubits": 6,
+          "layers": 2,
+          "operations": 11,
+          "final_state_measurements": "(64,)"
+        },
+        "latency_ms": 3.276
+      }
+    ],
+    "latency_ms": {
+      "n": 12,
+      "mean": 2.449,
+      "median": 2.488
+    }
+  },
+  "reproducibility": {
+    "vqe_4q_1L": {
+      "identical_across_3_runs": true,
+      "status": "ok",
+      "operations": 5,
+      "shape": "(16,)"
+    },
+    "vqe_6q_2L": {
+      "identical_across_3_runs": true,
+      "status": "ok",
+      "operations": 11,
+      "shape": "(64,)"
+    }
+  }
+}

@@ -1,0 +1,55 @@
+@startuml storage
+!theme plain
+title Class Diagram - Storage Layer
+
+class VectorCache {
+  - host: str
+  - port: int
+  - dimension: int
+  - _client: AsyncQdrantClient | None
+  - _ready: bool
+  - _memory: dict
+  + start(): None
+  + upsert(key, text, metadata) -> str
+  + search(text, top_k) -> list[dict]
+  + clear(): None
+  + close(): None
+}
+
+class RedisStore {
+  - host: str
+  - port: int
+  - ttl: int
+  - _client | None
+  - _fallback: dict
+  + start(): None
+  + get(key) -> str | None
+  + set(key, value): None
+  + close(): None
+}
+
+class Database {
+  - url: str
+  - _pool: asyncpg.Pool | None
+  + start(): None
+  + log_request(request_id, model, prompt_tokens, completion_tokens, expert, latency_ms): None
+  + close(): None
+}
+
+note right of VectorCache
+  Content-hash embeddings (384-dim)
+  cosine search; in-memory fallback when
+  Qdrant is unreachable (air-gapped mode).
+end note
+
+note right of RedisStore
+  TTL key/value cache.
+end note
+
+note right of Database
+  asyncpg pool; CREATE TABLE IF NOT EXISTS
+  request_log; silent disable when Postgres
+  is unreachable.
+end note
+
+@enduml

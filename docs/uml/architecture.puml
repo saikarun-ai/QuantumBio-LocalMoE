@@ -1,0 +1,71 @@
+@startuml architecture
+!theme plain
+title QuantumBio-LocalMoE - System Architecture & Deployment
+
+skinparam componentStyle rectangle
+skinparam nodeStyle rectangle
+
+package "Client Tier" {
+  actor "BioAI Researcher / Offline Client" as CLIENT
+  [Enterprise Tools (OpenAI SDK)] as TOOLS
+  CLIENT --> TOOLS
+}
+
+package "Application Tier" {
+  [OpenAI-Compatible Gateway API\n(FastAPI - main.py :8000)] as API
+  [Semantic MoE Expert Router\n(router/moe_router.py)] as ROUTER
+  [LocalMoEEngine\n(engine.py)] as ENGINE
+  API --> ROUTER
+  API --> ENGINE
+}
+
+package "Expert Sub-networks" {
+  [Quantum Circuit Expert] as E1
+  [Genomic Sequence Expert] as E2
+  [Biosecurity Audit Expert] as E3
+  [General Reasoning Expert] as E4
+  [Creative Imaging Expert] as E5
+  ROUTER --> E1
+  ROUTER --> E2
+  ROUTER --> E3
+  ROUTER --> E4
+  ROUTER --> E5
+}
+
+package "Inference Runtimes" {
+  [llama.cpp\n(LlamaCppBackend)] as LLAMA
+  [vLLM\n(VLLMBackend)] as VLLM
+  [stable-diffusion.cpp\n(DiffusionBackend)] as SD
+  [whisper.cpp\n(WhisperBackend)] as WHISPER
+  [Offline Heuristic\nfallback] as OFFLINE
+  E1 --> LLAMA
+  E1 --> VLLM
+  E2 --> LLAMA
+  E3 --> LLAMA
+  E5 ---> SD
+}
+
+package "Model Registry" {
+  [ModelRegistry\n(inference/registry.py)] as REG
+  REG ..> LLAMA : GGUF path
+  REG ..> SD : diffusion GGUF
+  REG ..> WHISPER : speech.bin
+}
+
+package "Support Services (air-gapped)" {
+  [Qdrant Vector Cache] as QDRANT
+  [PostgreSQL 16] as PG
+  [Redis 7] as REDIS
+  ENGINE --> QDRANT
+  ENGINE --> PG
+  ENGINE --> REDIS
+}
+
+package "Quantum Evaluator" {
+  [QuantumBridge\n(Qiskit / Cirq)] as QB
+  ENGINE --> QB
+}
+
+CLIENT --> API : REST / WebSocket
+
+@enduml

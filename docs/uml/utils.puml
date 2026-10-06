@@ -1,0 +1,37 @@
+@startuml utils
+!theme plain
+title Class Diagram - Utilities (Security & Embeddings)
+
+class apply_airgap_config {
+  {static} apply_airgap_config(): None
+}
+
+class scrub_memory {
+  {static} scrub_memory(): None
+}
+
+class local_hash_embedding {
+  {static} local_hash_embedding(text, dim) -> list[float]
+}
+
+class cosine_similarity {
+  {static} cosine_similarity(a, b) -> float
+}
+
+note right of apply_airgap_config
+  Sets HF_HUB_OFFLINE=1, TRANSFORMERS_OFFLINE=1,
+  WANDB_DISABLED=true, NO_PROXY=* and torch threads.
+end note
+
+note right of scrub_memory
+  torch.cuda.empty_cache + gc.collect()
+  between user sessions (VRAM scrubbing).
+end note
+
+note bottom of local_hash_embedding
+  Substring hashing (words + 2/3-grams) into a
+  fixed 384-dim L2-normalized vector. No model
+  weights or network required - fully offline.
+end note
+
+@enduml

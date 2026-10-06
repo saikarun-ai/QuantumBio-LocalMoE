@@ -1,0 +1,106 @@
+{
+  "methodology": "Each model is loaded via LocalMoEEngine with quantization=gguf and the same 70-token prompt is generated max_tokens=64, temperature=0.1, 3 repeats. RAM delta = process RSS right after model load minus RSS before. Tokens per second is computed by the engine as completion_tokens / wall time (CPU inference). FP16, INT8, AWQ-INT4 rows can only be evaluated if such weights exist locally; none were found.",
+  "models": {
+    "gemma-3-1b-it-Q4_K_M.gguf": {
+      "model_path": "D:\\Gen AI Applications\\project\\models\\gemma-3-1b-it-Q4_K_M.gguf",
+      "size_bytes": 806058240,
+      "size_gb": 0.806,
+      "load_seconds": 13.21,
+      "rss_after_load_mb": 580.2,
+      "rss_before_mb": 36.1,
+      "rss_delta_mb": 544.1,
+      "throughput_tps": {
+        "mean": 16.34,
+        "runs": [
+          13.98,
+          17.56,
+          17.48
+        ]
+      },
+      "latency_s": {
+        "mean": 3.262,
+        "runs": [
+          3.791,
+          3.019,
+          2.975
+        ]
+      },
+      "max_tokens": 64,
+      "prompt": "Explain what a REST API is and name its main HTTP methods, in two short sentences.",
+      "responses": [
+        "Greetings. I am here to assist you with your query regarding REST APIs.\n\nLet\u2019s proceed with a concise explanation:\n\nA REST API (Representational State Transfer Application Programming Interface) is a standardized method for communication between applications over the internet. It allows clients \u2013 typically web browsers or mobile apps \u2013 to request data",
+        "Greetings. I am here to assist you with your query regarding REST APIs.\n\nLet\u2019s proceed with a concise explanation.\n\nA REST API, or Representational State Transfer Application Programming Interface, is a standardized way for applications to communicate with each other over the internet. It utilizes standard protocols and data formats allowing clients (",
+        "Greetings. I am here to assist you with your query regarding REST APIs.\n\nLet\u2019s proceed with a concise explanation:\n\nA REST API (Representational State Transfer Application Programming Interface) is a standardized way for applications to communicate with each other over the internet, primarily using standard web protocols. It allows clients \u2013 often"
+      ]
+    },
+    "DeepSeek-R1-Distill-Qwen-1.5B-Q6_K_L.gguf": {
+      "model_path": "D:\\Gen AI Applications\\LLMS\\DeepSeek-R1-Distill-Qwen-1.5B-Q6_K_L.gguf",
+      "size_bytes": 1577219168,
+      "size_gb": 1.577,
+      "load_seconds": 8.98,
+      "rss_after_load_mb": 455.3,
+      "rss_before_mb": 284.6,
+      "rss_delta_mb": 170.7,
+      "throughput_tps": {
+        "mean": 12.14,
+        "runs": [
+          11.64,
+          12.65,
+          12.14
+        ]
+      },
+      "latency_s": {
+        "mean": 4.508,
+        "runs": [
+          4.809,
+          4.348,
+          4.366
+        ]
+      },
+      "max_tokens": 64,
+      "prompt": "Explain what a REST API is and name its main HTTP methods, in two short sentences.",
+      "responses": [
+        "<think>\nOkay, so I need to explain what a REST API is and list its main HTTP methods. Let me start by recalling what I know about REST APIs.\n\nREST stands for Representational State Transfer. It's a protocol used to communicate data between different systems over the internet. The key idea is that each request has",
+        "<think>\nOkay, so I need to explain what a REST API is and list its main HTTP methods. Let me think about this step by step.\n\nFirst, REST stands for Representational State Transfer. It's a protocol used to communicate data between different systems. The idea is that you can send the same request over HTTP",
+        "<think>\nOkay, so I need to explain what a REST API is and list its main HTTP methods. Let me start by recalling what I know about REST APIs.\n\nREST stands for Representation-Transfer-Encoding, which are the three components of HTTP. So, REST APIs use these same components but with specific endpoints and protocols"
+      ]
+    },
+    "Phi-3-mini-4k-instruct-q4.gguf": {
+      "model_path": "D:\\Gen AI Applications\\LLMS\\Phi-3-mini-4k-instruct-q4.gguf",
+      "size_bytes": 2393231072,
+      "size_gb": 2.393,
+      "load_seconds": 11.2,
+      "rss_after_load_mb": 4320.2,
+      "rss_before_mb": 288.4,
+      "rss_delta_mb": 4031.8,
+      "throughput_tps": {
+        "mean": 5.18,
+        "runs": [
+          5.38,
+          4.63,
+          5.52
+        ]
+      },
+      "latency_s": {
+        "mean": 9.588,
+        "runs": [
+          9.476,
+          10.587,
+          8.7
+        ]
+      },
+      "max_tokens": 64,
+      "prompt": "Explain what a REST API is and name its main HTTP methods, in two short sentences.",
+      "responses": [
+        " A REST API (Representational State Transfer Application Programming Interface) is a set of rules and constraints for building web services that allows different software applications to communicate over the internet using standard HTTP protocols. The main HTTP methods used in REST APIs are GET (retrieve data), POST (create new resources), P",
+        " A REST API (Representational State Transfer Application Programming Interface) is a set of rules and constraints for building web services that allows clients to access and manipulate resources using HTTP protocols. The main HTTP methods used in REST APIs are GET (retrieve data), POST (create new resource), PUT (update",
+        " A REST API (Representational State Transfer Application Programming Interface) is a set of rules and constraints for building web services that allows different software applications to communicate over the internet using standard HTTP protocols. The main HTTP methods used in REST APIs are GET, POST, PUT/PATCH, and DELETE,"
+      ]
+    }
+  },
+  "unavailable_configs": {
+    "fp16": "no fp16 safetensors found in model directories",
+    "int8": "no int8 quant found in model directories",
+    "awq_int4": "no awq modern weights found in model directories (QUANTIZATION_TYPE nominal only)"
+  }
+}

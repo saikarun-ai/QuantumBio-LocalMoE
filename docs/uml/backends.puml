@@ -1,0 +1,56 @@
+@startuml backends
+!theme plain
+title Class Diagram - Inference Backends
+
+abstract class InferenceBackend {
+  + name: str
+  + supports_streaming: bool
+  + model_path: str | None
+  + draft_model_path: str | None
+  + {abstract} complete(prompt, max_tokens, temperature, stop, system_prompt) -> str
+  + start(): None
+  + close(): None
+}
+
+class LlamaCppBackend {
+  + name = "llama.cpp"
+  - _model: Llama | None
+  + complete(...) -> str
+}
+
+class VLLMBackend {
+  + name = "vllm"
+  - _engine
+  - _sampling_factory
+  + complete(...) -> str
+}
+
+class OfflineHeuristicBackend {
+  + name = "offline-heuristic"
+  - _build_body(prompt, max_tokens, stop) -> str
+  + complete(...) -> str
+}
+
+class DiffusionBackend {
+  + name = "stable-diffusion.cpp"
+  + txt_to_img(prompt, negative_prompt, width, height, steps) -> str
+  + img_to_img(prompt, init_image, strength, width, height, steps) -> str
+}
+
+class WhisperBackend {
+  + name = "whisper.cpp"
+  + transcribe(audio_path) -> str
+}
+
+InferenceBackend <|-- LlamaCppBackend
+InferenceBackend <|-- VLLMBackend
+InferenceBackend <|-- OfflineHeuristicBackend
+
+class build_backend {
+  {static} build_backend(model_path, draft_model_path, directories) -> InferenceBackend
+}
+build_backend ..> LlamaCppBackend : creates
+build_backend ..> VLLMBackend : creates
+build_backend ..> OfflineHeuristicBackend : creates
+
+@enduml

@@ -1,0 +1,57 @@
+@startuml api
+!theme plain
+title Class Diagram - FastAPI Layer (OpenAI-Compatible)
+
+class FastAPIApp {
+  + title = "QuantumBio-LocalMoE"
+  + version = "0.1.0"
+  + lifespan(app)
+  + app.state.engine: LocalMoEEngine
+}
+
+class APIRouter {
+  + GET /health
+  + GET /v1/models
+  + GET /v1/route
+  + POST /v1/chat/completions
+  + POST /v1/images/generations
+  + POST /v1/audio/transcriptions
+}
+
+class ChatCompletionRequest {
+  + model: str
+  + messages: list[ChatMessage]
+  + max_tokens: int
+  + temperature: float
+  + top_p: float
+  + stream: bool
+  + stop: list[str] | None
+}
+
+class ImageGenerationRequest {
+  + model: str
+  + prompt: str
+  + negative_prompt: str
+  + n: int
+  + size: str
+  + steps: int
+}
+
+class TranscriptionRequest {
+  + model: str
+  + file: str
+}
+
+FastAPIApp *-- APIRouter : include
+APIRouter ..> ChatCompletionRequest : parses
+APIRouter ..> ImageGenerationRequest : parses
+APIRouter ..> TranscriptionRequest : parses
+APIRouter ..> LocalMoEEngine : delegates to
+
+note bottom of APIRouter
+  Response shapes mirror OpenAI:
+  id, object, created, choices,
+  usage / data[] / text.
+end note
+
+@enduml
